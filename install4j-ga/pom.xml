@@ -13,7 +13,8 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -36,5 +37,48 @@
             <version>1.2.0</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <!-- FIXME: Sort out how to best deal with dependencies and versions on those artifacts -->
+                        <!--<manifestEntries>-->
+                            <!--<Depends-On>install4j-slf4j.jar</Depends-On>-->
+                        <!--</manifestEntries>-->
+
+                        <manifestSections>
+                            <manifestSection>
+                                <name>org/sonatype/install4j/ga/ConfigureProxyAction.class</name>
+                                <manifestEntries>
+                                    <Install-Action>true</Install-Action>
+                                    <Uninstall-Action>true</Uninstall-Action>
+                                </manifestEntries>
+                            </manifestSection>
+
+                            <manifestSection>
+                                <name>org/sonatype/install4j/ga/TrackEventAction.class</name>
+                                <manifestEntries>
+                                    <Install-Action>true</Install-Action>
+                                    <Uninstall-Action>true</Uninstall-Action>
+                                </manifestEntries>
+                            </manifestSection>
+
+                            <manifestSection>
+                                <name>org/sonatype/install4j/ga/TrackEventOnCancelAction.class</name>
+                                <manifestEntries>
+                                    <Install-Action>true</Install-Action>
+                                    <Uninstall-Action>true</Uninstall-Action>
+                                </manifestEntries>
+                            </manifestSection>
+                        </manifestSections>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
