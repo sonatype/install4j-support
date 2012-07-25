@@ -45,8 +45,7 @@ public abstract class ActionSupport
         log.error("Action execution failed", e);
 
         if (reportFailure) {
-            // FIXME: Sort out how to contribute i18n for an extension/module
-            Util.showErrorMessage(context.getMessage("ActionFailed", new Object[] { e }));
+            Util.showErrorMessage(context.getMessage("ga.ActionFailed", new Object[] { e }));
         }
     }
 
