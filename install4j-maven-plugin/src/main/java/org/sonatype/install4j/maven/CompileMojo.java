@@ -34,6 +34,8 @@ import java.util.Properties;
 /**
  * Compile installers (via install4jc).
  *
+ * Execution will skip if <code>install4j.home</code> location is invalid.
+ *
  * @since 1.0
  *
  * @see <a href="http://resources.ej-technologies.com/install4j/help/doc/cli/options.html">install4j cli options</a>

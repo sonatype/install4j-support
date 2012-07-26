@@ -19,7 +19,7 @@ import org.apache.tools.ant.taskdefs.ExecTask;
 /**
  * Update the install4j license key (via install4jc --license).
  *
- * Execution will skip if <code>licenseKey</code> parameter is not configured.
+ * Execution will skip if <code>licenseKey</code> parameter is not configured, or the <code>install4j.home</code> location is invalid.
  *
  * @since 1.0
  */
