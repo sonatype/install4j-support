@@ -112,7 +112,7 @@ public class CompileMojo
     private File variableFile;
 
     /**
-     * @parameter expression="${install4j.attach}" default-value="true"
+     * @parameter expression="${install4j.attach}" default-value="false"
      */
     private boolean attach;
 
