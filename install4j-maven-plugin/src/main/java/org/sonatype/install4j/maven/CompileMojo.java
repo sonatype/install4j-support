@@ -236,7 +236,7 @@ public class CompileMojo
             Element element = (Element) entries.item(i);
             AttachedFile attachedFile = new AttachedFile(
                 element.getAttribute("fileName"),
-                // FIXME: Sort out if this is correct or if newMediaFile is better
+                // FIXME: Sort out if this is correct or if newMediaFileId is better
                 element.getAttribute("targetMediaFileId"));
             files.add(attachedFile);
         }
