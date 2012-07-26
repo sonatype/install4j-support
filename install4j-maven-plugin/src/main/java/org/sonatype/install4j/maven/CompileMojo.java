@@ -23,7 +23,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Properties;
 
 /**
  * Compile installers (via install4jc).
@@ -36,82 +39,121 @@ public class CompileMojo
     extends Install4jcMojoSupport
 {
     /**
+     * Install4j project file.
+     *
      * @parameter expression="${install4j.projectFile}"
      * @required
      */
     private File projectFile;
 
     /**
+     * Enables verbose mode. In verbose mode, install4j prints out information about internal processes.
+     *
      * @parameter expression="${install4j.verbose}" default-value="false"
      */
     private boolean verbose;
 
     /**
+     * Enables quiet mode. In quiet mode, no terminal output short of a fatal error will be printed.
+     *
      * @parameter expression="${install4j.quiet}" default-value="false"
      */
     private boolean quiet;
 
     /**
+     * Enables test mode. In test mode, no media files will be generated in the media file directory.
+     *
      * @parameter expression="${install4j.test}" default-value="false"
      */
     private boolean test;
 
     /**
+     * Create additional debug installers for each media file.
+     *
      * @parameter expression="${install4j.debug}" default-value="false"
      */
     private boolean debug;
 
     /**
+     * Disable LZMA and Pack200 compression.
+     *
      * @parameter expression="${install4j.faster}" default-value="false"
      */
     private boolean faster;
 
     /**
+     * Disable code signing.
+     *
      * @parameter expression="${install4j.disableSigning}" default-value="false"
      */
     private boolean disableSigning;
 
     /**
+     * Set the Windows keystore password for the private key that is configured for code signing.
+     *
      * @parameter expression="${install4j.winKeystorePassword}"
      */
     private String winKeystorePassword;
 
     /**
+     * Set the Mac OSX keystore password for the private key that is configured for code signing.
+     *
      * @parameter expression="${install4j.macKeystorePassword}"
      */
     private String macKeystorePassword;
 
     /**
+     * Override the application version.
+     *
      * @parameter expression="${install4j.release}" default-value="${project.version}"
      */
     private String release;
 
     /**
+     * The output directory for the generated media files.
+     *
      * @parameter expression="${install4j.destination}" default-value="${project.build.directory}/media"
      */
     private File destination;
 
     /**
+     * Only build the media files which have been selected in the install4j IDE.
+     *
      * @parameter expression="${install4j.buildSelected}" default-value="false"
      */
     private boolean buildSelected;
 
     /**
+     * Only build the media files with the specified IDs.
+     *
      * @parameter expression="${install4j.buildIds}"
      */
     private String buildIds;
 
     /**
+     * Only build media files of the specified type.
+     *
      * @parameter expression="${install4j.mediaTypes}"
      */
     private String mediaTypes;
 
     /**
+     * Load variable definitions from a file.
+     *
      * @parameter expression="${install4j.variableFile}"
      */
     private File variableFile;
 
     /**
+     * Override a compiler variable with a different value.
+     *
+     * @parameter
+     */
+    private Properties variables;
+
+    /**
+     * Attach generated installers.
+     *
      * @parameter expression="${install4j.attach}" default-value="false"
      */
     private boolean attach;
@@ -181,7 +223,19 @@ public class CompileMojo
             task.createArg().setFile(variableFile);
         }
 
-        // TODO: Add support for -D variables
+        if (variables != null) {
+            StringBuilder buff = new StringBuilder();
+            Iterator<Entry<Object,Object>> iter = variables.entrySet().iterator();
+            while (iter.hasNext()) {
+                Entry<Object,Object> entry = iter.next();
+                buff.append(entry.getKey()).append('=').append(entry.getValue());
+                if (iter.hasNext()) {
+                    buff.append(",");
+                }
+            }
+            task.createArg().setValue("-D");
+            task.createArg().setValue(buff.toString());
+        }
 
         task.execute();
 
@@ -211,6 +265,8 @@ public class CompileMojo
             this.classifier = classifier;
         }
     }
+
+    // FIXME: Update to use new output.txt
 
     private List<AttachedFile> parseAttachedFiles() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
