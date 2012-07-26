@@ -1,10 +1,8 @@
 # Description
 
-Install4j Maven Plugin
+Install4j Maven 2/3 Plugin
 
 # TODO
-
-Support Maven 2
 
 Use output.txt instead of updates.xml to determine what install4jc actually generated
 
