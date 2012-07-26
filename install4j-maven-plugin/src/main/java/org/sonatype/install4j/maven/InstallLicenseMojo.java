@@ -15,7 +15,7 @@ package org.sonatype.install4j.maven;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 /**
- * Install license key (via install4jc).
+ * Install license key (via install4jc --license).
  *
  * @goal install-license
  *
