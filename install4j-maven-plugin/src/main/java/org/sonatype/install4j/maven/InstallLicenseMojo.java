@@ -12,11 +12,7 @@
  */
 package org.sonatype.install4j.maven;
 
-import org.apache.maven.project.MavenProject;
-import org.apache.tools.ant.taskdefs.Chmod;
 import org.apache.tools.ant.taskdefs.ExecTask;
-
-import java.io.File;
 
 /**
  * Install license key (via install4jc).
@@ -26,68 +22,21 @@ import java.io.File;
  * @since 1.0
  */
 public class InstallLicenseMojo
-    extends MojoSupport
+    extends Install4jcMojoSupport
 {
     /**
-     * @parameter expression="${install4j.skip}" default-value="false"
-     */
-    private boolean skip;
-
-    /**
-     * @parameter expression="${install4j.home}"
-     * @required
-     */
-    private File installDir;
-
-    /**
      * @parameter expression="${install4j.licenseKey}"
-     * @required
      */
     private String licenseKey;
 
-    /**
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
-     */
-    private MavenProject project;
-
     @Override
-    protected void doExecute() throws Exception {
-        if (skip) {
-            log.warn("Skipping execution");
+    protected void execute(final AntHelper ant, final ExecTask task) {
+        if (licenseKey == null) {
+            log.warn("Missing install4j.licenseKey; skipping");
             return;
         }
-
-        AntHelper ant = new AntHelper(this, project);
-
-        if (!installDir.exists()) {
-            log.warn("Invalid install directory; skipping: " + installDir);
-            return;
-        }
-
-        log.debug("Install4j installation directory: " + installDir);
-
-        File install4jc = new File(installDir, "bin/install4jc");
-
-        if (!install4jc.exists()) {
-            log.warn("Missing Install4j compiler executable: " + install4jc);
-            return;
-        }
-
-        log.debug("Install4jc: " + install4jc);
-
-        Chmod chmod = ant.createTask(Chmod.class);
-        chmod.setExecutable(install4jc.getAbsolutePath());
-        chmod.setPerm("u+x");
-        chmod.execute();
-
-        ExecTask compiler = ant.createTask(ExecTask.class);
-        compiler.setExecutable(install4jc.getAbsolutePath());
-
-        compiler.createArg().setValue("--license");
-        compiler.createArg().setValue(licenseKey);
-
-        compiler.execute();
+        task.createArg().setValue("--license");
+        task.createArg().setValue(licenseKey);
+        task.execute();
     }
 }

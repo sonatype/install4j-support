@@ -12,9 +12,7 @@
  */
 package org.sonatype.install4j.maven;
 
-import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.MavenProjectHelper;
-import org.apache.tools.ant.taskdefs.Chmod;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 import java.io.File;
@@ -27,19 +25,8 @@ import java.io.File;
  * @since 1.0
  */
 public class CompileMojo
-    extends MojoSupport
+    extends Install4jcMojoSupport
 {
-    /**
-     * @parameter expression="${install4j.skip}" default-value="false"
-     */
-    private boolean skip;
-
-    /**
-     * @parameter expression="${install4j.home}"
-     * @required
-     */
-    private File installDir;
-
     /**
      * @parameter expression="${install4j.projectFile}"
      * @required
@@ -122,110 +109,73 @@ public class CompileMojo
     private boolean attach;
 
     /**
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
-     */
-    private MavenProject project;
-
-    /**
      * @component
      */
     private MavenProjectHelper projectHelper;
 
     @Override
-    protected void doExecute() throws Exception {
-        if (skip) {
-            log.warn("Skipping execution");
-            return;
-        }
-
-        AntHelper ant = new AntHelper(this, project);
-
-        if (!installDir.exists()) {
-            log.warn("Invalid install directory; skipping: " + installDir);
-            return;
-        }
-
-        log.debug("Install4j installation directory: " + installDir);
-
-        File install4jc = new File(installDir, "bin/install4jc");
-
-        if (!install4jc.exists()) {
-            log.warn("Missing Install4j compiler executable: " + install4jc);
-            return;
-        }
-
-        log.debug("Install4jc: " + install4jc);
-
-        Chmod chmod = ant.createTask(Chmod.class);
-        chmod.setExecutable(install4jc.getAbsolutePath());
-        chmod.setPerm("u+x");
-        chmod.execute();
-
-        ExecTask compiler = ant.createTask(ExecTask.class);
-        compiler.setExecutable(install4jc.getAbsolutePath());
-        compiler.createArg().setFile(projectFile);
+    protected void execute(final AntHelper ant, final ExecTask task) {
+        task.createArg().setFile(projectFile);
 
         if (verbose) {
-            compiler.createArg().setValue("--verbose");
+            task.createArg().setValue("--verbose");
         }
 
         if (quiet) {
-            compiler.createArg().setValue("--quiet");
+            task.createArg().setValue("--quiet");
         }
 
         if (test) {
-            compiler.createArg().setValue("--test");
+            task.createArg().setValue("--test");
         }
 
         if (debug) {
-            compiler.createArg().setValue("--debug");
+            task.createArg().setValue("--debug");
         }
 
         if (faster) {
-            compiler.createArg().setValue("--faster");
+            task.createArg().setValue("--faster");
         }
 
         if (disableSigning) {
-            compiler.createArg().setValue("--disable-signing");
+            task.createArg().setValue("--disable-signing");
         }
 
         if (winKeystorePassword != null) {
-            compiler.createArg().setValue("--win-keystore-password");
-            compiler.createArg().setValue(winKeystorePassword);
+            task.createArg().setValue("--win-keystore-password");
+            task.createArg().setValue(winKeystorePassword);
         }
 
         if (winKeystorePassword != null) {
-            compiler.createArg().setValue("--mac-keystore-password");
-            compiler.createArg().setValue(macKeystorePassword);
+            task.createArg().setValue("--mac-keystore-password");
+            task.createArg().setValue(macKeystorePassword);
         }
 
-        compiler.createArg().setValue("--destination");
-        compiler.createArg().setFile(destination);
+        task.createArg().setValue("--destination");
+        task.createArg().setFile(destination);
 
         if (buildSelected) {
-            compiler.createArg().setValue("--build-selected");
+            task.createArg().setValue("--build-selected");
         }
 
         if (buildIds != null) {
-            compiler.createArg().setValue("--build-ids");
-            compiler.createArg().setValue(buildIds);
+            task.createArg().setValue("--build-ids");
+            task.createArg().setValue(buildIds);
         }
 
         if (mediaTypes != null) {
-            compiler.createArg().setValue("--media-types");
-            compiler.createArg().setValue(mediaTypes);
+            task.createArg().setValue("--media-types");
+            task.createArg().setValue(mediaTypes);
         }
 
         if (variableFile != null) {
-            compiler.createArg().setValue("--var-file");
-            compiler.createArg().setFile(variableFile);
+            task.createArg().setValue("--var-file");
+            task.createArg().setFile(variableFile);
         }
 
         // TODO: Add support for -D variables
 
-        compiler.execute();
+        task.execute();
 
         if (attach) {
             // TODO: A bit tricky since we depend on the files to determine what to attach
