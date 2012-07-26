@@ -30,7 +30,7 @@ public class InstallLicenseMojo
     private String licenseKey;
 
     @Override
-    protected void execute(final AntHelper ant, final ExecTask task) {
+    protected void execute(final AntHelper ant, final ExecTask task) throws Exception {
         if (licenseKey == null) {
             log.warn("Missing install4j.licenseKey; skipping");
             return;

@@ -14,8 +14,19 @@ package org.sonatype.install4j.maven;
 
 import org.apache.maven.project.MavenProjectHelper;
 import org.apache.tools.ant.taskdefs.ExecTask;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Compile installers (via install4jc).
@@ -114,7 +125,7 @@ public class CompileMojo
     private MavenProjectHelper projectHelper;
 
     @Override
-    protected void execute(final AntHelper ant, final ExecTask task) {
+    protected void execute(final AntHelper ant, final ExecTask task) throws Exception {
         task.createArg().setFile(projectFile);
 
         if (verbose) {
@@ -178,8 +189,59 @@ public class CompileMojo
         task.execute();
 
         if (attach) {
-            // TODO: A bit tricky since we depend on the files to determine what to attach
-            // TODO: Use updates.xml to determine what files/classifiers instead?
+            List<AttachedFile> attachedFiles = parseAttachedFiles();
+            for (AttachedFile attachedFile : attachedFiles) {
+                String type = getType(attachedFile.fileName);
+                String classifier = attachedFile.classifier;
+                File file = new File(destination, attachedFile.fileName);
+                projectHelper.attachArtifact(project, type, classifier, file);
+            }
         }
+    }
+
+    private String getType(final String fileName) {
+        int i = fileName.lastIndexOf(".");
+        return fileName.substring(i + 1, fileName.length());
+    }
+
+    private static class AttachedFile
+    {
+        public final String fileName;
+
+        public final String classifier;
+
+        private AttachedFile(final String fileName, final String classifier) {
+            this.fileName = fileName;
+            this.classifier = classifier;
+        }
+    }
+
+    private List<AttachedFile> parseAttachedFiles() throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        File file = new File(destination, "updates.xml");
+        if (!file.exists()) {
+            log.warn("Missing updates.xml file: " + file);
+            return Collections.emptyList();
+        }
+
+        Document doc = builder.parse(file);
+        NodeList entries = doc.getElementsByTagName("entry");
+        if (entries == null) {
+            log.warn("Failed to parse updates.xml entries");
+            return Collections.emptyList();
+        }
+
+        List<AttachedFile> files = new ArrayList<AttachedFile>(entries.getLength());
+        for (int i=0; i < entries.getLength(); i++) {
+            Element element = (Element) entries.item(i);
+            AttachedFile attachedFile = new AttachedFile(
+                element.getAttribute("fileName"),
+                // FIXME: Sort out if this is correct or if newMediaFile is better
+                element.getAttribute("targetMediaFileId"));
+            files.add(attachedFile);
+        }
+
+        return files;
     }
 }

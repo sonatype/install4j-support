@@ -80,5 +80,5 @@ public abstract class Install4jcMojoSupport
         execute(ant, task);
     }
 
-    protected abstract void execute(final AntHelper ant, final ExecTask task);
+    protected abstract void execute(final AntHelper ant, final ExecTask task) throws Exception;
 }
