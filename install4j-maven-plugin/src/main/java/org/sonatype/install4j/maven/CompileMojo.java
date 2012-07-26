@@ -13,6 +13,7 @@
 package org.sonatype.install4j.maven;
 
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.MavenProjectHelper;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 import java.io.File;
@@ -85,7 +86,7 @@ public class CompileMojo
     private String release;
 
     /**
-     * @parameter expression="${install4j.destination}" default-value="${project.build.directory}/generated-files/install4j"
+     * @parameter expression="${install4j.destination}" default-value="${project.build.directory}/media"
      */
     private File destination;
 
@@ -110,11 +111,21 @@ public class CompileMojo
     private File variableFile;
 
     /**
+     * @parameter expression="${install4j.attach}" default-value="true"
+     */
+    private boolean attach;
+
+    /**
      * @parameter expression="${project}"
      * @required
      * @readonly
      */
     private MavenProject project;
+
+    /**
+     * @component
+     */
+    private MavenProjectHelper projectHelper;
 
     @Override
     protected void doExecute() throws Exception {
@@ -125,7 +136,7 @@ public class CompileMojo
             return;
         }
 
-        log.info("Install4j installation directory: " + installDir);
+        log.debug("Install4j installation directory: " + installDir);
 
         File install4jc = new File(installDir, "bin/install4jc");
 
@@ -133,6 +144,8 @@ public class CompileMojo
             log.warn("Missing Install4j compiler executable: " + install4jc);
             return;
         }
+
+        log.debug("Install4jc: " + install4jc);
 
         ExecTask compiler = ant.createTask(ExecTask.class);
         compiler.setExecutable(install4jc.getAbsolutePath());
@@ -194,6 +207,13 @@ public class CompileMojo
             compiler.createArg().setFile(variableFile);
         }
 
+        // TODO: Add support for -D variables
+
         compiler.execute();
+
+        if (attach) {
+            // TODO: A bit tricky since we depend on the files to determine what to attach
+            // TODO: Use updates.xml to determine what files/classifiers instead
+        }
     }
 }
