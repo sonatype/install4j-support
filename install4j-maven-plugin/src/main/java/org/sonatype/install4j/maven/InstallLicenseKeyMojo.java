@@ -29,6 +29,11 @@ public class InstallLicenseKeyMojo
     extends MojoSupport
 {
     /**
+     * @parameter expression="${install4j.skip}" default-value="false"
+     */
+    private boolean skip;
+
+    /**
      * @parameter expression="${install4j.home}"
      * @required
      */
@@ -49,6 +54,11 @@ public class InstallLicenseKeyMojo
 
     @Override
     protected void doExecute() throws Exception {
+        if (skip) {
+            log.warn("Skipping execution");
+            return;
+        }
+
         AntHelper ant = new AntHelper(this, project);
 
         if (!installDir.exists()) {
