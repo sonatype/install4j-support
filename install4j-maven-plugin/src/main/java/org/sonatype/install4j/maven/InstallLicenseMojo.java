@@ -15,7 +15,9 @@ package org.sonatype.install4j.maven;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 /**
- * Install license key (via install4jc --license).
+ * Update the install4j license key (via install4jc --license).
+ *
+ * Execution will skip if <code>licenseKey</code> parameter is not configured.
  *
  * @goal install-license
  *
@@ -25,6 +27,8 @@ public class InstallLicenseMojo
     extends Install4jcMojoSupport
 {
     /**
+     * Install4j license key.
+     *
      * @parameter expression="${install4j.licenseKey}"
      */
     private String licenseKey;

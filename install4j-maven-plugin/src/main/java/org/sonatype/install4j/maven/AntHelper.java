@@ -106,6 +106,10 @@ public class AntHelper
         prop.execute();
     }
 
+    public String getProperty(final String name) {
+        return ant.getProperty(name);
+    }
+
     public Task createTask(final String name) throws BuildException {
         assert name != null;
         return ant.createTask(name);
@@ -143,6 +147,13 @@ public class AntHelper
         Chmod chmod = createTask(Chmod.class);
         chmod.setDir(dir);
         chmod.setIncludes(includes);
+        chmod.setPerm(perm);
+        chmod.execute();
+    }
+
+    public void chmod(final File file, final String perm) {
+        Chmod chmod = createTask(Chmod.class);
+        chmod.setFile(file);
         chmod.setPerm(perm);
         chmod.execute();
     }

@@ -34,6 +34,8 @@ import java.util.Properties;
  * @goal compile
  *
  * @since 1.0
+ *
+ * @see <a href="http://resources.ej-technologies.com/install4j/help/doc/cli/options.html">install4j cli options</a>
  */
 public class CompileMojo
     extends Install4jcMojoSupport

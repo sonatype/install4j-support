@@ -26,12 +26,18 @@ import java.io.File;
 public abstract class Install4jcMojoSupport
     extends MojoSupport
 {
+    private static final String INSTALL4J_VERSION = "install4j.version";
+
     /**
+     * Skip execution.
+     *
      * @parameter expression="${install4j.skip}" default-value="false"
      */
     protected boolean skip;
 
     /**
+     * The location of the install4j installation.
+     *
      * @parameter expression="${install4j.home}"
      * @required
      */
@@ -69,13 +75,20 @@ public abstract class Install4jcMojoSupport
 
         log.debug("Install4jc: " + install4jc);
 
-        // FIXME: This apparently just stopped working... WTF
-        //Chmod chmod = ant.createTask(Chmod.class);
-        //chmod.setExecutable(install4jc.getAbsolutePath());
-        //chmod.setPerm("u+x");
-        //chmod.execute();
+        ant.chmod(install4jc, "u+x");
 
+        // Sanity check, ask install4jc for its version
         ExecTask task = ant.createTask(ExecTask.class);
+        task.setExecutable(install4jc.getAbsolutePath());
+        task.createArg().setValue("--version");
+        task.setOutputproperty(INSTALL4J_VERSION);
+        task.execute();
+
+        // TODO: Might want to add some muck here to determine if the version is compatible with this plugin?
+        String version = ant.getProperty(INSTALL4J_VERSION);
+        log.info("Version: " + version);
+
+        task = ant.createTask(ExecTask.class);
         task.setExecutable(install4jc.getAbsolutePath());
         execute(ant, task);
     }
