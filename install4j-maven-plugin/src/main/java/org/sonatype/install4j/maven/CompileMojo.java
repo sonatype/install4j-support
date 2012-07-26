@@ -12,6 +12,9 @@
  */
 package org.sonatype.install4j.maven;
 
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProjectHelper;
 import org.apache.tools.ant.taskdefs.ExecTask;
 import org.w3c.dom.Document;
@@ -31,138 +34,117 @@ import java.util.Properties;
 /**
  * Compile installers (via install4jc).
  *
- * @goal compile
- *
  * @since 1.0
  *
  * @see <a href="http://resources.ej-technologies.com/install4j/help/doc/cli/options.html">install4j cli options</a>
  */
+@Mojo(name="compile")
 public class CompileMojo
     extends Install4jcMojoSupport
 {
     /**
      * Install4j project file.
-     *
-     * @parameter expression="${install4j.projectFile}"
-     * @required
      */
+    @Parameter(property="install4j.projectFile", required=true)
     private File projectFile;
 
     /**
      * Enables verbose mode. In verbose mode, install4j prints out information about internal processes.
-     *
-     * @parameter expression="${install4j.verbose}" default-value="false"
      */
+    @Parameter(property="install4j.verbose", defaultValue="false")
     private boolean verbose;
 
     /**
      * Enables quiet mode. In quiet mode, no terminal output short of a fatal error will be printed.
-     *
-     * @parameter expression="${install4j.quiet}" default-value="false"
      */
+    @Parameter(property="install4j.quiet", defaultValue="false")
     private boolean quiet;
 
     /**
      * Enables test mode. In test mode, no media files will be generated in the media file directory.
-     *
-     * @parameter expression="${install4j.test}" default-value="false"
      */
+    @Parameter(property="install4j.test", defaultValue="false")
     private boolean test;
 
     /**
      * Create additional debug installers for each media file.
-     *
-     * @parameter expression="${install4j.debug}" default-value="false"
      */
+    @Parameter(property="install4j.debug", defaultValue="false")
     private boolean debug;
 
     /**
      * Disable LZMA and Pack200 compression.
-     *
-     * @parameter expression="${install4j.faster}" default-value="false"
      */
+    @Parameter(property="install4j.faster", defaultValue="false")
     private boolean faster;
 
     /**
      * Disable code signing.
-     *
-     * @parameter expression="${install4j.disableSigning}" default-value="false"
      */
+    @Parameter(property="install4j.disableSigning", defaultValue="false")
     private boolean disableSigning;
 
     /**
      * Set the Windows keystore password for the private key that is configured for code signing.
-     *
-     * @parameter expression="${install4j.winKeystorePassword}"
      */
+    @Parameter(property="install4j.winKeystorePassword")
     private String winKeystorePassword;
 
     /**
      * Set the Mac OSX keystore password for the private key that is configured for code signing.
-     *
-     * @parameter expression="${install4j.macKeystorePassword}"
      */
+    @Parameter(property="install4j.macKeystorePassword")
     private String macKeystorePassword;
 
     /**
      * Override the application version.
-     *
-     * @parameter expression="${install4j.release}" default-value="${project.version}"
      */
+    @Parameter(property="install4j.release", defaultValue="${project.version}")
     private String release;
 
     /**
      * The output directory for the generated media files.
-     *
-     * @parameter expression="${install4j.destination}" default-value="${project.build.directory}/media"
      */
+    @Parameter(property="install4j.destination", defaultValue="${project.build.directory}/media")
     private File destination;
 
     /**
      * Only build the media files which have been selected in the install4j IDE.
-     *
-     * @parameter expression="${install4j.buildSelected}" default-value="false"
      */
+    @Parameter(property="install4j.buildSelected", defaultValue="false")
     private boolean buildSelected;
 
     /**
      * Only build the media files with the specified IDs.
-     *
-     * @parameter expression="${install4j.buildIds}"
      */
+    @Parameter(property="install4j.buildIds")
     private String buildIds;
 
     /**
      * Only build media files of the specified type.
-     *
-     * @parameter expression="${install4j.mediaTypes}"
      */
+    @Parameter(property="install4j.mediaTypes")
     private String mediaTypes;
 
     /**
      * Load variable definitions from a file.
-     *
-     * @parameter expression="${install4j.variableFile}"
      */
+    @Parameter(property="install4j.variableFile")
     private File variableFile;
 
     /**
      * Override a compiler variable with a different value.
-     *
-     * @parameter
      */
+    @Parameter
     private Properties variables;
 
     /**
      * Attach generated installers.
-     *
-     * @parameter expression="${install4j.attach}" default-value="false"
      */
+    @Parameter(property="install4j.attach", defaultValue="false")
     private boolean attach;
 
-    /**
-     * @component
-     */
+    @Component
     private MavenProjectHelper projectHelper;
 
     @Override

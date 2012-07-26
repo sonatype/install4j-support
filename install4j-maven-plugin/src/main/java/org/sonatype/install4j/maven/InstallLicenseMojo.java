@@ -12,6 +12,8 @@
  */
 package org.sonatype.install4j.maven;
 
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 /**
@@ -19,18 +21,16 @@ import org.apache.tools.ant.taskdefs.ExecTask;
  *
  * Execution will skip if <code>licenseKey</code> parameter is not configured.
  *
- * @goal install-license
- *
  * @since 1.0
  */
+@Mojo(name="install-license")
 public class InstallLicenseMojo
     extends Install4jcMojoSupport
 {
     /**
      * Install4j license key.
-     *
-     * @parameter expression="${install4j.licenseKey}"
      */
+    @Parameter(property="install4j.licenseKey")
     private String licenseKey;
 
     @Override

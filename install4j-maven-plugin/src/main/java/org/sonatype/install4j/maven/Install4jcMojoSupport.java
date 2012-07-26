@@ -12,8 +12,9 @@
  */
 package org.sonatype.install4j.maven;
 
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
-import org.apache.tools.ant.taskdefs.Chmod;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 import java.io.File;
@@ -30,24 +31,17 @@ public abstract class Install4jcMojoSupport
 
     /**
      * Skip execution.
-     *
-     * @parameter expression="${install4j.skip}" default-value="false"
      */
+    @Parameter(property="install4j.skip", defaultValue="false")
     protected boolean skip;
 
     /**
      * The location of the install4j installation.
-     *
-     * @parameter expression="${install4j.home}"
-     * @required
      */
+    @Parameter(property="install4j.home", required=true)
     protected File installDir;
 
-    /**
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
-     */
+    @Component
     protected MavenProject project;
 
     @Override
