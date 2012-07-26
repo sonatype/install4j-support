@@ -90,24 +90,18 @@ public class AntHelper
         setProperty("project.basedir", project.getBasedir());
     }
 
-    public void setProperty(final String name, Object value) {
-        assert name != null;
-        assert value != null;
+    public <T extends ProjectComponent> T createTask(final Class<T> type) {
+        assert type != null;
 
-        String valueAsString = String.valueOf(value);
-
-        if (log.isDebugEnabled()) {
-            log.debug(String.format("Setting property: %s=%s", name, valueAsString));
+        T task = null;
+        try {
+            task = type.newInstance();
         }
-
-        Property prop = (Property) createTask("property");
-        prop.setName(name);
-        prop.setValue(valueAsString);
-        prop.execute();
-    }
-
-    public String getProperty(final String name) {
-        return ant.getProperty(name);
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        task.setProject(ant);
+        return task;
     }
 
     public Task createTask(final String name) throws BuildException {
@@ -121,18 +115,24 @@ public class AntHelper
         return path;
     }
 
-    public <T extends ProjectComponent> T createTask(final Class<T> type) {
-        assert type != null;
+    public void setProperty(final String name, final Object value) {
+        assert name != null;
+        assert value != null;
 
-        T task = null;
-        try {
-            task = type.newInstance();
+        String valueAsString = String.valueOf(value);
+
+        if (log.isDebugEnabled()) {
+            log.debug(String.format("Setting property: %s=%s", name, valueAsString));
         }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        task.setProject(ant);
-        return task;
+
+        Property prop = createTask(Property.class);
+        prop.setName(name);
+        prop.setValue(valueAsString);
+        prop.execute();
+    }
+
+    public String getProperty(final String name) {
+        return ant.getProperty(name);
     }
 
     public void mkdir(final File dir) {
