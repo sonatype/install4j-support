@@ -189,8 +189,7 @@ public class CompileMojo
         task.execute();
 
         if (attach) {
-            List<AttachedFile> attachedFiles = parseAttachedFiles();
-            for (AttachedFile attachedFile : attachedFiles) {
+            for (AttachedFile attachedFile : parseAttachedFiles()) {
                 String type = getType(attachedFile.fileName);
                 String classifier = attachedFile.classifier;
                 File file = new File(destination, attachedFile.fileName);
