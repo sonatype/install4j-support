@@ -28,6 +28,7 @@
         <dependency>
             <groupId>com.install4j</groupId>
             <artifactId>install4j-runtime</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
