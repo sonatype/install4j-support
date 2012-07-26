@@ -69,12 +69,6 @@
                 <version>${install4j.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.install4j</groupId>
-                <artifactId>install4j-ant</artifactId>
-                <version>${install4j.version}</version>
-            </dependency>
-
             <!-- INTERNAL -->
 
             <dependency>
@@ -215,27 +209,6 @@
                             <file>${install4j.home}/resource/i4jruntime.jar</file>
                             <groupId>com.install4j</groupId>
                             <artifactId>install4j-runtime</artifactId>
-                            <version>${install4j.version}</version>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>install-ant</id>
-            <build>
-                <defaultGoal>install:install-file</defaultGoal>
-
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-install-plugin</artifactId>
-                        <configuration>
-                            <file>${install4j.home}/bin/ant.jar</file>
-                            <groupId>com.install4j</groupId>
-                            <artifactId>install4j-ant</artifactId>
                             <version>${install4j.version}</version>
                             <packaging>jar</packaging>
                         </configuration>

@@ -12,13 +12,13 @@
  */
 package org.sonatype.install4j.maven;
 
-import com.install4j.Install4JTask;
 import org.apache.maven.project.MavenProject;
+import org.apache.tools.ant.taskdefs.ExecTask;
 
 import java.io.File;
 
 /**
- * Compile installers.
+ * Compile installers (via install4jc).
  *
  * @goal compile
  *
@@ -27,6 +27,12 @@ import java.io.File;
 public class CompileMojo
     extends MojoSupport
 {
+    /**
+     * @parameter expression="${install4j.home}"
+     * @required
+     */
+    private File installDir;
+
     /**
      * @parameter expression="${install4j.projectFile}"
      * @required
@@ -114,21 +120,80 @@ public class CompileMojo
     protected void doExecute() throws Exception {
         AntHelper ant = new AntHelper(this, project);
 
-        Install4JTask compiler = ant.createTask(Install4JTask.class);
-        compiler.setProjectFile(projectFile);
-        compiler.setVerbose(verbose);
-        compiler.setQuiet(quiet);
-        compiler.setTest(test);
-        compiler.setDebug(debug);
-        compiler.setFaster(faster);
-        compiler.setDisableSigning(disableSigning);
-        compiler.setWinKeystorePassword(winKeystorePassword);
-        compiler.setMacKeystorePassword(macKeystorePassword);
-        compiler.setDestination(destination);
-        compiler.setBuildSelected(buildSelected);
-        compiler.setBuildIds(buildIds);
-        compiler.setMediaTypes(mediaTypes);
-        compiler.setVariablefile(variableFile);
+        if (!installDir.exists()) {
+            log.warn("Invalid install directory; skipping: " + installDir);
+            return;
+        }
+
+        log.info("Install4j installation directory: " + installDir);
+
+        File install4jc = new File(installDir, "bin/install4jc");
+
+        if (!install4jc.exists()) {
+            log.warn("Missing Install4j compiler executable: " + install4jc);
+            return;
+        }
+
+        ExecTask compiler = ant.createTask(ExecTask.class);
+        compiler.setExecutable(install4jc.getAbsolutePath());
+        compiler.createArg().setFile(projectFile);
+
+        if (verbose) {
+            compiler.createArg().setValue("--verbose");
+        }
+
+        if (quiet) {
+            compiler.createArg().setValue("--quiet");
+        }
+
+        if (test) {
+            compiler.createArg().setValue("--test");
+        }
+
+        if (debug) {
+            compiler.createArg().setValue("--debug");
+        }
+
+        if (faster) {
+            compiler.createArg().setValue("--faster");
+        }
+
+        if (disableSigning) {
+            compiler.createArg().setValue("--disable-signing");
+        }
+
+        if (winKeystorePassword != null) {
+            compiler.createArg().setValue("--win-keystore-password");
+            compiler.createArg().setValue(winKeystorePassword);
+        }
+
+        if (winKeystorePassword != null) {
+            compiler.createArg().setValue("--mac-keystore-password");
+            compiler.createArg().setValue(macKeystorePassword);
+        }
+
+        compiler.createArg().setValue("--destination");
+        compiler.createArg().setFile(destination);
+
+        if (buildSelected) {
+            compiler.createArg().setValue("--build-selected");
+        }
+
+        if (buildIds != null) {
+            compiler.createArg().setValue("--build-ids");
+            compiler.createArg().setValue(buildIds);
+        }
+
+        if (mediaTypes != null) {
+            compiler.createArg().setValue("--media-types");
+            compiler.createArg().setValue(mediaTypes);
+        }
+
+        if (variableFile != null) {
+            compiler.createArg().setValue("--var-file");
+            compiler.createArg().setFile(variableFile);
+        }
+
         compiler.execute();
     }
 }

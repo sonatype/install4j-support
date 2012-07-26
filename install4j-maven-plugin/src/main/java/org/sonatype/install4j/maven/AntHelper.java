@@ -22,6 +22,7 @@ import org.apache.tools.ant.Task;
 import org.apache.tools.ant.taskdefs.Chmod;
 import org.apache.tools.ant.taskdefs.Mkdir;
 import org.apache.tools.ant.taskdefs.Property;
+import org.apache.tools.ant.types.Path;
 
 import java.io.File;
 import java.util.Iterator;
@@ -108,6 +109,12 @@ public class AntHelper
     public Task createTask(final String name) throws BuildException {
         assert name != null;
         return ant.createTask(name);
+    }
+
+    public Path createPath(final File location) {
+        Path path = new Path(ant);
+        path.setLocation(location);
+        return path;
     }
 
     public <T extends ProjectComponent> T createTask(final Class<T> type) {
