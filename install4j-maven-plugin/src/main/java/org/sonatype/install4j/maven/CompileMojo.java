@@ -213,7 +213,7 @@ public class CompileMojo
 
         if (attach) {
             // TODO: A bit tricky since we depend on the files to determine what to attach
-            // TODO: Use updates.xml to determine what files/classifiers instead
+            // TODO: Use updates.xml to determine what files/classifiers instead?
         }
     }
 }
