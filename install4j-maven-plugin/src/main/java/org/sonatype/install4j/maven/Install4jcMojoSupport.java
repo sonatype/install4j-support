@@ -86,7 +86,7 @@ public abstract class Install4jcMojoSupport
 
         // TODO: Might want to add some muck here to determine if the version is compatible with this plugin?
         String version = ant.getProperty(INSTALL4J_VERSION);
-        log.info("Version: " + version);
+        log.debug("Version: " + version);
 
         task = ant.createTask(ExecTask.class);
         task.setExecutable(install4jc.getAbsolutePath());
