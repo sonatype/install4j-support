@@ -27,6 +27,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.install4j</groupId>
+            <artifactId>install4j-runtime</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.sonatype.install4j</groupId>
             <artifactId>install4j-slf4j</artifactId>
         </dependency>

@@ -22,18 +22,37 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>install4j-slf4j</artifactId>
+    <artifactId>install4j-maven-plugin</artifactId>
+    <packaging>maven-plugin</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.install4j</groupId>
-            <artifactId>install4j-runtime</artifactId>
+            <artifactId>install4j-ant</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.6</version>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.8.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-launcher</artifactId>
+            <version>1.8.4</version>
         </dependency>
     </dependencies>
 

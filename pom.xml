@@ -63,6 +63,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.install4j</groupId>
+                <artifactId>install4j-runtime</artifactId>
+                <version>${install4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.install4j</groupId>
+                <artifactId>install4j-ant</artifactId>
+                <version>${install4j.version}</version>
+            </dependency>
+
             <!-- INTERNAL -->
 
             <dependency>
@@ -76,20 +88,19 @@
                 <artifactId>install4j-ga</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.sonatype.install4j</groupId>
+                <artifactId>install4j-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.install4j</groupId>
-            <artifactId>i4jruntime</artifactId>
-            <version>${install4j.version}</version>
-        </dependency>
-    </dependencies>
 
     <modules>
         <module>install4j-slf4j</module>
         <module>install4j-ga</module>
+        <module>install4j-maven-plugin</module>
     </modules>
 
     <build>
@@ -203,7 +214,28 @@
                         <configuration>
                             <file>${install4j.home}/resource/i4jruntime.jar</file>
                             <groupId>com.install4j</groupId>
-                            <artifactId>i4jruntime</artifactId>
+                            <artifactId>install4j-runtime</artifactId>
+                            <version>${install4j.version}</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>install-ant</id>
+            <build>
+                <defaultGoal>install:install-file</defaultGoal>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-install-plugin</artifactId>
+                        <configuration>
+                            <file>${install4j.home}/bin/ant.jar</file>
+                            <groupId>com.install4j</groupId>
+                            <artifactId>install4j-ant</artifactId>
                             <version>${install4j.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
