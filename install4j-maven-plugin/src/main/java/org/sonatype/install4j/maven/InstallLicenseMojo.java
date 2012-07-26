@@ -25,7 +25,7 @@ import java.io.File;
  *
  * @since 1.0
  */
-public class InstallLicenseKeyMojo
+public class InstallLicenseMojo
     extends MojoSupport
 {
     /**
