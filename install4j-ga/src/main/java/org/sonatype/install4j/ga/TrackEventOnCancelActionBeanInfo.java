@@ -36,7 +36,7 @@ public class TrackEventOnCancelActionBeanInfo
     public TrackEventOnCancelActionBeanInfo() {
         super(
             "Track Event on Cancel",
-            "Send a Google Analytics tracking event on cancel",
+            "Send a Google Analytics tracking event on cancel.  Event value is set to the % completed",
             CATEGORY_GA,
             SINGLE_INSTANCE,
             INSTALLED_FILES_NOT_REQUIRED,
