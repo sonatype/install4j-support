@@ -224,17 +224,8 @@ public class CompileMojo
         }
 
         if (variables != null) {
-            StringBuilder buff = new StringBuilder();
-            Iterator<Entry<Object,Object>> iter = variables.entrySet().iterator();
-            while (iter.hasNext()) {
-                Entry<Object,Object> entry = iter.next();
-                buff.append(entry.getKey()).append('=').append(entry.getValue());
-                if (iter.hasNext()) {
-                    buff.append(",");
-                }
-            }
             task.createArg().setValue("-D");
-            task.createArg().setValue(buff.toString());
+            task.createArg().setValue(getVariablesArgument());
         }
 
         task.execute();
@@ -247,6 +238,19 @@ public class CompileMojo
                 projectHelper.attachArtifact(project, type, classifier, file);
             }
         }
+    }
+
+    private String getVariablesArgument() {
+        StringBuilder buff = new StringBuilder();
+        Iterator<Entry<Object,Object>> iter = variables.entrySet().iterator();
+        while (iter.hasNext()) {
+            Entry<Object,Object> entry = iter.next();
+            buff.append(entry.getKey()).append('=').append(entry.getValue());
+            if (iter.hasNext()) {
+                buff.append(",");
+            }
+        }
+        return buff.toString();
     }
 
     private String getType(final String fileName) {
