@@ -13,6 +13,7 @@
 package org.sonatype.install4j.maven;
 
 import org.apache.maven.project.MavenProject;
+import org.apache.tools.ant.taskdefs.Chmod;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 import java.io.File;
@@ -65,6 +66,11 @@ public class InstallLicenseKeyMojo
         }
 
         log.debug("Install4jc: " + install4jc);
+
+        Chmod chmod = ant.createTask(Chmod.class);
+        chmod.setExecutable(install4jc.getAbsolutePath());
+        chmod.setPerm("u+x");
+        chmod.execute();
 
         ExecTask compiler = ant.createTask(ExecTask.class);
         compiler.setExecutable(install4jc.getAbsolutePath());
