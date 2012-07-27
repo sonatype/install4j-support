@@ -286,7 +286,8 @@ public class CompileMojo
 
             log.debug("Read: " + line);
 
-            // fields are tab-delimited
+            // fields are tab-delimited:
+            // id | media file type | display name | media file path
             String[] parts = line.split("\t");
             AttachedFile attachedFile = new AttachedFile(
                 parts[3], // media file path
