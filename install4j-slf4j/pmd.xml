@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2012-07-27T12:56:14.763">
+<file name="/Users/jason/ws/sonatype/install4j-support/install4j-slf4j/src/main/java/org/sonatype/install4j/slf4j/Install4jLogger.java">
+<violation beginline="70" endline="72" begincolumn="9" endcolumn="9" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.sonatype.install4j.slf4j" class="Install4jLogger" method="getStringProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="76" endline="76" begincolumn="27" endcolumn="89" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="org.sonatype.install4j.slf4j" class="Install4jLogger" method="getStringProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getStringProperty(String,String)'.
+</violation>
+<violation beginline="106" endline="108" begincolumn="13" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.sonatype.install4j.slf4j" class="Install4jLogger" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+</pmd>
