@@ -12,6 +12,7 @@
  */
 package org.sonatype.install4j.maven;
 
+import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
@@ -78,13 +79,22 @@ public abstract class Install4jcMojoSupport
         task.setOutputproperty(INSTALL4J_VERSION);
         task.execute();
 
-        // TODO: Might want to add some muck here to determine if the version is compatible with this plugin?
-        String version = ant.getProperty(INSTALL4J_VERSION);
+        String version = parseVersion(ant.getProperty(INSTALL4J_VERSION));
         log.debug("Version: " + version);
+        // TODO: Detect if version is compatible or not
 
         task = ant.createTask(ExecTask.class);
         task.setExecutable(install4jc.getAbsolutePath());
         execute(ant, task);
+    }
+
+    private String parseVersion(final String input) {
+        String[] parts = input.split("\\s");
+        assert parts.length > 3;
+        assert parts[0].equals("install4j");
+        assert parts[1].equals("version");
+        // ignore the build #
+        return parts[2];
     }
 
     protected abstract void execute(final AntHelper ant, final ExecTask task) throws Exception;
