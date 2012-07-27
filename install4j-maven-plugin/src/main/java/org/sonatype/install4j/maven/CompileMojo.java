@@ -224,7 +224,19 @@ public class CompileMojo
                     attachedFile.file
                 );
             }
+
+            // attach non-media files which the compiler generates
+            maybeAttachFile("txt", "output", new File(destination, "output.txt"));
+            maybeAttachFile("xml", "updates", new File(destination, "updates.xml"));
+            maybeAttachFile("txt", "md5sums", new File(destination, "md5sums"));
         }
+    }
+
+    private void maybeAttachFile(final String type, final String classifier, final File file) {
+        if (!file.exists()) {
+            log.warn("File missing; unable to attach file: " + file);
+        }
+        projectHelper.attachArtifact(project, type, classifier, file);
     }
 
     private String getVariablesArgument() {
