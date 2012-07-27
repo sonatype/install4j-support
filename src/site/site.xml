@@ -41,17 +41,15 @@
         <fluidoSkin>
             <topBarEnabled>true</topBarEnabled>
             <sideBarEnabled>false</sideBarEnabled>
-            <!-- FIXME: this gets covered by the top bar, disable its ugly -->
-            <!--<gitHub>-->
-                <!--<projectId>sonatype/install4j-support</projectId>-->
-                <!--<ribbonOrientation>left</ribbonOrientation>-->
-                <!--<ribbonColor>darkblue</ribbonColor>-->
-            <!--</gitHub>-->
-            <!-- FIXME: This is an ugly little link -->
+            <gitHub>
+                <projectId>sonatype/install4j-support</projectId>
+                <ribbonOrientation>left</ribbonOrientation>
+                <ribbonColor>darkblue</ribbonColor>
+            </gitHub>
             <twitter>
                 <user>sonatypecm</user>
-                <showUser>true</showUser>
-                <showFollowers>true</showFollowers>
+                <showUser>false</showUser>
+                <showFollowers>false</showFollowers>
             </twitter>
         </fluidoSkin>
     </custom>
