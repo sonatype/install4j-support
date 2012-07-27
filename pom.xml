@@ -13,7 +13,8 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -24,6 +25,7 @@
 
     <groupId>org.sonatype.install4j</groupId>
     <artifactId>install4j-support</artifactId>
+    <name>${project.artifactId}</name>
     <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -53,13 +55,20 @@
 
         <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
         <build.timestamp>${maven.build.timestamp}</build.timestamp>
-        <build.number />
+        <build.number/>
 
         <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
 
         <install4j.version>5.1</install4j.version>
         <install4j.home>NOT_CONFIGURED</install4j.home>
     </properties>
+
+    <distributionManagement>
+        <site>
+            <id>gh-pages</id>
+            <url>file:${project.basedir}/site</url>
+        </site>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -202,6 +211,12 @@
                     <releaseProfiles>release</releaseProfiles>
                     <tagNameFormat>@{artifactId}-@{version}</tagNameFormat>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.1</version>
             </plugin>
 
             <!--
