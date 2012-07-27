@@ -12,18 +12,10 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-# Description
+# Google Anyalitics
 
-Install4j Support
+Provides actions to send [Google Anaylitics](http://www.google.com/analytics/) events.
 
-# Install Runtime into Local Repository
+<img src="../images/google-analytics.png" style="float:right"/>
+<br style="clear:both"/>
 
-Maven needs to have the Install4j runtime jar in the local repository to build.
-
-This is not yet in any available remote repository, so you'll need to install it manually before building:
-
-    mvn -Dinstall4j.home=<path> -Pinstall-runtime
-
-Where path is the location to where Install4j has been installed, for example on Mac OSX:
-
-    mvn -Dinstall4j.home="/Applications/install4j 5/" -Pinstall-runtime

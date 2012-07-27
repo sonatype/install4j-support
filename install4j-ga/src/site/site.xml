@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Copyright (c) 2007-2012 Sonatype, Inc. All rights reserved.
@@ -12,18 +13,20 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-# Description
+<project xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
 
-Install4j Support
+    <body>
+        <breadcrumbs>
+            <item name="${project.name}" href="${project.url}/index.html"/>
+        </breadcrumbs>
 
-# Install Runtime into Local Repository
+        <menu name="Overview">
+            <item name="About" href="index.html"/>
+        </menu>
 
-Maven needs to have the Install4j runtime jar in the local repository to build.
+        <menu ref="modules"/>
 
-This is not yet in any available remote repository, so you'll need to install it manually before building:
-
-    mvn -Dinstall4j.home=<path> -Pinstall-runtime
-
-Where path is the location to where Install4j has been installed, for example on Mac OSX:
-
-    mvn -Dinstall4j.home="/Applications/install4j 5/" -Pinstall-runtime
+        <menu ref="reports"/>
+    </body>
+</project>

@@ -12,18 +12,9 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-# Description
+# Install4j Slf4j Bridge
 
-Install4j Support
+Bridges [Slf4j](http://slf4j.org) logging to install4j's log helpers (Util.log*).
 
-# Install Runtime into Local Repository
-
-Maven needs to have the Install4j runtime jar in the local repository to build.
-
-This is not yet in any available remote repository, so you'll need to install it manually before building:
-
-    mvn -Dinstall4j.home=<path> -Pinstall-runtime
-
-Where path is the location to where Install4j has been installed, for example on Mac OSX:
-
-    mvn -Dinstall4j.home="/Applications/install4j 5/" -Pinstall-runtime
+<img src="../images/slf4j.png" style="float:right"/>
+<br style="clear:both"/>

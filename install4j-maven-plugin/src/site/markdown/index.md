@@ -12,18 +12,14 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-# Description
+# Maven Plugin
 
-Install4j Support
+Provides integration to compile installers from [Apache Maven](http://maven.apache.org).
 
-# Install Runtime into Local Repository
+<img src="../images/maven.png" style="float:right"/>
+<br style="clear:both"/>
 
-Maven needs to have the Install4j runtime jar in the local repository to build.
+* [Plugin Usage](usage.html)
+* [Plugin Documentation](plugin-info.html)
 
-This is not yet in any available remote repository, so you'll need to install it manually before building:
 
-    mvn -Dinstall4j.home=<path> -Pinstall-runtime
-
-Where path is the location to where Install4j has been installed, for example on Mac OSX:
-
-    mvn -Dinstall4j.home="/Applications/install4j 5/" -Pinstall-runtime
