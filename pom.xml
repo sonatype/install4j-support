@@ -113,6 +113,7 @@
 
     <build>
         <extensions>
+            <!-- Configure gitsite wagon for site deployment https://github.com/stephenc/wagon-gitsite -->
             <extension>
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-provider-gitexe</artifactId>
