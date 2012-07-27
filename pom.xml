@@ -25,7 +25,7 @@
     <groupId>org.sonatype.install4j</groupId>
     <artifactId>install4j-support</artifactId>
     <name>${project.artifactId}</name>
-    <version>1.0.1</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <url>https://github.com/sonatype/install4j-support</url>
@@ -88,19 +88,19 @@
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-slf4j</artifactId>
-                <version>1.0.1</version>
+                <version>1.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-ga</artifactId>
-                <version>1.0.1</version>
+                <version>1.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-maven-plugin</artifactId>
-                <version>1.0.1</version>
+                <version>1.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
