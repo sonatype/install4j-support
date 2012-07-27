@@ -92,6 +92,8 @@ public abstract class Install4jcMojoSupport
         execute(ant, task);
     }
 
+    // TODO: Convert helpers into components so we can test them, have to sort out slf4j maven integration
+
     /**
      * Parse version in format:
      *
