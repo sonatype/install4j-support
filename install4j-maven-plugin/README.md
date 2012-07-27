@@ -21,7 +21,7 @@ Update _settings.xml_ with local environmennt propeties:
         <activeProfile>development</activeProfile>
     </activeProfiles>
 
-Replacing __CHANGEME__ with the location where Install4j has been installed on the current system.
+Replacing __CHANGEME__ with the location where install4j has been installed on the current system.
 
 Configure the _compile_ goal to execute:
 
