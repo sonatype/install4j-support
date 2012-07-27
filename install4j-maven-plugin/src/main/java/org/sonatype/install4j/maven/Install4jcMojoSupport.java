@@ -10,17 +10,25 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.maven;
 
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.tools.ant.taskdefs.ExecTask;
+import org.sonatype.aether.util.version.GenericVersionScheme;
+import org.sonatype.aether.version.Version;
+import org.sonatype.aether.version.VersionConstraint;
+import org.sonatype.aether.version.VersionScheme;
 
 import java.io.File;
 
 /**
  * Support for install4jc-based tasks.
+ *
+ * Compatible with install4j version 5.1.2 or higher.
  *
  * @since 1.0
  */
@@ -32,13 +40,13 @@ public abstract class Install4jcMojoSupport
     /**
      * Skip execution.
      */
-    @Parameter(property="install4j.skip", defaultValue="false")
+    @Parameter(property = "install4j.skip", defaultValue = "false")
     protected boolean skip;
 
     /**
      * The location of the install4j installation.
      */
-    @Parameter(property="install4j.home", required=true)
+    @Parameter(property = "install4j.home", required = true)
     protected File installDir;
 
     @Component
@@ -77,14 +85,43 @@ public abstract class Install4jcMojoSupport
         task.createArg().setValue("--version");
         task.setOutputproperty(INSTALL4J_VERSION);
         task.execute();
-
-        // TODO: Might want to add some muck here to determine if the version is compatible with this plugin?
-        String version = ant.getProperty(INSTALL4J_VERSION);
-        log.debug("Version: " + version);
+        ensureVersionCompatible(ant.getProperty(INSTALL4J_VERSION));
 
         task = ant.createTask(ExecTask.class);
         task.setExecutable(install4jc.getAbsolutePath());
         execute(ant, task);
+    }
+
+    /**
+     * Parse version in format:
+     *
+     * install4j version _version-#_ (build _build-#_), built on _date_
+     */
+    private String parseVersion(final String rawVersion) {
+        log.debug("Parsing version: " + rawVersion);
+        String[] parts = rawVersion.split("\\s");
+        boolean valid = parts.length > 3 && parts[0].equals("install4j") && parts[1].equals("version");
+        if (!valid) {
+            throw new RuntimeException("Unable to parse version from input: " + rawVersion);
+        }
+        // ignore the build #
+        return parts[2];
+    }
+
+    private void ensureVersionCompatible(final String rawVersion) throws Exception {
+        String version = parseVersion(rawVersion);
+        VersionScheme scheme = new GenericVersionScheme();
+        VersionConstraint constraint = scheme.parseVersionConstraint("[5.1.2,)"); // allow 5.1.2+
+        Version _version = scheme.parseVersion(version);
+        log.debug("Version: " + _version);
+
+        if (!constraint.containsVersion(_version)) {
+            log.error("Incompatible install4j version detected");
+            log.error("Raw version: " + rawVersion);
+            log.error("Detected version: " + _version);
+            log.error("Compatible version constraint: " + constraint);
+            throw new MojoExecutionException("Unsupported install4j version: " + rawVersion);
+        }
     }
 
     protected abstract void execute(final AntHelper ant, final ExecTask task) throws Exception;
