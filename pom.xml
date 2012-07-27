@@ -49,6 +49,13 @@
         <url>https://github.com/sonatype/install4j-support</url>
     </scm>
 
+    <distributionManagement>
+        <site>
+            <id>github-project-site</id>
+            <url>gitsite:git@github.com/sonatype/install4j-support.git</url>
+        </site>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -62,13 +69,6 @@
         <install4j.version>5.1</install4j.version>
         <install4j.home>NOT_CONFIGURED</install4j.home>
     </properties>
-
-    <distributionManagement>
-        <site>
-            <id>gh-pages</id>
-            <url>file:${project.basedir}/site</url>
-        </site>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
