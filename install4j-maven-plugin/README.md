@@ -30,7 +30,6 @@ Configure the _compile_ goal to execute:
             <plugin>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-maven-plugin</artifactId>
-                <version>1.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
