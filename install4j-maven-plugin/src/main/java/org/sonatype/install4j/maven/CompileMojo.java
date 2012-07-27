@@ -17,13 +17,10 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProjectHelper;
 import org.apache.tools.ant.taskdefs.ExecTask;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -218,10 +215,12 @@ public class CompileMojo
 
         if (attach) {
             for (AttachedFile attachedFile : parseAttachedFiles()) {
-                String type = getType(attachedFile.fileName);
-                String classifier = attachedFile.classifier;
-                File file = new File(destination, attachedFile.fileName);
-                projectHelper.attachArtifact(project, type, classifier, file);
+                projectHelper.attachArtifact(
+                    project,
+                    attachedFile.getType(),
+                    attachedFile.classifier,
+                    attachedFile.file
+                );
             }
         }
     }
@@ -239,48 +238,58 @@ public class CompileMojo
         return buff.toString();
     }
 
-    private String getType(final String fileName) {
-        int i = fileName.lastIndexOf(".");
-        return fileName.substring(i + 1, fileName.length());
-    }
-
     private static class AttachedFile
     {
-        public final String fileName;
+        public final File file;
+
+        public final String type;
 
         public final String classifier;
 
-        private AttachedFile(final String fileName, final String classifier) {
-            this.fileName = fileName;
+        private AttachedFile(final File file, final String classifier) {
+            this.file = file;
+            this.type = getType(file);
+            // TODO: Should ensure this is a valid classifier (replace spaces, etc).
             this.classifier = classifier;
+        }
+
+        private AttachedFile(final String path, final String classifier) {
+            this(new File(path), classifier);
+        }
+
+        private static String getType(final File file) {
+            String path = file.getAbsolutePath();
+            int i = path.lastIndexOf(".");
+            return path.substring(i + 1, path.length());
         }
     }
 
-    // FIXME: Update to use new output.txt
-
     private List<AttachedFile> parseAttachedFiles() throws Exception {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        File file = new File(destination, "updates.xml");
+        File file = new File(destination, "output.txt");
         if (!file.exists()) {
-            log.warn("Missing updates.xml file: " + file);
+            log.warn("Missing output.txt file: " + file);
             return Collections.emptyList();
         }
 
-        Document doc = builder.parse(file);
-        NodeList entries = doc.getElementsByTagName("entry");
-        if (entries == null) {
-            log.warn("Failed to parse updates.xml entries");
-            return Collections.emptyList();
-        }
+        log.debug("Parsing: " + file);
 
-        List<AttachedFile> files = new ArrayList<AttachedFile>(entries.getLength());
-        for (int i=0; i < entries.getLength(); i++) {
-            Element element = (Element) entries.item(i);
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        List<AttachedFile> files = new ArrayList<AttachedFile>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.startsWith("#")) {
+                // ignore comments
+                continue;
+            }
+
+            log.debug("Read: " + line);
+
+            // fields are tab-delimited
+            String[] parts = line.split("\t");
             AttachedFile attachedFile = new AttachedFile(
-                element.getAttribute("fileName"),
-                // FIXME: Sort out if this is correct or if newMediaFileId is better
-                element.getAttribute("targetMediaFileId"));
+                parts[3], // media file path
+                parts[0]  // id
+            );
             files.add(attachedFile);
         }
 
