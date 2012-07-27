@@ -47,6 +47,8 @@ Configure the _compile_ goal to execute:
         </plugins>
     </build>
 
+For more details see the [Plugin Documentation](http://sonatype.github.com/install4j-support/install4j-maven-plugin/plugin-info.html).
+
 # TODO
 
 Support pulling passwords from settings.xml w/master-password support
