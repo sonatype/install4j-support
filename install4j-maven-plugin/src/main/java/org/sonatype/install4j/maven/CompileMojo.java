@@ -139,6 +139,8 @@ public class CompileMojo
 
     /**
      * Attach generated installers.
+     *
+     * Uses the media id as the classifier.
      */
     @Parameter(property="install4j.attach", defaultValue="false")
     private boolean attach;
