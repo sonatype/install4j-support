@@ -235,6 +235,7 @@ public class CompileMojo
     private void maybeAttachFile(final String type, final String classifier, final File file) {
         if (!file.exists()) {
             log.warn("File missing; unable to attach file: " + file);
+            return;
         }
         projectHelper.attachArtifact(project, type, classifier, file);
     }
