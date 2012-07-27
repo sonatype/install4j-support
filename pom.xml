@@ -190,6 +190,20 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <goals>deploy</goals>
+                    <arguments>${arguments}</arguments>
+                    <releaseProfiles>release</releaseProfiles>
+                    <tagNameFormat>@{artifactId}-@{version}</tagNameFormat>
+                </configuration>
+            </plugin>
+
             <!--
             mvn license:format -N
             If its a new year, update the year range in the header.txt file
