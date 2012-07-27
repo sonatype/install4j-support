@@ -217,7 +217,7 @@ public class CompileMojo
             for (AttachedFile attachedFile : parseAttachedFiles()) {
                 projectHelper.attachArtifact(
                     project,
-                    attachedFile.getType(),
+                    attachedFile.type,
                     attachedFile.classifier,
                     attachedFile.file
                 );
