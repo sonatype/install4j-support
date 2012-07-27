@@ -114,6 +114,11 @@
     <build>
         <extensions>
             <!-- Configure gitsite wagon for site deployment https://github.com/stephenc/wagon-gitsite -->
+            <!--
+            FIXME: Just found that github has some maven plugins, investigate use of it instead:
+
+                https://github.com/github/maven-plugins
+            -->
             <extension>
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-provider-gitexe</artifactId>
