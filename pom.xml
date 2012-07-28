@@ -13,8 +13,7 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -26,7 +25,7 @@
     <groupId>org.sonatype.install4j</groupId>
     <artifactId>install4j-support</artifactId>
     <name>${project.artifactId}</name>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
 
     <url>https://github.com/sonatype/install4j-support</url>
@@ -47,7 +46,8 @@
         <connection>scm:git:git://github.com/sonatype/install4j-support.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/sonatype/install4j-support.git</developerConnection>
         <url>https://github.com/sonatype/install4j-support</url>
-    </scm>
+      <tag>install4j-support-1.0.2</tag>
+  </scm>
 
     <issueManagement>
         <system>github</system>
@@ -83,7 +83,7 @@
 
         <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
         <build.timestamp>${maven.build.timestamp}</build.timestamp>
-        <build.number/>
+        <build.number />
 
         <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
 
@@ -110,13 +110,13 @@
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-slf4j</artifactId>
-                <version>1.1-SNAPSHOT</version>
+                <version>1.0.2</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-ga</artifactId>
-                <version>1.1-SNAPSHOT</version>
+                <version>1.0.2</version>
             </dependency>
 
             <dependency>
@@ -124,13 +124,13 @@
                 <artifactId>install4j-ga</artifactId>
                 <classifier>bundle</classifier>
                 <type>zip</type>
-                <version>1.1-SNAPSHOT</version>
+                <version>1.0.2</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-maven-plugin</artifactId>
-                <version>1.1-SNAPSHOT</version>
+                <version>1.0.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -237,7 +237,7 @@
                 <plugin>
                     <groupId>org.sonatype.install4j</groupId>
                     <artifactId>install4j-maven-plugin</artifactId>
-                    <version>1.1-SNAPSHOT</version>
+                    <version>1.0.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
