@@ -103,7 +103,7 @@ Automated builds will need a valid license key configured for install4j to funct
 You can configure the Maven build to automatically configure the license key with the _install-license_ goal.
 This goal needs to execute before any other install4j-maven-plugin goal.
 
-It is recommended to configure this via _settings.xml_ and __NOT__ configure this value directly in you _pom.xml_.
+It is recommended to configure this via _settings.xml_ and __NOT__ configure this value directly in your _pom.xml_.
 
 Update license key in _settings.xml_:
 
