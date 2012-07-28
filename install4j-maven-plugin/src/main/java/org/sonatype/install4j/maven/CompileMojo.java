@@ -186,11 +186,15 @@ public class CompileMojo
             task.createArg().setValue(macKeystorePassword);
         }
 
-        task.createArg().setValue("--release");
-        task.createArg().setValue(release);
+        if (release != null) {
+            task.createArg().setValue("--release");
+            task.createArg().setValue(release);
+        }
 
-        task.createArg().setValue("--destination");
-        task.createArg().setFile(destination);
+        if (destination != null) {
+            task.createArg().setValue("--destination");
+            task.createArg().setFile(destination);
+        }
 
         if (buildSelected) {
             task.createArg().setValue("--build-selected");
