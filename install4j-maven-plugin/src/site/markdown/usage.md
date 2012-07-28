@@ -118,7 +118,7 @@ Configure the _install-license_ goal to exectute:
                 <artifactId>install4j-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>compile-installers</id>
+                        <id>install-license</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-license</goal>
