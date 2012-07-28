@@ -151,7 +151,7 @@ The install4j compiled media files can be attached to the current Maven project 
 When media is attached, the compiled files will be installed into the local repository and will also be deployed.
 The media files will be attached to the current project with the _id_ of media as the _classifier_.
 
-Configure custom ids for each media type to configure the _classifier_.
+Configure _custom ids_ for each media type to configure the _classifier_.
 
     <build>
         <plugins>
