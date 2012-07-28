@@ -54,6 +54,11 @@
         <url>https://github.com/sonatype/install4j-support/issues</url>
     </issueManagement>
 
+    <ciManagement>
+        <system>hudson</system>
+        <url>https://builds.sonatype.org/job/install4j-support</url> <!-- Private system -->
+    </ciManagement>
+
     <distributionManagement>
         <site>
             <id>github-project-site</id>
