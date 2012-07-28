@@ -76,7 +76,7 @@ If _install4j.home_ is not configured or is configured to an invalid or corrupte
 ## Media Signing
 
 Media signing generally requires passwords for keystore files.
-This plugin can configure install4j with the appropriate passwords for media file signing.
+This plugin can configure install4j with the appropriate keystore passwords for media file signing.
 
 The keystore file location must be configured via the install4j IDE.
 
