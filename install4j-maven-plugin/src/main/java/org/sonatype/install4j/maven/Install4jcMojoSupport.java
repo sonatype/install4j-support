@@ -35,8 +35,6 @@ import java.io.File;
 public abstract class Install4jcMojoSupport
     extends MojoSupport
 {
-    private static final String INSTALL4J_VERSION = "install4j.version";
-
     private static final String VERSION_CONSTRAINT = "[5.1.2,)"; // allow 5.1.2+
 
     /**
@@ -85,9 +83,11 @@ public abstract class Install4jcMojoSupport
         ExecTask task = ant.createTask(ExecTask.class);
         task.setExecutable(install4jc.getAbsolutePath());
         task.createArg().setValue("--version");
-        task.setOutputproperty(INSTALL4J_VERSION);
+        // ensure we have a fresh property to return the version details in
+        String versionProperty = "install4j.version-" + System.currentTimeMillis();
+        task.setOutputproperty(versionProperty);
         task.execute();
-        ensureVersionCompatible(ant.getProperty(INSTALL4J_VERSION));
+        ensureVersionCompatible(ant.getProperty(versionProperty));
 
         task = ant.createTask(ExecTask.class);
         task.setExecutable(install4jc.getAbsolutePath());
