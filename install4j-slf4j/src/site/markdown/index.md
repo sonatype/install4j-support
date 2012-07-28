@@ -12,9 +12,32 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-# Install4j Slf4j Bridge
+# install4j Slf4j Bridge
 
 Bridges [Slf4j](http://slf4j.org) logging to install4j's log helpers (Util.log*).
 
 <img src="../images/slf4j.png" style="float:right"/>
 <br style="clear:both"/>
+
+## Level Mapping
+
+The install4j logging API only has _INFO_ and _ERROR_ support:
+
+* TRACE uses Util.logInfo()
+* DEBUG uses Util.logInfo()
+* INFO uses Util.logInfo()
+* WARN uses Util.logInfo()
+* ERROR uses Util.logError()
+* Throwables use Util.log()
+
+See [com.install4j.api.Util](http://resources.ej-technologies.com/install4j/help/api/com/install4j/api/Util.html) for more details.
+
+## Enable Debug Logging
+
+Debug logging can be enabled by setting system properties:
+
+    -Dorg.sonatype.install4j.slf4j.level=DEBUG
+
+# TODO
+
+Add more docs on configuration and usage.
