@@ -19,7 +19,7 @@ Provides integration to compile installers from [Apache Maven](http://maven.apac
 <img src="../images/maven.png" style="float:right"/>
 <br style="clear:both"/>
 
-* [Plugin Usage](usage.html)
+* [Usage](usage.html)
 * [Plugin Documentation](plugin-info.html)
 
 
