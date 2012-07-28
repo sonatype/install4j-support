@@ -14,9 +14,7 @@
 -->
 # Description
 
-Install4j Maven 2/3 Plugin
-
-Compatible with install4j version 5.1.2 or higher.
+Install4j Maven Plugin
 
 For more information please see the [documentation](http://sonatype.github.com/install4j-support/install4j-maven-plugin).
 
