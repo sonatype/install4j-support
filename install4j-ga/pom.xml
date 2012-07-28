@@ -51,10 +51,9 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
-                        <!-- FIXME: Sort out how to best deal with dependencies and versions on those artifacts -->
-                        <!--<manifestEntries>-->
-                            <!--<Depends-On>install4j-slf4j.jar</Depends-On>-->
-                        <!--</manifestEntries>-->
+                        <manifestEntries>
+                            <Depends-On>install4j-slf4j.jar slf4j-api.jar JGoogleAnalyticsTracker.jar</Depends-On>
+                        </manifestEntries>
 
                         <manifestSections>
                             <manifestSection>
@@ -84,7 +83,54 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>bundle</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/bundle.xml</descriptor>
+                            </descriptors>
+                            <attach>true</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>test-installer</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.install4j</groupId>
+                        <artifactId>install4j-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>compile-installers</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                                <configuration>
+                                    <projectFile>${project.basedir}/src/test/installer/${project.artifactId}-test.install4j</projectFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
