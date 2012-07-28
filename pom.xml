@@ -49,6 +49,11 @@
         <url>https://github.com/sonatype/install4j-support</url>
     </scm>
 
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/sonatype/install4j-support/issues</url>
+    </issueManagement>
+
     <distributionManagement>
         <site>
             <id>github-project-site</id>
