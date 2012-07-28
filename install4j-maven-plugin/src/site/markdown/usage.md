@@ -27,7 +27,7 @@ This pluign will attempt to detect the version and may fail if the installed ver
 
 The recommended method is to install the tool and then configure via _settings.xml_ the location where it was installed.
 
-Update _settings.xml_ with local environmennt propeties to configure the location where install4j has been pre-installed:
+Update _settings.xml_ with properties to configure the location where install4j has been pre-installed:
 
     <profiles>
         <profile>
