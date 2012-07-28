@@ -58,6 +58,13 @@ into the extensions directory:
 
 Besure to configure the proper __VERSION__ and configure the __install4j.home__ property.
 
+The bundle is a simple zip file containing the extension component and its dependencies, such as:
+
+    install4j-slf4j.jar
+    slf4j-api.jar
+    JGoogleAnalyticsTracker.jar
+    install4j-ga.jar
+
 ## Actions
 
 ![image](images/actions.png)
