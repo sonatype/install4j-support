@@ -14,13 +14,20 @@
 -->
 # Usage
 
-## Dependencies
+## References
 
-Install install4j 5.1.2+.  An local install4j installation is requied for this plugin to execute properly.
+* [Plugin Documentation](plugin-info.html)
 
-The recommended approache is to install the tool and then configure via _settings.xml_ the location where it was installed.
+## Requirements
 
-Update _settings.xml_ with local environmennt propeties:
+A local install4j installation is requied for this plugin to execute properly.
+
+This plugin requires at least install4j version 5.1.2.
+This pluign will attempt to detect the version and may fail if the installed version is not compatible.
+
+The recommended method is to install the tool and then configure via _settings.xml_ the location where it was installed.
+
+Update _settings.xml_ with local environmennt propeties to configure the location where install4j has been pre-installed:
 
     <profiles>
         <profile>
@@ -35,7 +42,7 @@ Update _settings.xml_ with local environmennt propeties:
         <activeProfile>development</activeProfile>
     </activeProfiles>
 
-Replacing __CHANGEME__ with the location where install4j has been installed on the current system.
+Replace __CHANGEME__ with the location where install4j has been installed on the current system.
 
 ## Project Configuration
 
@@ -55,7 +62,6 @@ Configure the _compile_ goal to execute:
                         </goals>
                         <configuration>
                             <projectFile>${project.basedir}/src/main/installer/myproject.install4j</projectFile>
-                            <attach>true</attach>
                         </configuration>
                     </execution>
                 </executions>
@@ -63,9 +69,13 @@ Configure the _compile_ goal to execute:
         </plugins>
     </build>
 
-For more details see the [Plugin Documentation](plugin-info.html).
+Replace __${project.basedir}/src/main/installer/myproject.install4j__ with the install4j project file to compile.
 
-## Signing
+## Media Signing
+
+Media signing generally requires keystore passwords.  This plugin can configure install4j with the appropriate passwords for media file signing.
+
+The keystore file location must be configured via the install4j IDE.
 
 Update keystore passwords in _settings.xml_:
 
@@ -89,6 +99,7 @@ Replacing __CHANGEME__ with the appropriate keystore passwords.
 
 Automated builds will need a valid license key configured for install4j to function properly.
 You can configure the Maven build to automatically configure the license key with the _install-license_ goal.
+This goal needs to execute before any other install4j-maven-plugin goal.
 
 It is recommended to configure this via _settings.xml_ and __NOT__ configure this value directly in you _pom.xml_.
 
@@ -107,7 +118,7 @@ Update license key in _settings.xml_:
         <activeProfile>development</activeProfile>
     </activeProfiles>
 
-Replacing __CHANGEME__ with the appropriate license key.
+Replace __CHANGEME__ with the appropriate license key.
 
 Configure the _install-license_ goal to exectute:
 
@@ -128,3 +139,42 @@ Configure the _install-license_ goal to exectute:
             </plugin>
         </plugins>
     </build>
+
+## Attaching Media
+
+The install4j compiled media files can be attached to the current Maven project when the _attach_ parameter is configured.
+When media is attached, the compiled files will be installed into the local repository and will also be deployed.
+
+The media files will be attached to the current project with the _id_ of media as the _classifier_.
+
+Configure custom ids for each media type to configure the _classifier_.
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.install4j</groupId>
+                <artifactId>install4j-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>compile-installers</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <projectFile>${project.basedir}/src/main/installer/myproject.install4j</projectFile>
+                            <attach>true</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+Replace __${project.basedir}/src/main/installer/myproject.install4j__ with the install4j project file to compile.
+
+## Skipping Compilation
+
+Compilation can be skipped by setting the _install4j.skip_ property:
+
+    mvn -Dinstall4j.skip
