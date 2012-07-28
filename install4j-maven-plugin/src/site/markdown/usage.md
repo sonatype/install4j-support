@@ -101,6 +101,7 @@ Replacing __CHANGEME__ with the appropriate keystore passwords.
 ## Installing License Key
 
 Automated builds will need a valid license key configured for install4j to function properly.
+
 You can configure the Maven build to automatically configure the license key with the _install-license_ goal.
 This goal needs to execute before any other install4j-maven-plugin goal.
 
