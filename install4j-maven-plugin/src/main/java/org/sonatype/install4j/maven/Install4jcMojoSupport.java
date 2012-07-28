@@ -37,6 +37,8 @@ public abstract class Install4jcMojoSupport
 {
     private static final String INSTALL4J_VERSION = "install4j.version";
 
+    private static final String VERSION_CONSTRAINT = "[5.1.2,)"; // allow 5.1.2+
+
     /**
      * Skip execution.
      */
@@ -113,7 +115,7 @@ public abstract class Install4jcMojoSupport
     private void ensureVersionCompatible(final String rawVersion) throws Exception {
         String version = parseVersion(rawVersion);
         VersionScheme scheme = new GenericVersionScheme();
-        VersionConstraint constraint = scheme.parseVersionConstraint("[5.1.2,)"); // allow 5.1.2+
+        VersionConstraint constraint = scheme.parseVersionConstraint(VERSION_CONSTRAINT);
         Version _version = scheme.parseVersion(version);
         log.debug("Version: " + _version);
 
