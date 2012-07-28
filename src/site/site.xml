@@ -41,11 +41,12 @@
         <fluidoSkin>
             <topBarEnabled>true</topBarEnabled>
             <sideBarEnabled>false</sideBarEnabled>
-            <gitHub>
-                <projectId>sonatype/install4j-support</projectId>
-                <ribbonOrientation>left</ribbonOrientation>
-                <ribbonColor>darkblue</ribbonColor>
-            </gitHub>
+            <!-- FIXME: Covered by top-bar, really would like this bottom-right, disable for now its pissing me off -->
+            <!--<gitHub>-->
+                <!--<projectId>sonatype/install4j-support</projectId>-->
+                <!--<ribbonOrientation>left</ribbonOrientation>-->
+                <!--<ribbonColor>darkblue</ribbonColor>-->
+            <!--</gitHub>-->
             <twitter>
                 <user>sonatypecm</user>
                 <showUser>false</showUser>
