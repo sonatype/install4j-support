@@ -14,6 +14,10 @@
 -->
 # Usage
 
+## References
+
+[Event Tracking Guide](https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide)
+
 ## Install Extension Bundle
 
 This extention uses [Slf4j](http://slf4j.org) for logging and will require the _slf4j-api_ and
@@ -53,3 +57,41 @@ into the extensions directory:
     </build>
 
 Besure to configure the proper __VERSION__ and configure the __install4j.home__ property.
+
+## Actions
+
+![image](images/actions.png)
+
+### Configure Proxy
+
+Configure HTTP proxy settings.  This will bridge the HTTP proxy configuration as detected by install4j.
+
+This action should be placed before any other GA actions.
+
+### Track Event
+
+Track a single event.
+
+At the moment only supports the following configuration:
+
+* Tracking Code (string)
+* Category (string)
+* Action (string)
+* Label (string)
+* Value (integer)
+
+### Track Event on Cancel
+
+Track an event when user cancels installation.
+
+Supports the same configuration as _Track Event_ but will automatically set the _Value_ to the progress percent completed when canceled.
+
+This action should be placed early in the installer configuration, like in _Startup_.
+
+## Disabling Functionality
+
+You can disable all functionality of these events by setting the system property:
+
+    -Dorg.sonatype.install4j.ga.GoogleAnalyticsActionSupport.disable=true
+
+This is handy for testing so you don't send tracking events without having to disable the actions in install4j.

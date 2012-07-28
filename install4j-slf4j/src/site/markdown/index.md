@@ -17,11 +17,11 @@
 Bridges [Slf4j](http://slf4j.org) logging to install4j's log helpers (Util.log*).
 
 <img src="../images/slf4j.png" style="float:right"/>
-<br style="clear:both"/>
 
 ## Level Mapping
 
-The install4j logging API only has _INFO_ and _ERROR_ support:
+The install4j logging API only has _INFO_ and _ERROR_ level-like concepts.
+The bridge will map slf4j levels as follows:
 
 * TRACE uses Util.logInfo()
 * DEBUG uses Util.logInfo()
@@ -41,3 +41,5 @@ Debug logging can be enabled by setting system properties:
 # TODO
 
 Add more docs on configuration and usage.
+
+<br style="clear:both"/>

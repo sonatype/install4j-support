@@ -17,9 +17,10 @@
 Provides integration to compile installers from [Apache Maven](http://maven.apache.org).
 
 <img src="../images/maven.png" style="float:right"/>
-<br style="clear:both"/>
 
 * [Usage](usage.html)
 * [Plugin Documentation](plugin-info.html)
+
+<br style="clear:both"/>
 
 

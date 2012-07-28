@@ -17,6 +17,9 @@
 Provides actions to send [Google Anaylitics](http://www.google.com/analytics/) events.
 
 <img src="../images/google-analytics.png" style="float:right"/>
-<br style="clear:both"/>
+
+This extension uses the [jgoogleanalyticstracker](https://code.google.com/p/jgoogleanalyticstracker) library.
 
 * [Usage](usage.html)
+
+<br style="clear:both"/>
