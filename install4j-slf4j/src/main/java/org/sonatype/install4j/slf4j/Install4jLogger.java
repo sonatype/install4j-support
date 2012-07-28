@@ -73,10 +73,10 @@ public class Install4jLogger
         return (prop == null) ? configuration.getProperty(name) : prop;
     }
 
-    private static String getStringProperty(final String name, final String defaultValue) {
-        String prop = getStringProperty(name);
-        return (prop == null) ? defaultValue : prop;
-    }
+    //private static String getStringProperty(final String name, final String defaultValue) {
+    //    String prop = getStringProperty(name);
+    //    return (prop == null) ? defaultValue : prop;
+    //}
 
     private static boolean getBooleanProperty(final String name, final boolean defaultValue) {
         String prop = getStringProperty(name);
