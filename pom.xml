@@ -59,6 +59,13 @@
         <url>https://builds.sonatype.org/job/install4j-support</url> <!-- Private system -->
     </ciManagement>
 
+    <developers>
+        <developer>
+            <id>jdillon</id>
+            <name>Jason Dillon</name>
+        </developer>
+    </developers>
+
     <distributionManagement>
         <site>
             <id>github-project-site</id>
