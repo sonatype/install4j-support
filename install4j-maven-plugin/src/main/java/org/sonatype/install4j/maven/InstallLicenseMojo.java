@@ -28,7 +28,7 @@ public class InstallLicenseMojo
     extends Install4jcMojoSupport
 {
     /**
-     * Install4j license key.
+     * install4j license key.
      */
     @Parameter(property="install4j.licenseKey")
     private String licenseKey;

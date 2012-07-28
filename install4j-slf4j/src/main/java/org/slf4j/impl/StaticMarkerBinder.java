@@ -17,7 +17,7 @@ import org.slf4j.helpers.BasicMarkerFactory;
 import org.slf4j.spi.MarkerFactoryBinder;
 
 /**
- * Install4j-slf4j bridge Marker binder.
+ * install4j-slf4j bridge Marker binder.
  *
  * @since 1.0
  */

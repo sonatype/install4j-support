@@ -16,7 +16,7 @@ import org.slf4j.helpers.NOPMDCAdapter;
 import org.slf4j.spi.MDCAdapter;
 
 /**
- * Install4j-slf4j bridge MDC binder.
+ * install4j-slf4j bridge MDC binder.
  *
  * @since 1.0
  */

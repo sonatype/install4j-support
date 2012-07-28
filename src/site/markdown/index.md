@@ -12,7 +12,7 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-# Install4j Support
+# install4j Support
 
 Provides support for [install4j](http://www.ej-technologies.com/products/install4j/overview.html).
 

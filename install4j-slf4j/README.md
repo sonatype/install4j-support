@@ -14,6 +14,6 @@
 -->
 # Description
 
-Install4j Slf4j Bridge
+install4j Slf4j Bridge
 
 For more information please see the [documentation](http://sonatype.github.com/install4j-support/install4j-slf4j).

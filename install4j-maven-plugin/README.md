@@ -14,7 +14,7 @@
 -->
 # Description
 
-Install4j Maven Plugin
+install4j Maven Plugin
 
 For more information please see the [documentation](http://sonatype.github.com/install4j-support/install4j-maven-plugin).
 

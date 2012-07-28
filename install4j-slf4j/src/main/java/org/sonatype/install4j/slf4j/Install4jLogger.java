@@ -29,7 +29,7 @@ import java.util.Properties;
 // Based in slf4j SimpleLogger
 
 /**
- * Install4j-slf4j bridge {@link Logger}.
+ * install4j-slf4j bridge {@link Logger}.
  *
  * @since 1.0
  */
@@ -121,7 +121,7 @@ public class Install4jLogger
     Install4jLogger(String name) {
         this.name = name;
 
-        // Install4j's Util.log* helpers need a type (or object) to determine name, so try and load the type here
+        // install4j's Util.log* helpers need a type (or object) to determine name, so try and load the type here
         this.type = loadType();
         if (type != null) {
             screenOrAction = Screen.class.isAssignableFrom(type) || Action.class.isAssignableFrom(type);

@@ -66,16 +66,16 @@ public abstract class Install4jcMojoSupport
             return;
         }
 
-        log.debug("Install4j installation directory: " + installDir);
+        log.debug("install4j installation directory: " + installDir);
 
         File install4jc = new File(installDir, "bin/install4jc");
 
         if (!install4jc.exists()) {
-            log.warn("Missing Install4j compiler executable: " + install4jc);
+            log.warn("Missing install4j compiler executable: " + install4jc);
             return;
         }
 
-        log.debug("Install4jc: " + install4jc);
+        log.debug("install4jc: " + install4jc);
 
         ant.chmod(install4jc, "u+x");
 

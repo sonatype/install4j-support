@@ -14,6 +14,6 @@
 -->
 # Description
 
-Install4j Google Analytics Support
+install4j Google Analytics Support
 
 For more information please see the [documentation](http://sonatype.github.com/install4j-support/install4j-ga).

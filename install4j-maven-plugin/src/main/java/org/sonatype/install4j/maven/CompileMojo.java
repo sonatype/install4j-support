@@ -42,7 +42,7 @@ public class CompileMojo
     extends Install4jcMojoSupport
 {
     /**
-     * Install4j project file.
+     * install4j project file.
      */
     @Parameter(property="install4j.projectFile", required=true)
     private File projectFile;

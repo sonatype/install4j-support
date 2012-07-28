@@ -21,7 +21,7 @@ import java.util.Map;
 // Based in slf4j SimpleLoggerFactory
 
 /**
- * Install4j-slf4j bridge {@link ILoggerFactory}.
+ * install4j-slf4j bridge {@link ILoggerFactory}.
  *
  * @since 1.0
  */

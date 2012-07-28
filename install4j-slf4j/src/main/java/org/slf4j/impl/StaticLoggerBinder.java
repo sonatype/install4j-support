@@ -17,7 +17,7 @@ import org.slf4j.spi.LoggerFactoryBinder;
 import org.sonatype.install4j.slf4j.Install4jLoggerFactory;
 
 /**
- * Install4j-slf4j bridge Logger binder.
+ * install4j-slf4j bridge Logger binder.
  *
  * @since 1.0
  */
