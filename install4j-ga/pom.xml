@@ -113,6 +113,31 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>install-extension</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${install4j.home}/extensions</outputDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.sonatype.install4j</groupId>
+                                            <artifactId>install4j-ga</artifactId>
+                                            <classifier>bundle</classifier>
+                                            <type>zip</type>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
                         <groupId>org.sonatype.install4j</groupId>
                         <artifactId>install4j-maven-plugin</artifactId>
                         <executions>

@@ -19,3 +19,4 @@ Provides actions to send [Google Anaylitics](http://www.google.com/analytics/) e
 <img src="../images/google-analytics.png" style="float:right"/>
 <br style="clear:both"/>
 
+* [Usage](usage.html)

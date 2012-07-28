@@ -1,0 +1,55 @@
+<!--
+
+    Copyright (c) 2007-2012 Sonatype, Inc. All rights reserved.
+
+    This program is licensed to you under the Apache License Version 2.0,
+    and you may not use this file except in compliance with the Apache License Version 2.0.
+    You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the Apache License Version 2.0 is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
+
+-->
+# Usage
+
+## Install Extension Bundle
+
+This extention uses [Slf4j](http://slf4j.org) for logging and will require the _slf4j-api_ and
+a slf4j provider such as [install4j-slf4j](../install4j-slf4j/index.html).
+
+Some additional libraries are also required.  To help configure install4j you can unzip the _install4j-ga-VERSION-bundle.zip_
+into the extensions directory:
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-extension</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${install4j.home}/extensions</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.sonatype.install4j</groupId>
+                                    <artifactId>install4j-ga</artifactId>
+                                    <classifier>bundle</classifier>
+                                    <type>zip</type>
+                                    <version>VERSION</version>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+Besure to configure the proper __VERSION__ and configure the __install4j.home__ property.
