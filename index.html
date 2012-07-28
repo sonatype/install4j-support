@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>install4j-support - </title>
+    <title>install4j-slf4j - </title>
     <link rel="stylesheet" href="./css/apache-maven-fluido.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -33,17 +33,6 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Overview <b class="caret"></b></a>
         <ul class="dropdown-menu">
                   <li>      <a href="index.html"  title="About">About</a>
-</li>
-                </ul>
-      </li>
-                <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-                  <li>      <a href="install4j-slf4j/index.html"  title="install4j-slf4j">install4j-slf4j</a>
-</li>
-                  <li>      <a href="install4j-ga/index.html"  title="install4j-ga">install4j-ga</a>
-</li>
-                  <li>      <a href="install4j-maven-plugin/index.html"  title="install4j-maven-plugin">install4j-maven-plugin</a>
 </li>
                 </ul>
       </li>
@@ -93,7 +82,11 @@
                 
                     
                               <li class="">
-                    <a href="index.html" title="install4j-support">install4j-support</a>
+                    <a href="../index.html" title="install4j-support">install4j-support</a>
+        </li>
+      <li class="divider ">/</li>
+            <li class="">
+                    <a href="index.html" title="install4j-slf4j">install4j-slf4j</a>
         </li>
       <li class="divider ">/</li>
         <li class=""></li>
@@ -117,7 +110,17 @@
     Unless required by applicable law or agreed to in writing,
     software distributed under the Apache License Version 2.0 is distributed on an
     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the Apache License Version 2.0 for the specific language governing permissions and limitations there under. --><h1>Install4j Support</h1><p>Provides support for <a class="externalLink" href="http://www.ej-technologies.com/products/install4j/overview.html">install4j</a>.</p><div class="section"><h2>Libraries<a name="Libraries"></a></h2><p>Custom libraries to aid with development of install4j installers or extension components.</p><p><a href="install4j-slf4j/index.html">Slf4j Bridge</a></p><p><a href="install4j-slf4j/index.html"><img src="images/slf4j.png" style="float:right" alt="" /></a> <br style="clear:both" /></p></div><div class="section"><h2>Extensions<a name="Extensions"></a></h2><p>Custom install4j extension components.</p><p><a href="install4j-ga/index.html">Google Analytics</a></p><p><a href="install4j-ga/index.html"><img src="images/google-analytics.png" style="float:right" alt="" /></a> <br style="clear:both" /></p></div><div class="section"><h2>Build Automation<a name="Build_Automation"></a></h2><p>Build automation integration.</p><p><a href="install4j-maven-plugin/index.html">Maven Plugin</a></p><p><a href="install4j-maven-plugin/index.html"><img src="images/maven.png" style="float:right" alt="" /></a> <br style="clear:both" /></p></div>
+    See the Apache License Version 2.0 for the specific language governing permissions and limitations there under. --><h1>install4j Slf4j Bridge</h1><p>Bridges <a class="externalLink" href="http://slf4j.org">Slf4j</a> logging to install4js log helpers (Util.log*).</p><p><img src="../images/slf4j.png" style="float:right" alt="" /></p><div class="section"><h2>Level Mapping<a name="Level_Mapping"></a></h2><p>The install4j logging API only has <i>INFO</i> and <i>ERROR</i> level-like concepts. The bridge will map slf4j levels as follows:</p>
+<ul>
+  <li>TRACE uses Util.logInfo()</li>
+  <li>DEBUG uses Util.logInfo()</li>
+  <li>INFO uses Util.logInfo()</li>
+  <li>WARN uses Util.logInfo()</li>
+  <li>ERROR uses Util.logError()</li>
+  <li>Throwables use Util.log()</li>
+</ul><p>See <a class="externalLink" href="http://resources.ej-technologies.com/install4j/help/api/com/install4j/api/Util.html">com.install4j.api.Util</a> for more details.</p></div><div class="section"><h2>Enable Debug Logging<a name="Enable_Debug_Logging"></a></h2><p>Debug logging can be enabled by setting system properties:</p>
+<div class="source"><pre class="prettyprint">-Dorg.sonatype.install4j.slf4j.level=DEBUG
+</pre></div><h1>TODO</h1><p>Add more docs on configuration and usage.</p><p><br style="clear:both" /></p></div>
                   </div>
       
     <hr/>

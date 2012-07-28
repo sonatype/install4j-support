@@ -1,5 +1,2 @@
-
 org.slf4j.impl
-org.sonatype.install4j.ga
-org.sonatype.install4j.maven
 org.sonatype.install4j.slf4j

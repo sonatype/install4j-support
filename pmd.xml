@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-07-28T13:27:19.279">
+<file name="/Users/jason/ws/sonatype/install4j-support/install4j-slf4j/src/main/java/org/sonatype/install4j/slf4j/Install4jLogger.java">
+<violation beginline="70" endline="72" begincolumn="9" endcolumn="9" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.sonatype.install4j.slf4j" class="Install4jLogger" method="getStringProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="106" endline="108" begincolumn="13" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.sonatype.install4j.slf4j" class="Install4jLogger" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+</pmd>
