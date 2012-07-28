@@ -71,6 +71,8 @@ Configure the _compile_ goal to execute:
 
 Replace __${project.basedir}/src/main/installer/myproject.install4j__ with the install4j project file to compile.
 
+If _install4j.home_ is not configured or is configured to an invalid or corrupted location, the plugin execution will skip.
+
 ## Media Signing
 
 Media signing generally requires keystore passwords.  This plugin can configure install4j with the appropriate passwords for media file signing.
