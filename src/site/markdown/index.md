@@ -40,5 +40,5 @@ Build automation integration.
 
 [Maven Plugin](install4j-maven-plugin/index.html)
 
-<a href="install4j-maven/index.html"><img src="images/maven.png" style="float:right"/></a>
+<a href="install4j-maven-plugin/index.html"><img src="images/maven.png" style="float:right"/></a>
 <br style="clear:both"/>
