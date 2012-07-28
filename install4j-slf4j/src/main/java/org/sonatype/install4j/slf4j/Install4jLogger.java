@@ -40,7 +40,7 @@ public class Install4jLogger
 
     private static final String CONFIGURATION_FILE = "install4jlogger.properties";
 
-    private static final String CONFIGURATION_PREFIX = Install4jLogger.class.getPackage().getName();
+    private static final String CONFIGURATION_PREFIX = Install4jLogger.class.getPackage().getName() + ".";
 
     public static final int LEVEL_TRACE = LocationAwareLogger.TRACE_INT;
 
