@@ -39,7 +39,7 @@
 <a class="jxr_linenumber" name="29" href="#29">29</a>  <em class="jxr_comment">// Based in slf4j SimpleLogger</em>
 <a class="jxr_linenumber" name="30" href="#30">30</a>  
 <a class="jxr_linenumber" name="31" href="#31">31</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="32" href="#32">32</a>  <em class="jxr_javadoccomment"> * Install4j-slf4j bridge {@link Logger}.</em>
+<a class="jxr_linenumber" name="32" href="#32">32</a>  <em class="jxr_javadoccomment"> * install4j-slf4j bridge {@link Logger}.</em>
 <a class="jxr_linenumber" name="33" href="#33">33</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="34" href="#34">34</a>  <em class="jxr_javadoccomment"> * @since 1.0</em>
 <a class="jxr_linenumber" name="35" href="#35">35</a>  <em class="jxr_javadoccomment"> */</em>
@@ -131,7 +131,7 @@
 <a class="jxr_linenumber" name="121" href="#121">121</a>     <a href="../../../../org/sonatype/install4j/slf4j/Install4jLogger.html">Install4jLogger</a>(String name) {
 <a class="jxr_linenumber" name="122" href="#122">122</a>         <strong class="jxr_keyword">this</strong>.name = name;
 <a class="jxr_linenumber" name="123" href="#123">123</a> 
-<a class="jxr_linenumber" name="124" href="#124">124</a>         <em class="jxr_comment">// Install4j's Util.log* helpers need a type (or object) to determine name, so try and load the type here</em>
+<a class="jxr_linenumber" name="124" href="#124">124</a>         <em class="jxr_comment">// install4j's Util.log* helpers need a type (or object) to determine name, so try and load the type here</em>
 <a class="jxr_linenumber" name="125" href="#125">125</a>         <strong class="jxr_keyword">this</strong>.type = loadType();
 <a class="jxr_linenumber" name="126" href="#126">126</a>         <strong class="jxr_keyword">if</strong> (type != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="127" href="#127">127</a>             screenOrAction = Screen.<strong class="jxr_keyword">class</strong>.isAssignableFrom(type) || Action.<strong class="jxr_keyword">class</strong>.isAssignableFrom(type);
