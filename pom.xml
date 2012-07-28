@@ -148,6 +148,8 @@
             FIXME: Just found that github has some maven plugins, investigate use of it instead:
 
                 https://github.com/github/maven-plugins
+
+            NOTE: This plugin does not presently support multi-module projects, so it can not be used.
             -->
             <extension>
                 <groupId>org.apache.maven.scm</groupId>
