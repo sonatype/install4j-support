@@ -147,8 +147,8 @@ Configure the _install-license_ goal to exectute:
 ## Attaching Media
 
 The install4j compiled media files can be attached to the current Maven project when the _attach_ parameter is configured.
-When media is attached, the compiled files will be installed into the local repository and will also be deployed.
 
+When media is attached, the compiled files will be installed into the local repository and will also be deployed.
 The media files will be attached to the current project with the _id_ of media as the _classifier_.
 
 Configure custom ids for each media type to configure the _classifier_.
