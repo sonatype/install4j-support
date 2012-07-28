@@ -18,16 +18,16 @@ Provides support for [install4j](http://www.ej-technologies.com/products/install
 
 ## Libraries
 
-Custom libraries to aid with development of install4j installers or extention components.
+Custom libraries to aid with development of install4j installers or extension components.
 
 [Slf4j Bridge](install4j-slf4j/index.html)
 
 <a href="install4j-slf4j/index.html"><img src="images/slf4j.png" style="float:right"/></a>
 <br style="clear:both"/>
 
-## Extentions
+## Extensions
 
-Custom install4j extention components.
+Custom install4j extension components.
 
 [Google Analytics](install4j-ga/index.html)
 

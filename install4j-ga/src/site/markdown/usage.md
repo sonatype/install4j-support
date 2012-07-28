@@ -20,7 +20,7 @@
 
 ## Install Extension Bundle
 
-This extention uses [Slf4j](http://slf4j.org) for logging and will require the _slf4j-api_ and
+This extension uses [Slf4j](http://slf4j.org) for logging and will require the _slf4j-api_ and
 a slf4j provider such as [install4j-slf4j](../install4j-slf4j/index.html).
 
 Some additional libraries are also required.  To help configure install4j you can unzip the _install4j-ga-VERSION-bundle.zip_
