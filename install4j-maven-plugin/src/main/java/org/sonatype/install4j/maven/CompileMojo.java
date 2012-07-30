@@ -152,6 +152,10 @@ public class CompileMojo
     protected void execute(final AntHelper ant, final ExecTask task) throws Exception {
         task.createArg().setFile(projectFile);
 
+        // Fail if any error occurs
+        task.setFailonerror(true);
+        task.setFailIfExecutionFails(true);
+
         if (verbose) {
             task.createArg().setValue("--verbose");
         }
