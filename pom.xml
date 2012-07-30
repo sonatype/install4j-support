@@ -87,7 +87,7 @@
 
         <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
 
-        <install4j.version>5.1</install4j.version>
+        <install4j.version>5.1.2</install4j.version>
         <install4j.home>NOT_CONFIGURED</install4j.home>
     </properties>
 
