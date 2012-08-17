@@ -1,0 +1,369 @@
+<api>
+<package name="org.sonatype.install4j.maven"
+>
+<class name="AntHelper"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="AntHelper"
+ type="org.sonatype.install4j.maven.AntHelper"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="owner" type="org.apache.maven.plugin.Mojo">
+</parameter>
+<parameter name="project" type="org.apache.maven.project.MavenProject">
+</parameter>
+</constructor>
+<method name="chmod"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="dir" type="java.io.File">
+</parameter>
+<parameter name="includes" type="java.lang.String">
+</parameter>
+<parameter name="perm" type="java.lang.String">
+</parameter>
+</method>
+<method name="chmod"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="file" type="java.io.File">
+</parameter>
+<parameter name="perm" type="java.lang.String">
+</parameter>
+</method>
+<method name="createPath"
+ return="org.apache.tools.ant.types.Path"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="location" type="java.io.File">
+</parameter>
+</method>
+<method name="createTask"
+ return="T"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="java.lang.Class&lt;T&gt;">
+</parameter>
+</method>
+<method name="createTask"
+ return="org.apache.tools.ant.Task"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+<exception name="BuildException" type="org.apache.tools.ant.BuildException">
+</exception>
+</method>
+<method name="getProperty"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="mkdir"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="dir" type="java.io.File">
+</parameter>
+</method>
+<method name="setProperty"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+<parameter name="value" type="java.lang.Object">
+</parameter>
+</method>
+</class>
+<class name="CompileMojo"
+ extends="org.sonatype.install4j.maven.Install4jcMojoSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="CompileMojo"
+ type="org.sonatype.install4j.maven.CompileMojo"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="execute"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="ant" type="org.sonatype.install4j.maven.AntHelper">
+</parameter>
+<parameter name="task" type="org.apache.tools.ant.taskdefs.ExecTask">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+</class>
+<class name="Install4jcMojoSupport"
+ extends="org.sonatype.install4j.maven.MojoSupport"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="Install4jcMojoSupport"
+ type="org.sonatype.install4j.maven.Install4jcMojoSupport"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="doExecute"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="execute"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="ant" type="org.sonatype.install4j.maven.AntHelper">
+</parameter>
+<parameter name="task" type="org.apache.tools.ant.taskdefs.ExecTask">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<field name="installDir"
+ type="java.io.File"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="project"
+ type="org.apache.maven.project.MavenProject"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="skip"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<class name="InstallLicenseMojo"
+ extends="org.sonatype.install4j.maven.Install4jcMojoSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="InstallLicenseMojo"
+ type="org.sonatype.install4j.maven.InstallLicenseMojo"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="execute"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="ant" type="org.sonatype.install4j.maven.AntHelper">
+</parameter>
+<parameter name="task" type="org.apache.tools.ant.taskdefs.ExecTask">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+</class>
+<class name="MavenAntLoggerAdapter"
+ extends="org.apache.tools.ant.DefaultLogger"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MavenAntLoggerAdapter"
+ type="org.sonatype.install4j.maven.MavenAntLoggerAdapter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="log" type="org.apache.maven.plugin.logging.Log">
+</parameter>
+</constructor>
+<field name="log"
+ type="org.apache.maven.plugin.logging.Log"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<class name="MojoSupport"
+ extends="org.apache.maven.plugin.AbstractMojo"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MojoSupport"
+ type="org.sonatype.install4j.maven.MojoSupport"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="doExecute"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="execute"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="MojoExecutionException" type="org.apache.maven.plugin.MojoExecutionException">
+</exception>
+<exception name="MojoFailureException" type="org.apache.maven.plugin.MojoFailureException">
+</exception>
+</method>
+<field name="log"
+ type="org.apache.maven.plugin.logging.Log"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+</package>
+</api>
