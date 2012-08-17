@@ -1,0 +1,684 @@
+<api>
+<package name="org.sonatype.install4j.ga"
+>
+<class name="ActionBeanInfoSupport"
+ extends="com.install4j.api.beaninfo.ActionBeanInfo"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="com.install4j.api.beaninfo.BeanValidator">
+</implements>
+<constructor name="ActionBeanInfoSupport"
+ type="org.sonatype.install4j.ga.ActionBeanInfoSupport"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="displayName" type="java.lang.String">
+</parameter>
+<parameter name="shortDescription" type="java.lang.String">
+</parameter>
+<parameter name="category" type="java.lang.String">
+</parameter>
+<parameter name="multipleInstancesSupported" type="boolean">
+</parameter>
+<parameter name="installedFilesRequired" type="boolean">
+</parameter>
+<parameter name="sortKey" type="java.lang.Integer">
+</parameter>
+<parameter name="beanClass" type="java.lang.Class">
+</parameter>
+<parameter name="customizerClass" type="java.lang.Class">
+</parameter>
+</constructor>
+<constructor name="ActionBeanInfoSupport"
+ type="org.sonatype.install4j.ga.ActionBeanInfoSupport"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="displayName" type="java.lang.String">
+</parameter>
+<parameter name="shortDescription" type="java.lang.String">
+</parameter>
+<parameter name="category" type="java.lang.String">
+</parameter>
+<parameter name="multipleInstancesSupported" type="boolean">
+</parameter>
+<parameter name="installedFilesRequired" type="boolean">
+</parameter>
+<parameter name="sortKey" type="java.lang.Integer">
+</parameter>
+<parameter name="beanClass" type="java.lang.Class">
+</parameter>
+</constructor>
+<method name="validateBean"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="bean" type="com.install4j.api.beans.Bean">
+</parameter>
+<exception name="BeanValidationException" type="com.install4j.api.beaninfo.BeanValidationException">
+</exception>
+</method>
+<field name="CATEGORY_GA"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;Google Analytics&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_SORT_KEY"
+ type="java.lang.Integer"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INSTALLED_FILES_NOT_REQUIRED"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ value="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INSTALLED_FILES_REQUIRED"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ value="true"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MULTIPLE_INSTANCES"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ value="true"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SINGLE_INSTANCE"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ value="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="ActionSupport"
+ extends="com.install4j.api.actions.AbstractInstallOrUninstallAction"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ActionSupport"
+ type="org.sonatype.install4j.ga.ActionSupport"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="execute"
+ return="boolean"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="context" type="com.install4j.api.context.Context">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="getFlag"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="type" type="java.lang.Class">
+</parameter>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="getFlag"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="install"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="com.install4j.api.context.InstallerContext">
+</parameter>
+<exception name="UserCanceledException" type="com.install4j.api.context.UserCanceledException">
+</exception>
+</method>
+<method name="uninstall"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="com.install4j.api.context.UninstallerContext">
+</parameter>
+<exception name="UserCanceledException" type="com.install4j.api.context.UserCanceledException">
+</exception>
+</method>
+<field name="log"
+ type="org.slf4j.Logger"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="reportFailure"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<class name="ConfigureProxyAction"
+ extends="org.sonatype.install4j.ga.ActionSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ConfigureProxyAction"
+ type="org.sonatype.install4j.ga.ConfigureProxyAction"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="execute"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="context" type="com.install4j.api.context.Context">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+</class>
+<class name="ConfigureProxyActionBeanInfo"
+ extends="org.sonatype.install4j.ga.ActionBeanInfoSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ConfigureProxyActionBeanInfo"
+ type="org.sonatype.install4j.ga.ConfigureProxyActionBeanInfo"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+</class>
+<class name="GoogleAnalyticsActionSupport"
+ extends="org.sonatype.install4j.ga.ActionSupport"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="GoogleAnalyticsActionSupport"
+ type="org.sonatype.install4j.ga.GoogleAnalyticsActionSupport"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="getFactory"
+ return="org.sonatype.install4j.ga.TrackerFactory"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTracker"
+ return="com.dmurph.tracking.JGoogleAnalyticsTracker"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getTrackingCode"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isDisabled"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setTrackingCode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="trackingCode" type="java.lang.String">
+</parameter>
+</method>
+</class>
+<class name="TrackEventAction"
+ extends="org.sonatype.install4j.ga.GoogleAnalyticsActionSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TrackEventAction"
+ type="org.sonatype.install4j.ga.TrackEventAction"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="execute"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="context" type="com.install4j.api.context.Context">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="getAction"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCategory"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLabel"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getValue"
+ return="java.lang.Integer"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAction"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="action" type="java.lang.String">
+</parameter>
+</method>
+<method name="setCategory"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="category" type="java.lang.String">
+</parameter>
+</method>
+<method name="setLabel"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="label" type="java.lang.String">
+</parameter>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Integer">
+</parameter>
+</method>
+</class>
+<class name="TrackEventActionBeanInfo"
+ extends="org.sonatype.install4j.ga.ActionBeanInfoSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TrackEventActionBeanInfo"
+ type="org.sonatype.install4j.ga.TrackEventActionBeanInfo"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+</class>
+<class name="TrackEventOnCancelAction"
+ extends="org.sonatype.install4j.ga.GoogleAnalyticsActionSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TrackEventOnCancelAction"
+ type="org.sonatype.install4j.ga.TrackEventOnCancelAction"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="execute"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="context" type="com.install4j.api.context.Context">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="getAction"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCategory"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getLabel"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAction"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="action" type="java.lang.String">
+</parameter>
+</method>
+<method name="setCategory"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="category" type="java.lang.String">
+</parameter>
+</method>
+<method name="setLabel"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="label" type="java.lang.String">
+</parameter>
+</method>
+</class>
+<class name="TrackEventOnCancelActionBeanInfo"
+ extends="org.sonatype.install4j.ga.ActionBeanInfoSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TrackEventOnCancelActionBeanInfo"
+ type="org.sonatype.install4j.ga.TrackEventOnCancelActionBeanInfo"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+</class>
+<class name="TrackerFactory"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="TrackerFactory"
+ type="org.sonatype.install4j.ga.TrackerFactory"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="create"
+ return="com.dmurph.tracking.JGoogleAnalyticsTracker"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="code" type="java.lang.String">
+</parameter>
+</method>
+<method name="get"
+ return="com.dmurph.tracking.JGoogleAnalyticsTracker"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="code" type="java.lang.String">
+</parameter>
+</method>
+</class>
+</package>
+</api>
