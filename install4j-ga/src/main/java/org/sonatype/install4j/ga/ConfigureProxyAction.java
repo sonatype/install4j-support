@@ -40,6 +40,8 @@ public class ConfigureProxyAction
         action.setAskForProxy(true);
         action.setDeleteOnExit(true);
         action.setRetryIfInterrupted(true);
+        action.setShowFileName(false);
+        action.setShowProgress(false);
         action.setShowError(false);
         action.setTargetFile(File.createTempFile("configure-proxy", ".tmp").getAbsolutePath());
         action.execute(context);
