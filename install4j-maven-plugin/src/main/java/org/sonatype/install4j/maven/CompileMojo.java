@@ -185,7 +185,7 @@ public class CompileMojo
             task.createArg().setValue(winKeystorePassword);
         }
 
-        if (winKeystorePassword != null) {
+        if (macKeystorePassword != null) {
             task.createArg().setValue("--mac-keystore-password");
             task.createArg().setValue(macKeystorePassword);
         }
