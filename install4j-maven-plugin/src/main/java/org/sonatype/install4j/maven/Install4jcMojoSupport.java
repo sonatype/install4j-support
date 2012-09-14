@@ -18,6 +18,7 @@ import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.tools.ant.taskdefs.ExecTask;
+import org.codehaus.plexus.util.Os;
 import org.sonatype.aether.util.version.GenericVersionScheme;
 import org.sonatype.aether.version.Version;
 import org.sonatype.aether.version.VersionConstraint;
@@ -68,7 +69,8 @@ public abstract class Install4jcMojoSupport
 
         log.debug("install4j installation directory: " + installDir);
 
-        File install4jc = new File(installDir, "bin/install4jc");
+        boolean windows = Os.isFamily(Os.FAMILY_WINDOWS);
+        File install4jc = new File(installDir, "bin/install4jc" + (windows ? ".exe" : ""));
 
         if (!install4jc.exists()) {
             log.warn("Missing install4j compiler executable: " + install4jc);
