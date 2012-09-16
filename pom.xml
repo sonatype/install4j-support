@@ -25,7 +25,7 @@
     <groupId>org.sonatype.install4j</groupId>
     <artifactId>install4j-support</artifactId>
     <name>${project.artifactId}</name>
-    <version>1.0.4</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <url>https://github.com/sonatype/install4j-support</url>
@@ -46,7 +46,7 @@
         <connection>scm:git:git://github.com/sonatype/install4j-support.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/sonatype/install4j-support.git</developerConnection>
         <url>https://github.com/sonatype/install4j-support</url>
-      <tag>install4j-support-1.0.4</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
@@ -110,13 +110,13 @@
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-slf4j</artifactId>
-                <version>1.0.4</version>
+                <version>1.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-ga</artifactId>
-                <version>1.0.4</version>
+                <version>1.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
@@ -124,13 +124,13 @@
                 <artifactId>install4j-ga</artifactId>
                 <classifier>bundle</classifier>
                 <type>zip</type>
-                <version>1.0.4</version>
+                <version>1.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.install4j</groupId>
                 <artifactId>install4j-maven-plugin</artifactId>
-                <version>1.0.4</version>
+                <version>1.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -243,7 +243,7 @@
                 <plugin>
                     <groupId>org.sonatype.install4j</groupId>
                     <artifactId>install4j-maven-plugin</artifactId>
-                    <version>1.0.4</version>
+                    <version>1.1-SNAPSHOT</version>
                 </plugin>
             </plugins>
         </pluginManagement>
