@@ -30,7 +30,10 @@ import java.io.File;
  */
 public class VersionHelper
 {
-    private static final String VERSION_CONSTRAINT = "[5.1.2,)"; // allow 5.1.2+
+    /**
+     * Allows install4j 5.1.2+
+     */
+    private static final String VERSION_CONSTRAINT = "[5.1.2,)";
 
     private final Log log;
 
