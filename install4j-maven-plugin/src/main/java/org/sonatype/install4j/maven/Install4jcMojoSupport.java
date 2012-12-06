@@ -72,8 +72,10 @@ public abstract class Install4jcMojoSupport
 
         log.debug("install4jc: " + install4jc);
 
+        // ensure the binary is executable
         ant.chmod(install4jc, "u+x");
 
+        // ensure version is compatible
         VersionHelper versionHelper = new VersionHelper(log);
         String versionProperty = versionHelper.fetchVersion(ant, install4jc);
         versionHelper.ensureVersionCompatible(ant.getProperty(versionProperty));
