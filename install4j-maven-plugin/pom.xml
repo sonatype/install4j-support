@@ -31,6 +31,21 @@
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
             <version>2.2.1</version>
+            <exclusions>
+                <!-- exclude ancient slf4j, this messes up litmus -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-nop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -61,6 +76,19 @@
             <groupId>org.apache.ant</groupId>
             <artifactId>ant-launcher</artifactId>
             <version>1.8.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.sonatype.sisu.litmus</groupId>
+            <artifactId>litmus-testsupport</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

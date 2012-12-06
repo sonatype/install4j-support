@@ -81,53 +81,13 @@ public abstract class Install4jcMojoSupport
 
         ant.chmod(install4jc, "u+x");
 
-        // Sanity check, ask install4jc for its version
+        VersionHelper versionHelper = new VersionHelper(log);
+        String versionProperty = versionHelper.fetchVersion(ant, install4jc);
+        versionHelper.ensureVersionCompatible(ant.getProperty(versionProperty));
+
         ExecTask task = ant.createTask(ExecTask.class);
         task.setExecutable(install4jc.getAbsolutePath());
-        task.createArg().setValue("--version");
-        // ensure we have a fresh property to return the version details in
-        String versionProperty = "install4j.version-" + System.currentTimeMillis();
-        task.setOutputproperty(versionProperty);
-        task.execute();
-        ensureVersionCompatible(ant.getProperty(versionProperty));
-
-        task = ant.createTask(ExecTask.class);
-        task.setExecutable(install4jc.getAbsolutePath());
         execute(ant, task);
-    }
-
-    // TODO: Convert helpers into components so we can test them, have to sort out slf4j maven integration
-
-    /**
-     * Parse version in format:
-     *
-     * install4j version _version-#_ (build _build-#_), built on _date_
-     */
-    private String parseVersion(final String rawVersion) {
-        log.debug("Parsing version: " + rawVersion);
-        String[] parts = rawVersion.split("\\s");
-        boolean valid = parts.length > 3 && parts[0].equals("install4j") && parts[1].equals("version");
-        if (!valid) {
-            throw new RuntimeException("Unable to parse version from input: " + rawVersion);
-        }
-        // ignore the build #
-        return parts[2];
-    }
-
-    private void ensureVersionCompatible(final String rawVersion) throws Exception {
-        String version = parseVersion(rawVersion);
-        VersionScheme scheme = new GenericVersionScheme();
-        VersionConstraint constraint = scheme.parseVersionConstraint(VERSION_CONSTRAINT);
-        Version _version = scheme.parseVersion(version);
-        log.debug("Version: " + _version);
-
-        if (!constraint.containsVersion(_version)) {
-            log.error("Incompatible install4j version detected");
-            log.error("Raw version: " + rawVersion);
-            log.error("Detected version: " + _version);
-            log.error("Compatible version constraint: " + constraint);
-            throw new MojoExecutionException("Unsupported install4j version: " + rawVersion);
-        }
     }
 
     protected abstract void execute(final AntHelper ant, final ExecTask task) throws Exception;
