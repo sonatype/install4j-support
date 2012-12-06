@@ -62,14 +62,14 @@ public class VersionHelper
     /**
      * Parse version in format:
      *
-     * <div>
+     * <pre>
      * install4j version _version-#_ (build _build-#_), built on _date_
-     * </div>
+     * </pre>
      *
      * Ignores any lines before.
      *
      * @param rawVersion Text returned from {@code install4jc --version}
-     * @return The _version-#_ portion of the raw version input.
+     * @return The {@code _version-#_} portion of the raw version input.
      */
     public String parseVersion(final String rawVersion) {
         log.debug("Parsing version: " + rawVersion);
