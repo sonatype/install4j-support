@@ -38,6 +38,12 @@ public class VersionHelper
         this.log = log;
     }
 
+    /**
+     * Get the version of install4 by running {@code install4jc --version}.
+     *
+     * @param ant Ant task helper
+     * @param install4jc File pointing at the {@code install4jc} executable binary.
+     */
     public String fetchVersion(final AntHelper ant, final File install4jc) {
         // Sanity check, ask install4jc for its version
         ExecTask task = ant.createTask(ExecTask.class);
@@ -58,12 +64,14 @@ public class VersionHelper
      * </div>
      *
      * Ignores any lines before.
+     *
+     * @param rawVersion Text returned from {@code install4jc --version}
+     * @return The _version-#_ portion of the raw version input.
      */
-    //@TestAccessible
-    public String parseVersion(final String input) {
-        log.debug("Parsing version: " + input);
+    public String parseVersion(final String rawVersion) {
+        log.debug("Parsing version: " + rawVersion);
 
-        String[] lines = input.split("\n");
+        String[] lines = rawVersion.split("\n");
         for (String line : lines) {
             line = line.trim();
 
@@ -74,9 +82,15 @@ public class VersionHelper
             }
         }
 
-        throw new RuntimeException("Unable to parse version from input: " + input);
+        throw new RuntimeException("Unable to parse version from input: " + rawVersion);
     }
 
+    /**
+     * Ensure the install4j version is compatible.
+     *
+     * @param rawVersion Text returned from {@code install4jc --version}
+     * @throws Exception Version is not compatible
+     */
     public void ensureVersionCompatible(final String rawVersion) throws Exception {
         String version = parseVersion(rawVersion);
         VersionScheme scheme = new GenericVersionScheme();
