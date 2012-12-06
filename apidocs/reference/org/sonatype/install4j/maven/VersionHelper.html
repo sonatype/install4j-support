@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico" />
 <title>
 
-  MojoSupport
+  VersionHelper
 
 
 | install4j-support
@@ -168,8 +168,8 @@
           <li class="api apilevel-"><a href="../../../../org/sonatype/install4j/maven/Install4jcMojoSupport.html">Install4jcMojoSupport</a></li>
           <li class="api apilevel-"><a href="../../../../org/sonatype/install4j/maven/InstallLicenseMojo.html">InstallLicenseMojo</a></li>
           <li class="api apilevel-"><a href="../../../../org/sonatype/install4j/maven/MavenAntLoggerAdapter.html">MavenAntLoggerAdapter</a></li>
-          <li class="selected api apilevel-"><a href="../../../../org/sonatype/install4j/maven/MojoSupport.html">MojoSupport</a></li>
-          <li class="api apilevel-"><a href="../../../../org/sonatype/install4j/maven/VersionHelper.html">VersionHelper</a></li>
+          <li class="api apilevel-"><a href="../../../../org/sonatype/install4j/maven/MojoSupport.html">MojoSupport</a></li>
+          <li class="selected api apilevel-"><a href="../../../../org/sonatype/install4j/maven/VersionHelper.html">VersionHelper</a></li>
       </ul>
     </li>
               
@@ -220,29 +220,6 @@
   
   
 
-  
-   
-  
-  
-  
-  
-
-  
-   
-  
-  
-  
-  
-
-  
-   
-  
-  
-  
-   
-  
-  
-
 
 <div class="sum-details-links">
 
@@ -255,15 +232,9 @@ Summary:
 
 
 
-  <a href="#lfields">Fields</a>
-  
 
 
-  &#124; <a href="#inhfields">Inherited Fields</a>
-  
-
-
-  &#124; <a href="#pubctors">Ctors</a>
+  <a href="#pubctors">Ctors</a>
   
 
 
@@ -271,9 +242,6 @@ Summary:
   &#124; <a href="#pubmethods">Methods</a>
   
 
-
-  &#124; <a href="#promethods">Protected Methods</a>
-  
 
 
   &#124; <a href="#inhmethods">Inherited Methods</a>
@@ -298,18 +266,14 @@ Summary:
     public
      
      
-    abstract
+    
     class
-<h1>MojoSupport</h1>
+<h1>VersionHelper</h1>
 
 
 
   
-  
-  
-
-  
-    extends AbstractMojo<br/>
+    extends <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Object.html">Object</a><br/>
   
   
   
@@ -329,7 +293,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="3" class="jd-inheritance-class-cell"><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Object.html">java.lang.Object</a></td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Object.html">java.lang.Object</a></td>
     </tr>
     
 
@@ -337,17 +301,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">org.apache.maven.plugin.AbstractMojo</td>
-    </tr>
-    
-
-    <tr>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
-         	
-        <td colspan="1" class="jd-inheritance-class-cell">org.sonatype.install4j.maven.MojoSupport</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.sonatype.install4j.maven.VersionHelper</td>
     </tr>
     
 
@@ -356,82 +310,14 @@ Summary:
 
 
 
-<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-direct" class="jd-expando-trigger closed"
-          ><img id="subclasses-direct-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>Known Direct Subclasses
-
-  <div id="subclasses-direct">
-      <div id="subclasses-direct-list"
-              class="jd-inheritedlinks"
-              
-              >
-          
-            
-              <a href="../../../../org/sonatype/install4j/maven/Install4jcMojoSupport.html">Install4jcMojoSupport</a>
-            
-          
-      </div>
-      <div id="subclasses-direct-summary"
-              style="display: none;"
-              >
-  <table class="jd-sumtable-expando">
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../org/sonatype/install4j/maven/Install4jcMojoSupport.html">Install4jcMojoSupport</a></td>
-              <td class="jd-descrcol" width="100%">Support for install4jc-based tasks.&nbsp;</td>
-          </tr>
-  </table>
-      </div>
-  </div>
-</td></tr></table>
-
-
-
-<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-indirect" class="jd-expando-trigger closed"
-          ><img id="subclasses-indirect-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>Known Indirect Subclasses
-
-  <div id="subclasses-indirect">
-      <div id="subclasses-indirect-list"
-              class="jd-inheritedlinks"
-              
-              >
-          
-            
-              <a href="../../../../org/sonatype/install4j/maven/CompileMojo.html">CompileMojo</a>,
-            
-              <a href="../../../../org/sonatype/install4j/maven/InstallLicenseMojo.html">InstallLicenseMojo</a>
-            
-          
-      </div>
-      <div id="subclasses-indirect-summary"
-              style="display: none;"
-              >
-  <table class="jd-sumtable-expando">
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../org/sonatype/install4j/maven/CompileMojo.html">CompileMojo</a></td>
-              <td class="jd-descrcol" width="100%">Compile installers (via install4jc).&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../org/sonatype/install4j/maven/InstallLicenseMojo.html">InstallLicenseMojo</a></td>
-              <td class="jd-descrcol" width="100%">Update the install4j license key (via install4jc --license).&nbsp;</td>
-          </tr>
-  </table>
-      </div>
-  </div>
-</td></tr></table>
 
 
 <div class="jd-descr">
 
 
 <h2>Class Overview</h2>
-<p>Support for org.apache.maven.plugin.Mojo implementations.</p>
+<p>Helper to get version information from install4j.</p>
 
 
 
@@ -476,76 +362,7 @@ Summary:
 
 
 
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
 
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          Log</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../org/sonatype/install4j/maven/MojoSupport.html#log">log</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-
-</table>
-
-
-
-
-
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="inhfields" class="jd-sumtable"><tr><th>
-  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
-  <div style="clear:left;">Inherited Fields</div></th></tr>
-
-
-
-
-
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.apache.maven.plugin.Mojo" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-org.apache.maven.plugin.Mojo-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From interface
-org.apache.maven.plugin.Mojo
-<div id="inherited-fields-org.apache.maven.plugin.Mojo">
-  <div id="inherited-fields-org.apache.maven.plugin.Mojo-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-fields-org.apache.maven.plugin.Mojo-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          final
-          <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr></td>
-          <td class="jd-linkcol">ROLE</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-</table>
 
 
 
@@ -566,7 +383,7 @@ org.apache.maven.plugin.Mojo
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../org/sonatype/install4j/maven/MojoSupport.html#MojoSupport()">MojoSupport</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../org/sonatype/install4j/maven/VersionHelper.html#VersionHelper(org.apache.maven.plugin.logging.Log)">VersionHelper</a></span>(Log log)</nobr>
         
   </td></tr>
 
@@ -595,40 +412,59 @@ org.apache.maven.plugin.Mojo
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../org/sonatype/install4j/maven/MojoSupport.html#execute()">execute</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../org/sonatype/install4j/maven/VersionHelper.html#ensureVersionCompatible(java.lang.String)">ensureVersionCompatible</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> rawVersion)</nobr>
         
+        <div class="jd-descrdiv">Ensure the install4j version is compatible.</div>
+  
   </td></tr>
 
 
-
-</table>
-
-
-
-
-<!-- ========== METHOD SUMMARY =========== -->
-<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
-
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../org/sonatype/install4j/maven/VersionHelper.html#fetchVersion(org.sonatype.install4j.maven.AntHelper, java.io.File)">fetchVersion</a></span>(<a href="../../../../org/sonatype/install4j/maven/AntHelper.html">AntHelper</a> ant, <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/io/File.html">File</a> install4jc)</nobr>
+        
+        <div class="jd-descrdiv">Get the version of install4 by running <code>install4jc --version</code>.</div>
+  
+  </td></tr>
 
 
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
-            abstract
             
             
             
             
-            void</nobr>
+            
+            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../org/sonatype/install4j/maven/MojoSupport.html#doExecute()">doExecute</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../org/sonatype/install4j/maven/VersionHelper.html#parseVersion(java.lang.String)">parseVersion</a></span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> rawVersion)</nobr>
         
+        <div class="jd-descrdiv">Parse version in format:
+
+ <pre>
+ install4j version _version-#_ (build _build-#_), built on _date_
+ </pre>
+
+ Ignores any lines before.</div>
+  
   </td></tr>
 
 
 
 </table>
+
+
 
 
 
@@ -638,96 +474,6 @@ org.apache.maven.plugin.Mojo
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.apache.maven.plugin.AbstractMojo" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.apache.maven.plugin.AbstractMojo-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From class
-
-  org.apache.maven.plugin.AbstractMojo
-
-<div id="inherited-methods-org.apache.maven.plugin.AbstractMojo">
-  <div id="inherited-methods-org.apache.maven.plugin.AbstractMojo-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.apache.maven.plugin.AbstractMojo-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Log</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getLog</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/Map.html">Map</a></nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getPluginContext</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setLog</span>(Log arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setPluginContext</span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/Map.html">Map</a> arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
 
 
 <tr class="api apilevel-" >
@@ -931,138 +677,6 @@ From class
 </td></tr>
 
 
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.apache.maven.plugin.ContextEnabled" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.apache.maven.plugin.ContextEnabled-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.apache.maven.plugin.ContextEnabled
-
-<div id="inherited-methods-org.apache.maven.plugin.ContextEnabled">
-  <div id="inherited-methods-org.apache.maven.plugin.ContextEnabled-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.apache.maven.plugin.ContextEnabled-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/Map.html">Map</a></nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getPluginContext</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setPluginContext</span>(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/util/Map.html">Map</a> arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.apache.maven.plugin.Mojo" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.apache.maven.plugin.Mojo-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.apache.maven.plugin.Mojo
-
-<div id="inherited-methods-org.apache.maven.plugin.Mojo">
-  <div id="inherited-methods-org.apache.maven.plugin.Mojo-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.apache.maven.plugin.Mojo-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">execute</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            Log</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getLog</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setLog</span>(Log arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
 </table>
 
 
@@ -1089,43 +703,6 @@ From interface
 <!-- Fields -->
 
 
-<!-- ========= FIELD DETAIL ======== -->
-<h2>Fields</h2>
-
-
-
-
-<A NAME="log"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        Log
-      </span>
-        log
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-
 <!-- Public ctors -->
 
 
@@ -1134,7 +711,7 @@ From interface
 
 
 
-<A NAME="MojoSupport()"></A>
+<A NAME="VersionHelper(org.apache.maven.plugin.logging.Log)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1146,8 +723,8 @@ From interface
          
         
       </span>
-      <span class="sympad">MojoSupport</span>
-      <span class="normal">()</span>
+      <span class="sympad">VersionHelper</span>
+      <span class="normal">(Log log)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1180,7 +757,7 @@ From interface
 
 
 
-<A NAME="execute()"></A>
+<A NAME="ensureVersionCompatible(java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1192,8 +769,8 @@ From interface
          
         void
       </span>
-      <span class="sympad">execute</span>
-      <span class="normal">()</span>
+      <span class="sympad">ensureVersionCompatible</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> rawVersion)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1205,19 +782,121 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Ensure the install4j version is compatible.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>rawVersion</td>
+          <td>Text returned from <code>install4jc --version</code></td>
+        </tr>
+      </table>
+  </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Throws</h5>
       <table class="jd-tagtable">  
         <tr>
-            <th>MojoExecutionException</td>
-            <td></td>
-        </tr>  
-        <tr>
-            <th>MojoFailureException</td>
-            <td></td>
+            <th><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Exception.html">Exception</a></td>
+            <td>Version is not compatible
+</td>
         </tr>
       </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="fetchVersion(org.sonatype.install4j.maven.AntHelper, java.io.File)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">fetchVersion</span>
+      <span class="normal">(<a href="../../../../org/sonatype/install4j/maven/AntHelper.html">AntHelper</a> ant, <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/io/File.html">File</a> install4jc)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get the version of install4 by running <code>install4jc --version</code>.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>ant</td>
+          <td>Ant task helper</td>
+        </tr>
+        <tr>
+          <th>install4jc</td>
+          <td>File pointing at the <code>install4jc</code> executable binary.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="parseVersion(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a>
+      </span>
+      <span class="sympad">parseVersion</span>
+      <span class="normal">(<a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/String.html">String</a> rawVersion)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Parse version in format:
+
+ <pre>
+ install4j version _version-#_ (build _build-#_), built on _date_
+ </pre>
+
+ Ignores any lines before.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>rawVersion</td>
+          <td>Text returned from <code>install4jc --version</code></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>The <code>_version-#_</code> portion of the raw version input.
+</li></ul>
   </div>
 
     </div>
@@ -1228,51 +907,6 @@ From interface
 
 
 <!-- ========= METHOD DETAIL ======== -->
-
-<h2>Protected Methods</h2>
-
-
-
-<A NAME="doExecute()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        abstract 
-         
-        void
-      </span>
-      <span class="sympad">doExecute</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Throws</h5>
-      <table class="jd-tagtable">  
-        <tr>
-            <th><a href="http://download.oracle.com/javase/6/docs/api/index.html?java/lang/Exception.html">Exception</a></td>
-            <td></td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 
 
 
