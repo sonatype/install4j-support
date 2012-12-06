@@ -40,6 +40,15 @@ public class VersionHelperTest
     }
 
     @Test
+    public void parseMultiLineCrLFVersion() {
+        String input = "testing JVM in /usr …\r\n" +
+            "install4j version 5.1.3 (build 5521), built on 2012-09-21";
+
+        String version = helper.parseVersion(input);
+        assertThat(version, is("5.1.3"));
+    }
+
+    @Test
     public void parseMultiLineVersionWithExtraJunk() {
         String input = System.currentTimeMillis() + "\n" +
             System.currentTimeMillis() + "\n" +
