@@ -73,6 +73,7 @@ public abstract class Install4jcMojoSupport
         log.debug("install4jc: " + install4jc);
 
         // ensure the binary is executable
+        // FIXME: This can fail (well complain really, if we don't have perms to change the file, should check)
         ant.chmod(install4jc, "u+x");
 
         // ensure version is compatible
