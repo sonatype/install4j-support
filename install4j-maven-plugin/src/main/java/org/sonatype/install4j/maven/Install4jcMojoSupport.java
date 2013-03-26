@@ -13,6 +13,7 @@
 
 package org.sonatype.install4j.maven;
 
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
@@ -38,6 +39,12 @@ public abstract class Install4jcMojoSupport
     protected boolean skip;
 
     /**
+     * Fail if the installation is missing.
+     */
+    @Parameter(property = "install4j.failIfMissing", defaultValue = "false")
+    protected boolean failIfMissing;
+
+    /**
      * The location of the install4j installation.
      */
     @Parameter(property = "install4j.home", required = true)
@@ -56,7 +63,7 @@ public abstract class Install4jcMojoSupport
         AntHelper ant = new AntHelper(this, project);
 
         if (!installDir.exists()) {
-            log.warn("Invalid install directory; skipping: " + installDir);
+            maybeFailIfMissing("Invalid install directory; skipping: " + installDir);
             return;
         }
 
@@ -66,7 +73,7 @@ public abstract class Install4jcMojoSupport
         File install4jc = new File(installDir, "bin/install4jc" + (windows ? ".exe" : ""));
 
         if (!install4jc.exists()) {
-            log.warn("Missing install4j compiler executable: " + install4jc);
+            maybeFailIfMissing("Missing install4j compiler executable: " + install4jc);
             return;
         }
 
@@ -87,4 +94,14 @@ public abstract class Install4jcMojoSupport
     }
 
     protected abstract void execute(final AntHelper ant, final ExecTask task) throws Exception;
+
+    private void maybeFailIfMissing(final String message) throws MojoExecutionException {
+        if (failIfMissing) {
+            log.error(message);
+            throw new MojoExecutionException(message);
+        }
+        else {
+            log.warn(message);
+        }
+    }
 }
