@@ -39,16 +39,16 @@ public abstract class Install4jcMojoSupport
     protected boolean skip;
 
     /**
-     * Fail if the installation is missing.
-     */
-    @Parameter(property = "install4j.failIfMissing", defaultValue = "false")
-    protected boolean failIfMissing;
-
-    /**
      * The location of the install4j installation.
      */
     @Parameter(property = "install4j.home", required = true)
     protected File installDir;
+
+    /**
+     * Fail if the installation is missing.
+     */
+    @Parameter(property = "install4j.failIfMissing", defaultValue = "false")
+    protected boolean failIfMissing;
 
     @Component
     protected MavenProject project;
