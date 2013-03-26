@@ -41,8 +41,7 @@
         <connection>scm:git:git://github.com/sonatype/install4j-support.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/sonatype/install4j-support.git</developerConnection>
         <url>https://github.com/sonatype/install4j-support</url>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <issueManagement>
         <system>github</system>
