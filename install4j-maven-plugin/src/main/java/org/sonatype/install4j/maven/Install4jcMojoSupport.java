@@ -63,7 +63,7 @@ public abstract class Install4jcMojoSupport
         AntHelper ant = new AntHelper(this, project);
 
         if (!installDir.exists()) {
-            maybeFailIfMissing("Invalid install directory; skipping: " + installDir);
+            maybeFailIfMissing("Invalid install directory: " + installDir);
             return;
         }
 
