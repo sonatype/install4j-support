@@ -16,10 +16,10 @@ package org.sonatype.install4j.maven;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.tools.ant.taskdefs.ExecTask;
-import org.sonatype.aether.util.version.GenericVersionScheme;
-import org.sonatype.aether.version.Version;
-import org.sonatype.aether.version.VersionConstraint;
-import org.sonatype.aether.version.VersionScheme;
+import org.eclipse.aether.util.version.GenericVersionScheme;
+import org.eclipse.aether.version.Version;
+import org.eclipse.aether.version.VersionConstraint;
+import org.eclipse.aether.version.VersionScheme;
 
 import java.io.File;
 
