@@ -23,7 +23,7 @@
     </parent>
 
     <artifactId>install4j-maven-plugin</artifactId>
-    <name>${project.artifactId}</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <packaging>maven-plugin</packaging>
 
     <dependencies>
