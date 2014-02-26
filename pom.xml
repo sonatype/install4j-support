@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.sonatype.buildsupport</groupId>
         <artifactId>public-parent</artifactId>
-        <version>3</version>
+        <version>5</version>
     </parent>
 
     <groupId>org.sonatype.install4j</groupId>
@@ -92,6 +92,12 @@
                 <groupId>org.sonatype.sisu.litmus</groupId>
                 <artifactId>litmus-testsupport</artifactId>
                 <version>1.5.1</version>
+                <exclusions>
+                    <exclusion>
+                      <artifactId>junit-ext</artifactId>
+                      <groupId>com.googlecode.junit-ext</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- INTERNAL -->
