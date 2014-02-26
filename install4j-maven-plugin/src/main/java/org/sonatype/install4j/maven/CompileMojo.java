@@ -285,6 +285,13 @@ public class CompileMojo
 
         private static String getType(final File file) {
             String path = file.getAbsolutePath();
+            // special case for .tar.gz extensions
+            // https://github.com/sonatype/install4j-support/issues/20
+            if (path.endsWith(".tar.gz")) {
+                return "tar.gz";
+            } else if (path.endsWith(".tar.bz")) { 
+                return "tar.bz2";
+            }
             int i = path.lastIndexOf(".");
             return path.substring(i + 1, path.length());
         }
