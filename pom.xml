@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.sonatype.buildsupport</groupId>
         <artifactId>public-parent</artifactId>
-        <version>3</version>
+        <version>5</version>
     </parent>
 
     <groupId>org.sonatype.install4j</groupId>
@@ -91,7 +91,13 @@
             <dependency>
                 <groupId>org.sonatype.sisu.litmus</groupId>
                 <artifactId>litmus-testsupport</artifactId>
-                <version>1.5.1</version>
+                <version>1.7</version>
+                <exclusions>
+                    <exclusion>
+                      <artifactId>junit-ext</artifactId>
+                      <groupId>com.googlecode.junit-ext</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- INTERNAL -->
@@ -287,6 +293,7 @@
             <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
+		<version>1.9.0</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <strictCheck>true</strictCheck>
