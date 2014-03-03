@@ -13,14 +13,14 @@
 
 package org.sonatype.install4j.maven;
 
+import java.io.File;
+
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.tools.ant.taskdefs.ExecTask;
 import org.codehaus.plexus.util.Os;
-
-import java.io.File;
 
 /**
  * Support for install4jc-based tasks.
@@ -41,7 +41,7 @@ public abstract class Install4jcMojoSupport
     /**
      * The location of the install4j installation.
      */
-    @Parameter(property = "install4j.home", required = true)
+    @Parameter(property = "install4j.home")
     protected File installDir;
 
     /**
@@ -62,6 +62,10 @@ public abstract class Install4jcMojoSupport
 
         AntHelper ant = new AntHelper(this, project);
 
+        if (installDir == null) {
+            maybeFailIfMissing("Install directory not configured");
+            return;
+        }
         if (!installDir.exists()) {
             maybeFailIfMissing("Invalid install directory: " + installDir);
             return;
