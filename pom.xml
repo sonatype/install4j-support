@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.sonatype.buildsupport</groupId>
         <artifactId>public-parent</artifactId>
-        <version>3</version>
+        <version>5</version>
     </parent>
 
     <groupId>org.sonatype.install4j</groupId>
@@ -91,7 +91,7 @@
             <dependency>
                 <groupId>org.sonatype.sisu.litmus</groupId>
                 <artifactId>litmus-testsupport</artifactId>
-                <version>1.5.1</version>
+                <version>1.9</version>
             </dependency>
 
             <!-- INTERNAL -->
@@ -285,8 +285,8 @@
             If its a new year, update the year range in the header.txt file
             -->
             <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
                 <configuration>
                     <aggregate>true</aggregate>
                     <strictCheck>true</strictCheck>
