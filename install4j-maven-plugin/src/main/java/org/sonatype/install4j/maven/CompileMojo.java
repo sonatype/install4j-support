@@ -12,12 +12,6 @@
  */
 package org.sonatype.install4j.maven;
 
-import org.apache.maven.plugins.annotations.Component;
-import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
-import org.apache.maven.project.MavenProjectHelper;
-import org.apache.tools.ant.taskdefs.ExecTask;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -27,6 +21,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Properties;
+
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProjectHelper;
+import org.apache.tools.ant.taskdefs.ExecTask;
 
 /**
  * Compile installers (via install4jc).
@@ -285,6 +285,15 @@ public class CompileMojo
 
         private static String getType(final File file) {
             String path = file.getAbsolutePath();
+
+            // special case for compound '.' extensions
+            if (path.endsWith(".tar.gz")) {
+                return "tar.gz";
+            }
+            else if (path.endsWith(".tar.bz2")) {
+                return "tar.bz2";
+            }
+
             int i = path.lastIndexOf(".");
             return path.substring(i + 1, path.length());
         }
