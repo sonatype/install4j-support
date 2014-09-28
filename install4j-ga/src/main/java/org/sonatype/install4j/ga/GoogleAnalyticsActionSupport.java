@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.ga;
 
 import com.dmurph.tracking.JGoogleAnalyticsTracker;
@@ -23,33 +24,33 @@ import com.dmurph.tracking.JGoogleAnalyticsTracker;
 public abstract class GoogleAnalyticsActionSupport
     extends ActionSupport
 {
-    private static final TrackerFactory factory = new TrackerFactory();
+  private static final TrackerFactory factory = new TrackerFactory();
 
-    private static final boolean disabled = getFlag(GoogleAnalyticsActionSupport.class, "disable");
+  private static final boolean disabled = getFlag(GoogleAnalyticsActionSupport.class, "disable");
 
-    private String trackingCode;
+  private String trackingCode;
 
-    public GoogleAnalyticsActionSupport() {
-        this.reportFailure = false; // do not show users failure details
-    }
+  public GoogleAnalyticsActionSupport() {
+    this.reportFailure = false; // do not show users failure details
+  }
 
-    public String getTrackingCode() {
-        return trackingCode;
-    }
+  public String getTrackingCode() {
+    return trackingCode;
+  }
 
-    public void setTrackingCode(final String trackingCode) {
-        this.trackingCode = trackingCode;
-    }
+  public void setTrackingCode(final String trackingCode) {
+    this.trackingCode = trackingCode;
+  }
 
-    public static TrackerFactory getFactory() {
-        return factory;
-    }
+  public static TrackerFactory getFactory() {
+    return factory;
+  }
 
-    public static boolean isDisabled() {
-        return disabled;
-    }
+  public static boolean isDisabled() {
+    return disabled;
+  }
 
-    protected JGoogleAnalyticsTracker getTracker() {
-        return factory.get(getTrackingCode());
-    }
+  protected JGoogleAnalyticsTracker getTracker() {
+    return factory.get(getTrackingCode());
+  }
 }

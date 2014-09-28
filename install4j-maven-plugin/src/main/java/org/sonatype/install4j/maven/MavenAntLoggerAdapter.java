@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.maven;
 
 import org.apache.maven.plugin.logging.Log;
@@ -26,35 +27,35 @@ import java.io.PrintStream;
 public class MavenAntLoggerAdapter
     extends DefaultLogger
 {
-    protected Log log;
+  protected Log log;
 
-    public MavenAntLoggerAdapter(final Log log) {
-        assert log != null;
-        this.log = log;
+  public MavenAntLoggerAdapter(final Log log) {
+    assert log != null;
+    this.log = log;
+  }
+
+  @Override
+  protected void printMessage(final String message, final PrintStream stream, final int priority) {
+    assert message != null;
+    assert stream != null;
+
+    switch (priority) {
+      case Project.MSG_ERR:
+        log.error(message);
+        break;
+
+      case Project.MSG_WARN:
+        log.warn(message);
+        break;
+
+      case Project.MSG_INFO:
+        log.info(message);
+        break;
+
+      case Project.MSG_VERBOSE:
+      case Project.MSG_DEBUG:
+        log.debug(message);
+        break;
     }
-
-    @Override
-    protected void printMessage(final String message, final PrintStream stream, final int priority) {
-        assert message != null;
-        assert stream != null;
-
-        switch (priority) {
-            case Project.MSG_ERR:
-                log.error(message);
-                break;
-
-            case Project.MSG_WARN:
-                log.warn(message);
-                break;
-
-            case Project.MSG_INFO:
-                log.info(message);
-                break;
-
-            case Project.MSG_VERBOSE:
-            case Project.MSG_DEBUG:
-                log.debug(message);
-                break;
-        }
-    }
+  }
 }

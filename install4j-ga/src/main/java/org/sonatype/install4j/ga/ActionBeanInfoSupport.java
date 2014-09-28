@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.ga;
 
 import com.install4j.api.beaninfo.ActionBeanInfo;
@@ -26,42 +27,44 @@ public abstract class ActionBeanInfoSupport
     extends ActionBeanInfo
     implements BeanValidator
 {
-    public static final String CATEGORY_GA = "Google Analytics";
+  public static final String CATEGORY_GA = "Google Analytics";
 
-    public static final Integer DEFAULT_SORT_KEY = null;
+  public static final Integer DEFAULT_SORT_KEY = null;
 
-    public static final boolean MULTIPLE_INSTANCES = true;
+  public static final boolean MULTIPLE_INSTANCES = true;
 
-    public static final boolean SINGLE_INSTANCE = false;
+  public static final boolean SINGLE_INSTANCE = false;
 
-    public static final boolean INSTALLED_FILES_REQUIRED = true;
+  public static final boolean INSTALLED_FILES_REQUIRED = true;
 
-    public static final boolean INSTALLED_FILES_NOT_REQUIRED = false;
+  public static final boolean INSTALLED_FILES_NOT_REQUIRED = false;
 
-    protected ActionBeanInfoSupport(final String displayName,
-                                    final String shortDescription,
-                                    final String category,
-                                    final boolean multipleInstancesSupported,
-                                    final boolean installedFilesRequired,
-                                    final Integer sortKey,
-                                    final Class beanClass,
-                                    final Class customizerClass)
-    {
-        super(displayName, shortDescription, category, multipleInstancesSupported, installedFilesRequired, sortKey, beanClass, customizerClass);
-    }
+  protected ActionBeanInfoSupport(final String displayName,
+                                  final String shortDescription,
+                                  final String category,
+                                  final boolean multipleInstancesSupported,
+                                  final boolean installedFilesRequired,
+                                  final Integer sortKey,
+                                  final Class beanClass,
+                                  final Class customizerClass)
+  {
+    super(displayName, shortDescription, category, multipleInstancesSupported, installedFilesRequired, sortKey,
+        beanClass, customizerClass);
+  }
 
-    protected ActionBeanInfoSupport(final String displayName,
-                                    final String shortDescription,
-                                    final String category,
-                                    final boolean multipleInstancesSupported,
-                                    final boolean installedFilesRequired,
-                                    final Integer sortKey,
-                                    final Class beanClass)
-    {
-        super(displayName, shortDescription, category, multipleInstancesSupported, installedFilesRequired, sortKey, beanClass);
-    }
+  protected ActionBeanInfoSupport(final String displayName,
+                                  final String shortDescription,
+                                  final String category,
+                                  final boolean multipleInstancesSupported,
+                                  final boolean installedFilesRequired,
+                                  final Integer sortKey,
+                                  final Class beanClass)
+  {
+    super(displayName, shortDescription, category, multipleInstancesSupported, installedFilesRequired, sortKey,
+        beanClass);
+  }
 
-    public void validateBean(final Bean bean) throws BeanValidationException {
-        // empty
-    }
+  public void validateBean(final Bean bean) throws BeanValidationException {
+    // empty
+  }
 }

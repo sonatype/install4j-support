@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.maven;
 
 import org.apache.maven.plugin.Mojo;
@@ -35,126 +36,126 @@ import java.util.Map;
  */
 public class AntHelper
 {
-    private final Mojo owner;
+  private final Mojo owner;
 
-    private final Log log;
+  private final Log log;
 
-    private final MavenProject project;
+  private final MavenProject project;
 
-    private final Project ant;
+  private final Project ant;
 
-    public AntHelper(final Mojo owner, final MavenProject project) {
-        assert owner != null;
-        assert project != null;
+  public AntHelper(final Mojo owner, final MavenProject project) {
+    assert owner != null;
+    assert project != null;
 
-        this.owner = owner;
-        this.log = owner.getLog();
-        this.project = project;
+    this.owner = owner;
+    this.log = owner.getLog();
+    this.project = project;
 
-        ant = new Project();
-        ant.setBaseDir(project.getBasedir());
-        initAntLogger(ant);
-        ant.init();
+    ant = new Project();
+    ant.setBaseDir(project.getBasedir());
+    initAntLogger(ant);
+    ant.init();
 
-        // Inherit properties from Maven
-        inheritProperties();
+    // Inherit properties from Maven
+    inheritProperties();
+  }
+
+  private void initAntLogger(final Project ant) {
+    MavenAntLoggerAdapter antLogger = new MavenAntLoggerAdapter(log);
+    antLogger.setEmacsMode(true);
+    antLogger.setOutputPrintStream(System.out);
+    antLogger.setErrorPrintStream(System.err);
+
+    if (log.isDebugEnabled()) {
+      antLogger.setMessageOutputLevel(Project.MSG_VERBOSE);
+    }
+    else {
+      antLogger.setMessageOutputLevel(Project.MSG_INFO);
     }
 
-    private void initAntLogger(final Project ant) {
-        MavenAntLoggerAdapter antLogger = new MavenAntLoggerAdapter(log);
-        antLogger.setEmacsMode(true);
-        antLogger.setOutputPrintStream(System.out);
-        antLogger.setErrorPrintStream(System.err);
+    ant.addBuildListener(antLogger);
+  }
 
-        if (log.isDebugEnabled()) {
-            antLogger.setMessageOutputLevel(Project.MSG_VERBOSE);
-        }
-        else {
-            antLogger.setMessageOutputLevel(Project.MSG_INFO);
-        }
-
-        ant.addBuildListener(antLogger);
+  private void inheritProperties() {
+    // Propagate properties
+    Map props = project.getProperties();
+    Iterator iter = props.keySet().iterator();
+    while (iter.hasNext()) {
+      String name = (String) iter.next();
+      String value = String.valueOf(props.get(name));
+      setProperty(name, value);
     }
 
-    private void inheritProperties() {
-        // Propagate properties
-        Map props = project.getProperties();
-        Iterator iter = props.keySet().iterator();
-        while (iter.hasNext()) {
-            String name = (String) iter.next();
-            String value = String.valueOf(props.get(name));
-            setProperty(name, value);
-        }
+    // Hardcode a few
+    setProperty("project.basedir", project.getBasedir());
+  }
 
-        // Hardcode a few
-        setProperty("project.basedir", project.getBasedir());
+  public <T extends ProjectComponent> T createTask(final Class<T> type) {
+    assert type != null;
+
+    T task = null;
+    try {
+      task = type.newInstance();
+    }
+    catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    task.setProject(ant);
+    return task;
+  }
+
+  public Task createTask(final String name) throws BuildException {
+    assert name != null;
+    return ant.createTask(name);
+  }
+
+  public Path createPath(final File location) {
+    Path path = new Path(ant);
+    path.setLocation(location);
+    return path;
+  }
+
+  public void setProperty(final String name, final Object value) {
+    assert name != null;
+    assert value != null;
+
+    String valueAsString = String.valueOf(value);
+
+    if (log.isDebugEnabled()) {
+      log.debug(String.format("Setting property: %s=%s", name, valueAsString));
     }
 
-    public <T extends ProjectComponent> T createTask(final Class<T> type) {
-        assert type != null;
+    Property prop = createTask(Property.class);
+    prop.setName(name);
+    prop.setValue(valueAsString);
+    prop.execute();
+  }
 
-        T task = null;
-        try {
-            task = type.newInstance();
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        task.setProject(ant);
-        return task;
-    }
+  public String getProperty(final String name) {
+    return ant.getProperty(name);
+  }
 
-    public Task createTask(final String name) throws BuildException {
-        assert name != null;
-        return ant.createTask(name);
-    }
+  public void mkdir(final File dir) {
+    assert dir != null;
 
-    public Path createPath(final File location) {
-        Path path = new Path(ant);
-        path.setLocation(location);
-        return path;
-    }
+    Mkdir mkdir = createTask(Mkdir.class);
+    mkdir.setDir(dir);
+    mkdir.execute();
+  }
 
-    public void setProperty(final String name, final Object value) {
-        assert name != null;
-        assert value != null;
+  public void chmod(final File dir, final String includes, final String perm) {
+    Chmod chmod = createTask(Chmod.class);
+    chmod.setDir(dir);
+    chmod.setIncludes(includes);
+    chmod.setPerm(perm);
+    chmod.execute();
+  }
 
-        String valueAsString = String.valueOf(value);
-
-        if (log.isDebugEnabled()) {
-            log.debug(String.format("Setting property: %s=%s", name, valueAsString));
-        }
-
-        Property prop = createTask(Property.class);
-        prop.setName(name);
-        prop.setValue(valueAsString);
-        prop.execute();
-    }
-
-    public String getProperty(final String name) {
-        return ant.getProperty(name);
-    }
-
-    public void mkdir(final File dir) {
-        assert dir != null;
-
-        Mkdir mkdir = createTask(Mkdir.class);
-        mkdir.setDir(dir);
-        mkdir.execute();
-    }
-
-    public void chmod(final File dir, final String includes, final String perm) {
-        Chmod chmod = createTask(Chmod.class);
-        chmod.setDir(dir);
-        chmod.setIncludes(includes);
-        chmod.setPerm(perm);
-        chmod.execute();
-    }
-
-    public void chmod(final File file, final String perm) {
-        Chmod chmod = createTask(Chmod.class);
-        chmod.setFile(file);
-        chmod.setPerm(perm);
-        chmod.execute();
-    }
+  public void chmod(final File file, final String perm) {
+    Chmod chmod = createTask(Chmod.class);
+    chmod.setFile(file);
+    chmod.setPerm(perm);
+    chmod.execute();
+  }
 }

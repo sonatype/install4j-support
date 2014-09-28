@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.ga;
 
 import com.install4j.api.context.Context;
@@ -30,55 +31,55 @@ import com.install4j.api.events.InstallerEventListener;
 public class TrackEventOnCancelAction
     extends GoogleAnalyticsActionSupport
 {
-    private String category;
+  private String category;
 
-    private String action;
+  private String action;
 
-    private String label;
+  private String label;
 
-    public String getCategory() {
-        return category;
-    }
+  public String getCategory() {
+    return category;
+  }
 
-    public void setCategory(final String category) {
-        this.category = category;
-    }
+  public void setCategory(final String category) {
+    this.category = category;
+  }
 
-    public String getAction() {
-        return action;
-    }
+  public String getAction() {
+    return action;
+  }
 
-    public void setAction(final String action) {
-        this.action = action;
-    }
+  public void setAction(final String action) {
+    this.action = action;
+  }
 
-    public String getLabel() {
-        return label;
-    }
+  public String getLabel() {
+    return label;
+  }
 
-    public void setLabel(final String label) {
-        this.label = label;
-    }
+  public void setLabel(final String label) {
+    this.label = label;
+  }
 
-    @Override
-    protected boolean execute(final Context context) throws Exception {
-        context.addInstallerEventListener(new InstallerEventListener()
-        {
-            @Override
-            public void installerEvent(final InstallerEvent event) {
-                EventType type = event.getType();
-                if (EventType.CANCELLING.equals(type)) {
-                    trackEvent(event.getContext());
-                }
-            }
-        });
-        return true;
-    }
+  @Override
+  protected boolean execute(final Context context) throws Exception {
+    context.addInstallerEventListener(new InstallerEventListener()
+    {
+      @Override
+      public void installerEvent(final InstallerEvent event) {
+        EventType type = event.getType();
+        if (EventType.CANCELLING.equals(type)) {
+          trackEvent(event.getContext());
+        }
+      }
+    });
+    return true;
+  }
 
-    private void trackEvent(final Context context) {
-        ProgressInterface progress = context.getProgressInterface();
-        int value = progress.getPercentCompleted();
-        log.debug("Tracking cancel event: {}, value: {}", action, value);
-        getTracker().trackEvent(category, action, label, value);
-    }
+  private void trackEvent(final Context context) {
+    ProgressInterface progress = context.getProgressInterface();
+    int value = progress.getPercentCompleted();
+    log.debug("Tracking cancel event: {}, value: {}", action, value);
+    getTracker().trackEvent(category, action, label, value);
+  }
 }

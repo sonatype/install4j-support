@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.slf4j;
 
 import org.slf4j.ILoggerFactory;
@@ -28,17 +29,17 @@ import java.util.Map;
 public class Install4jLoggerFactory
     implements ILoggerFactory
 {
-    private final Map<String,Logger> loggers = new HashMap<String,Logger>();
+  private final Map<String, Logger> loggers = new HashMap<String, Logger>();
 
-    public Logger getLogger(String name) {
-        Logger logger;
-        synchronized (this) {
-            logger = loggers.get(name);
-            if (logger == null) {
-                logger = new Install4jLogger(name);
-                loggers.put(name, logger);
-            }
-        }
-        return logger;
+  public Logger getLogger(String name) {
+    Logger logger;
+    synchronized (this) {
+      logger = loggers.get(name);
+      if (logger == null) {
+        logger = new Install4jLogger(name);
+        loggers.put(name, logger);
+      }
     }
+    return logger;
+  }
 }

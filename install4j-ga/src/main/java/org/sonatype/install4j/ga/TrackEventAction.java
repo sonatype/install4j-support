@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.ga;
 
 import com.install4j.api.context.Context;
@@ -22,59 +23,59 @@ import com.install4j.api.context.Context;
 public class TrackEventAction
     extends GoogleAnalyticsActionSupport
 {
-    private String category;
+  private String category;
 
-    private String action;
+  private String action;
 
-    private String label;
+  private String label;
 
-    private Integer value;
+  private Integer value;
 
-    public String getCategory() {
-        return category;
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(final String category) {
+    this.category = category;
+  }
+
+  public String getAction() {
+    return action;
+  }
+
+  public void setAction(final String action) {
+    this.action = action;
+  }
+
+  public String getLabel() {
+    return label;
+  }
+
+  public void setLabel(final String label) {
+    this.label = label;
+  }
+
+  public Integer getValue() {
+    return value;
+  }
+
+  public void setValue(final Integer value) {
+    this.value = value;
+  }
+
+  @Override
+  protected boolean execute(final Context context) throws Exception {
+    if (isDisabled()) {
+      log.debug("Tracking disabled; ignoring event: {}", action);
     }
-
-    public void setCategory(final String category) {
-        this.category = category;
+    else {
+      trackEvent(context);
     }
+    return true;
+  }
 
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(final String action) {
-        this.action = action;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(final String label) {
-        this.label = label;
-    }
-
-    public Integer getValue() {
-        return value;
-    }
-
-    public void setValue(final Integer value) {
-        this.value = value;
-    }
-
-    @Override
-    protected boolean execute(final Context context) throws Exception {
-        if (isDisabled()) {
-            log.debug("Tracking disabled; ignoring event: {}", action);
-        }
-        else {
-            trackEvent(context);
-        }
-        return true;
-    }
-
-    private void trackEvent(final Context context) throws Exception {
-        log.debug("Tracking event: {}", action);
-        getTracker().trackEvent(category, action, label, value);
-    }
+  private void trackEvent(final Context context) throws Exception {
+    log.debug("Tracking event: {}", action);
+    getTracker().trackEvent(category, action, label, value);
+  }
 }

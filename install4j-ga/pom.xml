@@ -13,149 +13,150 @@
     See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.sonatype.install4j</groupId>
-        <artifactId>install4j-support</artifactId>
-        <version>1.0.8-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <groupId>org.sonatype.install4j</groupId>
+    <artifactId>install4j-support</artifactId>
+    <version>1.0.8-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>install4j-ga</artifactId>
-    <name>${project.groupId}:${project.artifactId}</name>
+  <artifactId>install4j-ga</artifactId>
+  <name>${project.groupId}:${project.artifactId}</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.install4j</groupId>
-            <artifactId>install4j-runtime</artifactId>
-            <scope>provided</scope>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>com.install4j</groupId>
+      <artifactId>install4j-runtime</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.sonatype.install4j</groupId>
-            <artifactId>install4j-slf4j</artifactId>
-        </dependency>
+    <dependency>
+      <groupId>org.sonatype.install4j</groupId>
+      <artifactId>install4j-slf4j</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>com.dmurph</groupId>
-            <artifactId>JGoogleAnalyticsTracker</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>com.dmurph</groupId>
+      <artifactId>JGoogleAnalyticsTracker</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+  </dependencies>
 
-    <build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Depends-On>install4j-slf4j.jar slf4j-api.jar JGoogleAnalyticsTracker.jar</Depends-On>
+            </manifestEntries>
+
+            <manifestSections>
+              <manifestSection>
+                <name>org/sonatype/install4j/ga/ConfigureProxyAction.class</name>
+                <manifestEntries>
+                  <Install-Action>true</Install-Action>
+                  <Uninstall-Action>true</Uninstall-Action>
+                </manifestEntries>
+              </manifestSection>
+
+              <manifestSection>
+                <name>org/sonatype/install4j/ga/TrackEventAction.class</name>
+                <manifestEntries>
+                  <Install-Action>true</Install-Action>
+                  <Uninstall-Action>true</Uninstall-Action>
+                </manifestEntries>
+              </manifestSection>
+
+              <manifestSection>
+                <name>org/sonatype/install4j/ga/TrackEventOnCancelAction.class</name>
+                <manifestEntries>
+                  <Install-Action>true</Install-Action>
+                  <Uninstall-Action>true</Uninstall-Action>
+                </manifestEntries>
+              </manifestSection>
+            </manifestSections>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>bundle</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/assembly/bundle.xml</descriptor>
+              </descriptors>
+              <attach>true</attach>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>test-installer</id>
+
+      <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>install-extension</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
                 <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Depends-On>install4j-slf4j.jar slf4j-api.jar JGoogleAnalyticsTracker.jar</Depends-On>
-                        </manifestEntries>
-
-                        <manifestSections>
-                            <manifestSection>
-                                <name>org/sonatype/install4j/ga/ConfigureProxyAction.class</name>
-                                <manifestEntries>
-                                    <Install-Action>true</Install-Action>
-                                    <Uninstall-Action>true</Uninstall-Action>
-                                </manifestEntries>
-                            </manifestSection>
-
-                            <manifestSection>
-                                <name>org/sonatype/install4j/ga/TrackEventAction.class</name>
-                                <manifestEntries>
-                                    <Install-Action>true</Install-Action>
-                                    <Uninstall-Action>true</Uninstall-Action>
-                                </manifestEntries>
-                            </manifestSection>
-
-                            <manifestSection>
-                                <name>org/sonatype/install4j/ga/TrackEventOnCancelAction.class</name>
-                                <manifestEntries>
-                                    <Install-Action>true</Install-Action>
-                                    <Uninstall-Action>true</Uninstall-Action>
-                                </manifestEntries>
-                            </manifestSection>
-                        </manifestSections>
-                    </archive>
+                  <outputDirectory>${install4j.home}/extensions</outputDirectory>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>org.sonatype.install4j</groupId>
+                      <artifactId>install4j-ga</artifactId>
+                      <classifier>bundle</classifier>
+                      <type>zip</type>
+                    </artifactItem>
+                  </artifactItems>
                 </configuration>
-            </plugin>
+              </execution>
+            </executions>
+          </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>bundle</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/assembly/bundle.xml</descriptor>
-                            </descriptors>
-                            <attach>true</attach>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+          <plugin>
+            <groupId>org.sonatype.install4j</groupId>
+            <artifactId>install4j-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile-installers</id>
+                <phase>integration-test</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <projectFile>${project.basedir}/src/test/installer/${project.artifactId}-test.install4j</projectFile>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
-    </build>
-
-    <profiles>
-        <profile>
-            <id>test-installer</id>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>install-extension</id>
-                                <phase>pre-integration-test</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${install4j.home}/extensions</outputDirectory>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.sonatype.install4j</groupId>
-                                            <artifactId>install4j-ga</artifactId>
-                                            <classifier>bundle</classifier>
-                                            <type>zip</type>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.sonatype.install4j</groupId>
-                        <artifactId>install4j-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>compile-installers</id>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                                <configuration>
-                                    <projectFile>${project.basedir}/src/test/installer/${project.artifactId}-test.install4j</projectFile>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

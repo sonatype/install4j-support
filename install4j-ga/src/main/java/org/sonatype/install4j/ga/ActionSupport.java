@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.ga;
 
 import com.install4j.api.Util;
@@ -29,47 +30,47 @@ import org.slf4j.LoggerFactory;
 public abstract class ActionSupport
     extends AbstractInstallOrUninstallAction
 {
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+  protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    protected boolean reportFailure = true;
+  protected boolean reportFailure = true;
 
-    protected static boolean getFlag(final Class type, final String name) {
-        return Boolean.getBoolean(type.getName() + "." + name);
+  protected static boolean getFlag(final Class type, final String name) {
+    return Boolean.getBoolean(type.getName() + "." + name);
+  }
+
+  protected boolean getFlag(final String name) {
+    return getFlag(getClass(), name);
+  }
+
+  private void reportFailure(final Context context, final Exception e) {
+    log.error("Action execution failed", e);
+
+    if (reportFailure) {
+      Util.showErrorMessage(context.getMessage("ga.ActionFailed", new Object[]{e}));
     }
+  }
 
-    protected boolean getFlag(final String name) {
-        return getFlag(getClass(), name);
+  @Override
+  public boolean install(final InstallerContext context) throws UserCanceledException {
+    try {
+      return execute(context);
     }
-
-    private void reportFailure(final Context context, final Exception e) {
-        log.error("Action execution failed", e);
-
-        if (reportFailure) {
-            Util.showErrorMessage(context.getMessage("ga.ActionFailed", new Object[] { e }));
-        }
+    catch (Exception e) {
+      reportFailure(context, e);
+      return false;
     }
+  }
 
-    @Override
-    public boolean install(final InstallerContext context) throws UserCanceledException {
-        try {
-            return execute(context);
-        }
-        catch (Exception e) {
-            reportFailure(context, e);
-            return false;
-        }
+  @Override
+  public boolean uninstall(final UninstallerContext context) throws UserCanceledException {
+    try {
+      return execute(context);
     }
-
-    @Override
-    public boolean uninstall(final UninstallerContext context) throws UserCanceledException {
-        try {
-            return execute(context);
-        }
-        catch (Exception e) {
-            reportFailure(context, e);
-            return false;
-        }
+    catch (Exception e) {
+      reportFailure(context, e);
+      return false;
     }
+  }
 
-    protected abstract boolean execute(Context context) throws Exception;
+  protected abstract boolean execute(Context context) throws Exception;
 }

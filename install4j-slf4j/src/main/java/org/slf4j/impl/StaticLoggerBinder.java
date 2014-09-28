@@ -10,10 +10,12 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.slf4j.impl;
 
 import org.slf4j.ILoggerFactory;
 import org.slf4j.spi.LoggerFactoryBinder;
+
 import org.sonatype.install4j.slf4j.Install4jLoggerFactory;
 
 /**
@@ -25,25 +27,25 @@ import org.sonatype.install4j.slf4j.Install4jLoggerFactory;
 public class StaticLoggerBinder
     implements LoggerFactoryBinder
 {
-    private static final StaticLoggerBinder SINGLETON = new StaticLoggerBinder();
+  private static final StaticLoggerBinder SINGLETON = new StaticLoggerBinder();
 
-    public static StaticLoggerBinder getSingleton() {
-        return SINGLETON;
-    }
+  public static StaticLoggerBinder getSingleton() {
+    return SINGLETON;
+  }
 
-    public static String REQUESTED_API_VERSION = "1.6";  // !final to avoid compile static folding
+  public static String REQUESTED_API_VERSION = "1.6";  // !final to avoid compile static folding
 
-    private final ILoggerFactory loggerFactory = new Install4jLoggerFactory();
+  private final ILoggerFactory loggerFactory = new Install4jLoggerFactory();
 
-    private StaticLoggerBinder() {
-        super();
-    }
+  private StaticLoggerBinder() {
+    super();
+  }
 
-    public ILoggerFactory getLoggerFactory() {
-        return loggerFactory;
-    }
+  public ILoggerFactory getLoggerFactory() {
+    return loggerFactory;
+  }
 
-    public String getLoggerFactoryClassStr() {
-        return Install4jLoggerFactory.class.getName();
-    }
+  public String getLoggerFactoryClassStr() {
+    return Install4jLoggerFactory.class.getName();
+  }
 }

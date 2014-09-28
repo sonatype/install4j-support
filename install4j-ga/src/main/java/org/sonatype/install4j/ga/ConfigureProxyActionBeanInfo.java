@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.ga;
 
 /**
@@ -20,15 +21,15 @@ package org.sonatype.install4j.ga;
 public class ConfigureProxyActionBeanInfo
     extends ActionBeanInfoSupport
 {
-    public ConfigureProxyActionBeanInfo() {
-        super(
-            "Configure Proxy",
-            "Configure proxy for Google Analytics",
-            CATEGORY_GA,
-            SINGLE_INSTANCE,
-            INSTALLED_FILES_NOT_REQUIRED,
-            DEFAULT_SORT_KEY,
-            ConfigureProxyAction.class
-        );
-    }
+  public ConfigureProxyActionBeanInfo() {
+    super(
+        "Configure Proxy",
+        "Configure proxy for Google Analytics",
+        CATEGORY_GA,
+        SINGLE_INSTANCE,
+        INSTALLED_FILES_NOT_REQUIRED,
+        DEFAULT_SORT_KEY,
+        ConfigureProxyAction.class
+    );
+  }
 }

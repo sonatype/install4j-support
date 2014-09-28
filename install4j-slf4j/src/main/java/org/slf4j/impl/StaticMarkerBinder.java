@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.slf4j.impl;
 
 import org.slf4j.IMarkerFactory;
@@ -25,19 +26,19 @@ import org.slf4j.spi.MarkerFactoryBinder;
 public class StaticMarkerBinder
     implements MarkerFactoryBinder
 {
-    public static final StaticMarkerBinder SINGLETON = new StaticMarkerBinder();
+  public static final StaticMarkerBinder SINGLETON = new StaticMarkerBinder();
 
-    private final IMarkerFactory markerFactory = new BasicMarkerFactory();
+  private final IMarkerFactory markerFactory = new BasicMarkerFactory();
 
-    private StaticMarkerBinder() {
-        super();
-    }
+  private StaticMarkerBinder() {
+    super();
+  }
 
-    public IMarkerFactory getMarkerFactory() {
-        return markerFactory;
-    }
+  public IMarkerFactory getMarkerFactory() {
+    return markerFactory;
+  }
 
-    public String getMarkerFactoryClassStr() {
-        return BasicMarkerFactory.class.getName();
-    }
+  public String getMarkerFactoryClassStr() {
+    return BasicMarkerFactory.class.getName();
+  }
 }

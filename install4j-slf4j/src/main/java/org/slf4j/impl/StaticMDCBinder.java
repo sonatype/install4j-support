@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.slf4j.impl;
 
 import org.slf4j.helpers.NOPMDCAdapter;
@@ -23,17 +24,17 @@ import org.slf4j.spi.MDCAdapter;
 @SuppressWarnings("UnusedDeclaration")
 public class StaticMDCBinder
 {
-    public static final StaticMDCBinder SINGLETON = new StaticMDCBinder();
+  public static final StaticMDCBinder SINGLETON = new StaticMDCBinder();
 
-    private StaticMDCBinder() {
-        super();
-    }
+  private StaticMDCBinder() {
+    super();
+  }
 
-    public MDCAdapter getMDCA() {
-        return new NOPMDCAdapter();
-    }
+  public MDCAdapter getMDCA() {
+    return new NOPMDCAdapter();
+  }
 
-    public String getMDCAdapterClassStr() {
-        return NOPMDCAdapter.class.getName();
-    }
+  public String getMDCAdapterClassStr() {
+    return NOPMDCAdapter.class.getName();
+  }
 }

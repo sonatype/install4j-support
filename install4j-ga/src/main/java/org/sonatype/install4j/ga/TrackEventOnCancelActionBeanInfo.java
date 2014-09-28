@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.ga;
 
 import com.install4j.api.beaninfo.BeanValidationException;
@@ -25,59 +26,59 @@ import static com.install4j.api.beaninfo.Install4JPropertyDescriptor.create;
 public class TrackEventOnCancelActionBeanInfo
     extends ActionBeanInfoSupport
 {
-    private static final String PROPERTY_TRACKING_CODE = "trackingCode";
+  private static final String PROPERTY_TRACKING_CODE = "trackingCode";
 
-    private static final String PROPERTY_CATEGORY = "category";
+  private static final String PROPERTY_CATEGORY = "category";
 
-    private static final String PROPERTY_ACTION = "action";
+  private static final String PROPERTY_ACTION = "action";
 
-    private static final String PROPERTY_LABEL = "label";
+  private static final String PROPERTY_LABEL = "label";
 
-    public TrackEventOnCancelActionBeanInfo() {
-        super(
-            "Track Event on Cancel",
-            "Send a Google Analytics tracking event on cancel.  Event value is set to the % completed",
-            CATEGORY_GA,
-            SINGLE_INSTANCE,
-            INSTALLED_FILES_NOT_REQUIRED,
-            DEFAULT_SORT_KEY,
-            TrackEventOnCancelAction.class
-        );
+  public TrackEventOnCancelActionBeanInfo() {
+    super(
+        "Track Event on Cancel",
+        "Send a Google Analytics tracking event on cancel.  Event value is set to the % completed",
+        CATEGORY_GA,
+        SINGLE_INSTANCE,
+        INSTALLED_FILES_NOT_REQUIRED,
+        DEFAULT_SORT_KEY,
+        TrackEventOnCancelAction.class
+    );
 
-        addPropertyDescriptor(create(
-            PROPERTY_TRACKING_CODE,
-            getBeanClass(),
-            "Tracking Code",
-            "Tracking code"
-        ));
+    addPropertyDescriptor(create(
+        PROPERTY_TRACKING_CODE,
+        getBeanClass(),
+        "Tracking Code",
+        "Tracking code"
+    ));
 
-        addPropertyDescriptor(create(
-            PROPERTY_CATEGORY,
-            getBeanClass(),
-            "Category",
-            "Event category"
-        ));
+    addPropertyDescriptor(create(
+        PROPERTY_CATEGORY,
+        getBeanClass(),
+        "Category",
+        "Event category"
+    ));
 
-        addPropertyDescriptor(create(
-            PROPERTY_ACTION,
-            getBeanClass(),
-            "Action",
-            "Event action"
-        ));
+    addPropertyDescriptor(create(
+        PROPERTY_ACTION,
+        getBeanClass(),
+        "Action",
+        "Event action"
+    ));
 
-        addPropertyDescriptor(create(
-            PROPERTY_LABEL,
-            getBeanClass(),
-            "Label",
-            "Event label"
-        ));
-    }
+    addPropertyDescriptor(create(
+        PROPERTY_LABEL,
+        getBeanClass(),
+        "Label",
+        "Event label"
+    ));
+  }
 
-    @Override
-    public void validateBean(final Bean bean) throws BeanValidationException {
-        checkNotEmpty(PROPERTY_TRACKING_CODE, bean);
-        checkNotEmpty(PROPERTY_CATEGORY, bean);
-        checkNotEmpty(PROPERTY_ACTION, bean);
-        // label is optional
-    }
+  @Override
+  public void validateBean(final Bean bean) throws BeanValidationException {
+    checkNotEmpty(PROPERTY_TRACKING_CODE, bean);
+    checkNotEmpty(PROPERTY_CATEGORY, bean);
+    checkNotEmpty(PROPERTY_ACTION, bean);
+    // label is optional
+  }
 }

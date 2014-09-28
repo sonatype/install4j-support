@@ -10,6 +10,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
+
 package org.sonatype.install4j.maven;
 
 import org.apache.maven.plugin.AbstractMojo;
@@ -25,25 +26,25 @@ import org.apache.maven.plugin.logging.Log;
 public abstract class MojoSupport
     extends AbstractMojo
 {
-    protected Log log;
+  protected Log log;
 
-    @Override
-    public void execute() throws MojoExecutionException, MojoFailureException {
-        this.log = getLog();
+  @Override
+  public void execute() throws MojoExecutionException, MojoFailureException {
+    this.log = getLog();
 
-        try {
-            doExecute();
-        }
-        catch (Exception e) {
-            if (e instanceof MojoExecutionException) {
-                throw (MojoExecutionException)e;
-            }
-            else if (e instanceof MojoFailureException) {
-                throw (MojoFailureException)e;
-            }
-            throw new MojoExecutionException(e.getMessage(), e);
-        }
+    try {
+      doExecute();
     }
+    catch (Exception e) {
+      if (e instanceof MojoExecutionException) {
+        throw (MojoExecutionException) e;
+      }
+      else if (e instanceof MojoFailureException) {
+        throw (MojoFailureException) e;
+      }
+      throw new MojoExecutionException(e.getMessage(), e);
+    }
+  }
 
-    protected abstract void doExecute() throws Exception;
+  protected abstract void doExecute() throws Exception;
 }
