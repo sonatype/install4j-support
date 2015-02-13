@@ -137,10 +137,10 @@ public class CompileMojo
   private Properties variables;
 
   /**
-   * Set custom system properties on compiler.
+   * Set custom jvm arguments on compiler.
    */
   @Parameter
-  private Properties systemProperties;
+  private List<String> jvmArguments;
 
   /**
    * Attach generated installers.
@@ -161,13 +161,11 @@ public class CompileMojo
     task.setFailonerror(true);
     task.setFailIfExecutionFails(true);
 
-    if (systemProperties != null) {
-      // -J-Dkey=value isn't documented in --help, but the underlying launcher supports this form to set system properties
-      Iterator<Entry<Object, Object>> iter = systemProperties.entrySet().iterator();
+    if (jvmArguments != null) {
+      Iterator<String> iter = jvmArguments.iterator();
       while (iter.hasNext()) {
-        String key = String.valueOf(iter.next());
-        String value = systemProperties.getProperty(key);
-        task.createArg().setValue("-J-D" + key + "=" + value);
+        String arg = String.valueOf(iter.next());
+        task.createArg().setValue("-J" + arg);
       }
     }
 
