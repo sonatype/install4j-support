@@ -131,10 +131,16 @@ public class CompileMojo
   private File variableFile;
 
   /**
-   * Override a compiler variable with a different value.
+   * Override compiler variables with a different values.
    */
   @Parameter
   private Properties variables;
+
+  /**
+   * Set custom system properties on compiler.
+   */
+  @Parameter
+  private Properties systemProperties;
 
   /**
    * Attach generated installers.
@@ -154,6 +160,16 @@ public class CompileMojo
     // Fail if any error occurs
     task.setFailonerror(true);
     task.setFailIfExecutionFails(true);
+
+    if (systemProperties != null) {
+      // -J-Dkey=value isn't documented in --help, but the underlying launcher supports this form to set system properties
+      Iterator<Entry<Object, Object>> iter = systemProperties.entrySet().iterator();
+      while (iter.hasNext()) {
+        String key = String.valueOf(iter.next());
+        String value = systemProperties.getProperty(key);
+        task.createArg().setValue("-J-D" + key + "=" + value);
+      }
+    }
 
     if (verbose) {
       task.createArg().setValue("--verbose");
@@ -250,6 +266,9 @@ public class CompileMojo
     projectHelper.attachArtifact(project, type, classifier, file);
   }
 
+  /**
+   * Concatenates variable key=value into chain of comma separated for passing to {@code -D} flag.
+   */
   private String getVariablesArgument() {
     StringBuilder buff = new StringBuilder();
     Iterator<Entry<Object, Object>> iter = variables.entrySet().iterator();
