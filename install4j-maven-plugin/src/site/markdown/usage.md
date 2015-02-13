@@ -73,6 +73,38 @@ Replace __${project.basedir}/src/main/installer/myproject.install4j__ with the i
 
 If _install4j.home_ is not configured or is configured to an invalid or corrupted location, the plugin execution will skip.
 
+## JVM Arguments
+
+Additional JVM arguments can be set on the _install4jc_ process.  This can be useful to customize system properties
+to control the compilers behavior.
+
+This example increases the default connect and read timeouts:
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.install4j</groupId>
+                <artifactId>install4j-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>compile-installers</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <projectFile>${project.basedir}/src/main/installer/myproject.install4j</projectFile>
+                            <jvmArguments>
+                                <arg>-Dinstall4j.connectTimeout=20000</arg>
+                                <arg>-Dinstall4j.readTimeout=20000</arg>
+                            </jvmArguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 ## Media Signing
 
 Media signing generally requires passwords for keystore files.
