@@ -12,6 +12,12 @@
  */
 package org.sonatype.install4j.slf4j;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+import java.util.Properties;
+
 import com.install4j.api.Util;
 import com.install4j.api.actions.Action;
 import com.install4j.api.screens.Screen;
@@ -20,11 +26,6 @@ import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MarkerIgnoringBase;
 import org.slf4j.helpers.MessageFormatter;
 import org.slf4j.spi.LocationAwareLogger;
-
-import java.io.InputStream;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.Properties;
 
 // Based in slf4j SimpleLogger
 
@@ -84,28 +85,38 @@ public class Install4jLogger
   }
 
   static {
-    InputStream in = (InputStream) AccessController.doPrivileged(
+    URL url = (URL) AccessController.doPrivileged(
         new PrivilegedAction()
         {
           public Object run() {
             ClassLoader threadCL = Thread.currentThread().getContextClassLoader();
             if (threadCL != null) {
-              return threadCL.getResourceAsStream(CONFIGURATION_FILE);
+              return threadCL.getResource(CONFIGURATION_FILE);
             }
             else {
-              return ClassLoader.getSystemResourceAsStream(CONFIGURATION_FILE);
+              return ClassLoader.getSystemResource(CONFIGURATION_FILE);
             }
           }
         });
 
-    if (null != in) {
+    if (url != null) {
       try {
-        configuration.load(in);
-        in.close();
+        Util.logInfo(null, "Reading " + CONFIGURATION_FILE + ": " + url);
+        InputStream input = url.openStream();
+        try {
+          configuration.load(input);
+        }
+        finally {
+          input.close();
+        }
       }
       catch (java.io.IOException e) {
-        // ignored
+        Util.logError(null, "Failed to load " + CONFIGURATION_FILE);
+        Util.log(e);
       }
+    }
+    else {
+      Util.logError(null, "Missing: " + CONFIGURATION_FILE);
     }
 
     showLogName = getBooleanProperty(CONFIGURATION_PREFIX + "showLogName", showLogName);
