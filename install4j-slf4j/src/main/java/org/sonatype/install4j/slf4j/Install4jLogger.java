@@ -105,13 +105,14 @@ public class Install4jLogger
         InputStream input = url.openStream();
         try {
           configuration.load(input);
+          Util.logInfo(null, "Configuration: " + configuration);
         }
         finally {
           input.close();
         }
       }
       catch (java.io.IOException e) {
-        Util.logError(null, "Failed to load " + CONFIGURATION_FILE);
+        Util.logError(null, "Failed to load: " + CONFIGURATION_FILE);
         Util.log(e);
       }
     }
@@ -120,7 +121,10 @@ public class Install4jLogger
     }
 
     showLogName = getBooleanProperty(CONFIGURATION_PREFIX + "showLogName", showLogName);
+    Util.logInfo(null, "Show log-name: " + showLogName);
+
     showLevel = getBooleanProperty(CONFIGURATION_PREFIX + "showLevel", showLevel);
+    Util.logInfo(null, "Show level: " + showLevel);
   }
 
   protected int currentLogLevel = LEVEL_INFO;
