@@ -100,6 +100,12 @@
 
       <dependency>
         <groupId>org.sonatype.install4j</groupId>
+        <artifactId>install4j-common</artifactId>
+        <version>1.0.9-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.sonatype.install4j</groupId>
         <artifactId>install4j-ga</artifactId>
         <version>1.0.9-SNAPSHOT</version>
       </dependency>
@@ -122,6 +128,7 @@
 
   <modules>
     <module>install4j-slf4j</module>
+    <module>install4j-common</module>
     <module>install4j-ga</module>
     <module>install4j-maven-plugin</module>
   </modules>
