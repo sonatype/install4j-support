@@ -86,9 +86,9 @@
       </dependency>
 
       <dependency>
-        <groupId>org.sonatype.sisu.litmus</groupId>
-        <artifactId>litmus-testsupport</artifactId>
-        <version>1.9</version>
+        <groupId>org.sonatype.sisu.goodies</groupId>
+        <artifactId>goodies-testsupport</artifactId>
+        <version>1.13</version>
       </dependency>
 
       <!-- INTERNAL -->
