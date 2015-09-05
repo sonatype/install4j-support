@@ -89,6 +89,12 @@ public class CompileMojo
   private boolean disableSigning;
 
   /**
+   * Disable JRE bundling.
+   */
+  @Parameter(property = "install4j.disableBundling", defaultValue = "false")
+  private boolean disableBundling;
+
+  /**
    * Preserve temporary staging directory.
    */
   @Parameter(property = "install4j.preserve", defaultValue = "false")
@@ -207,6 +213,10 @@ public class CompileMojo
 
     if (disableSigning) {
       task.createArg().setValue("--disable-signing");
+    }
+
+    if (disableBundling) {
+      task.createArg().setValue("--disable-bundling");
     }
 
     if (preserve) {
