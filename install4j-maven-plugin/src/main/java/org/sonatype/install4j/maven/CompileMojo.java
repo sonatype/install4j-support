@@ -83,6 +83,12 @@ public class CompileMojo
   private boolean disableSigning;
 
   /**
+   * Preserve temporary staging directory.
+   */
+  @Parameter(property = "install4j.preserve", defaultValue = "false")
+  private boolean preserve;
+
+  /**
    * Set the Windows keystore password for the private key that is configured for code signing.
    */
   @Parameter(property = "install4j.winKeystorePassword")
@@ -191,6 +197,10 @@ public class CompileMojo
 
     if (disableSigning) {
       task.createArg().setValue("--disable-signing");
+    }
+
+    if (preserve) {
+      task.createArg().setValue("--preserve");
     }
 
     if (winKeystorePassword != null) {
