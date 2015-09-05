@@ -65,6 +65,12 @@ public class CompileMojo
   private boolean test;
 
   /**
+   * Enables incremental test execution.
+   */
+  @Parameter(property = "install4j.incremental", defaultValue = "false")
+  private boolean incremental;
+
+  /**
    * Create additional debug installers for each media file.
    */
   @Parameter(property = "install4j.debug", defaultValue = "false")
@@ -185,6 +191,10 @@ public class CompileMojo
 
     if (test) {
       task.createArg().setValue("--test");
+    }
+
+    if (incremental) {
+      task.createArg().setValue("--incremental");
     }
 
     if (debug) {
