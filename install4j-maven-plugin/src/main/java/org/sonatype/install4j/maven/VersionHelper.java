@@ -30,9 +30,9 @@ import java.io.File;
 public class VersionHelper
 {
   /**
-   * Allows install4j 5.1.2+
+   * Allows install4j 6.0.0+
    */
-  private static final String VERSION_CONSTRAINT = "[5.1.2,)";
+  private static final String VERSION_CONSTRAINT = "[6.0.0,)";
 
   private final Log log;
 

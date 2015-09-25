@@ -24,7 +24,7 @@ import org.codehaus.plexus.util.Os;
 /**
  * Support for install4jc-based tasks.
  *
- * Compatible with install4j version 5.1.2 or higher.
+ * Compatible with install4j version 6.0.0 or higher.
  *
  * @since 1.0
  */

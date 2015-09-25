@@ -16,7 +16,7 @@ import java.io.File;
 
 import com.dmurph.tracking.JGoogleAnalyticsTracker;
 import com.install4j.api.context.Context;
-import com.install4j.runtime.beans.actions.update.DownloadFileAction;
+import com.install4j.runtime.beans.actions.net.DownloadFileAction;
 
 /**
  * Configure proxy for Google Analytics support.
@@ -43,7 +43,7 @@ public class ConfigureProxyAction
     action.setShowFileName(false);
     action.setShowProgress(false);
     action.setShowError(false);
-    action.setTargetFile(File.createTempFile("configure-proxy", ".tmp").getAbsolutePath());
+    action.setTargetFile(File.createTempFile("configure-proxy", ".tmp"));
     action.execute(context);
 
     if (log.isDebugEnabled()) {

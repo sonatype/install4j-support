@@ -46,7 +46,8 @@ public class VersionHelperTest
   @Test
   public void parseMultiLineVersion() {
     String input = "testing JVM in /usr …\n" +
-        "install4j version 5.1.3 (build 5521), built on 2012-09-21";
+        "install4j version 5.1.3 (build 5521), built on 2012-09-21\n" +
+        "Using Java 1.8.0_25 from /Applications/install4j.app/Contents/Resources/jre.bundle/Contents/Home/jre";
 
     String version = helper.parseVersion(input);
     assertThat(version, is("5.1.3"));
@@ -75,17 +76,12 @@ public class VersionHelperTest
   }
 
   @Test
-  public void ensureSameVersionCompatible() throws Exception {
-    helper.ensureVersionCompatible("install4j version 5.1.2 XXX");
-  }
-
-  @Test
-  public void ensureNewVersionCompatible() throws Exception {
-    helper.ensureVersionCompatible("install4j version 5.1.3 XXX");
+  public void ensureVersionCompatible() throws Exception {
+    helper.ensureVersionCompatible("install4j version 6.0.4 XXX");
   }
 
   @Test(expected = MojoExecutionException.class)
-  public void ensureOldVersionNotCompatible() throws Exception {
-    helper.ensureVersionCompatible("install4j version 5.1.1 XXX");
+  public void ensureOldVersionFails() throws Exception {
+    helper.ensureVersionCompatible("install4j version 5.1.3 XXX");
   }
 }
