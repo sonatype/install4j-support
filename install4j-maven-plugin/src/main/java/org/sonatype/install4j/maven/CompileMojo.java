@@ -325,10 +325,6 @@ public class CompileMojo
       this.classifier = classifier;
     }
 
-    private AttachedFile(final String path, final String classifier) {
-      this(new File(path), classifier);
-    }
-
     private static String getType(final File file) {
       String path = file.getAbsolutePath();
 
@@ -369,12 +365,34 @@ public class CompileMojo
       // id | media file type | display name | media file path
       String[] parts = line.split("\t");
       AttachedFile attachedFile = new AttachedFile(
-          parts[3], // media file path
+          normalize(destination, parts[3]), // media file path
           parts[0]  // id
       );
       files.add(attachedFile);
     }
 
     return files;
+  }
+
+  /**
+   * Normalize given path to given base.
+   *
+   * This impacts some plugins which don't fully canonicalize before making assumptions about parent paths
+   * and w/o this can case some behavior differences depending on the path given to maven to execute
+   * if it had been given ./foo/pom.xml or foo/pom.xml.
+   *
+   * If base is "/foo/./bar" and path is "/foo/bar/baz", will normalize to "/foo/./bar/baz", etc.
+   */
+  private File normalize(final File base, final String path) throws Exception {
+    String basePath = base.getCanonicalPath();
+    String filePath = new File(path).getCanonicalPath();
+    if (filePath.startsWith(basePath)) {
+      String relPath = filePath.substring(basePath.length() + 1, filePath.length());
+      return new File(base, relPath);
+
+    }
+    else {
+      return new File(path);
+    }
   }
 }
