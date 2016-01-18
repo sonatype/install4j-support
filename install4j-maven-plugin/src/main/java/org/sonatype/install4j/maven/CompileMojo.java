@@ -12,9 +12,7 @@
  */
 package org.sonatype.install4j.maven;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -26,6 +24,7 @@ import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProjectHelper;
+import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 /**
@@ -40,6 +39,9 @@ import org.apache.tools.ant.taskdefs.ExecTask;
 public class CompileMojo
     extends Install4jcMojoSupport
 {
+
+  private static final byte[] BOM = new byte[] {(byte)0xEF, (byte)0xBB, (byte)0xBF};
+
   /**
    * install4j project file.
    */
@@ -171,6 +173,8 @@ public class CompileMojo
   @Component
   private MavenProjectHelper projectHelper;
 
+  private File variablesTempFile;
+
   @Override
   protected void execute(final AntHelper ant, final ExecTask task) throws Exception {
     task.createArg().setFile(projectFile);
@@ -257,17 +261,18 @@ public class CompileMojo
       task.createArg().setValue(mediaTypes);
     }
 
-    if (variableFile != null) {
+    if (variableFile != null || (variables != null && !variables.isEmpty())) {
       task.createArg().setValue("--var-file");
-      task.createArg().setFile(variableFile);
+      task.createArg().setValue(getVariablesFileArgument());
     }
 
-    if (variables != null) {
-      task.createArg().setValue("-D");
-      task.createArg().setValue(getVariablesArgument());
+    try {
+      task.execute();
+    } finally {
+      if (variablesTempFile != null) {
+        variablesTempFile.delete();
+      }
     }
-
-    task.execute();
 
     if (attach) {
       for (AttachedFile attachedFile : parseAttachedFiles()) {
@@ -286,6 +291,28 @@ public class CompileMojo
     }
   }
 
+  private void createVariablesTempFile() throws IOException {
+    variablesTempFile = File.createTempFile("install4jVariables", ".txt");
+    FileOutputStream out = null;
+    try {
+      out = new FileOutputStream(variablesTempFile);
+      out.write(BOM); //BOM forces UTF-8 detection for reading
+      PrintWriter pw = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
+      Iterator<Entry<Object, Object>> iter = variables.entrySet().iterator();
+      while (iter.hasNext()) {
+        Entry<Object, Object> entry = iter.next();
+        pw.print(entry.getKey());
+        pw.print('=');
+        pw.println(entry.getValue());
+      }
+      pw.flush();
+    } finally {
+      if (out != null) {
+        out.close();
+      }
+    }
+  }
+
   private void maybeAttachFile(final String type, final String classifier, final File file) {
     if (!file.exists()) {
       log.warn("File missing; unable to attach file: " + file);
@@ -294,18 +321,17 @@ public class CompileMojo
     projectHelper.attachArtifact(project, type, classifier, file);
   }
 
-  /**
-   * Concatenates variable key=value into chain of comma separated for passing to {@code -D} flag.
-   */
-  private String getVariablesArgument() {
+  private String getVariablesFileArgument() throws IOException {
     StringBuilder buff = new StringBuilder();
-    Iterator<Entry<Object, Object>> iter = variables.entrySet().iterator();
-    while (iter.hasNext()) {
-      Entry<Object, Object> entry = iter.next();
-      buff.append(entry.getKey()).append('=').append(entry.getValue());
-      if (iter.hasNext()) {
-        buff.append(",");
+    if (variableFile != null) {
+      buff.append(variableFile.getPath());
+    }
+    if (!variables.isEmpty()) {
+      createVariablesTempFile();
+      if (buff.length() > 0) {
+        buff.append(";");
       }
+      buff.append(variablesTempFile.getPath());
     }
     return buff.toString();
   }
