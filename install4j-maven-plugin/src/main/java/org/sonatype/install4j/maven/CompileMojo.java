@@ -12,7 +12,13 @@
  */
 package org.sonatype.install4j.maven;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -24,7 +30,6 @@ import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProjectHelper;
-import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.taskdefs.ExecTask;
 
 /**
@@ -39,7 +44,9 @@ import org.apache.tools.ant.taskdefs.ExecTask;
 public class CompileMojo
     extends Install4jcMojoSupport
 {
-
+  /**
+   * UTF-8 byte-order-mark.  Needed to inform install4j to load variables files as UTF-8 instead of platform encoding.
+   */
   private static final byte[] BOM = new byte[] {(byte)0xEF, (byte)0xBB, (byte)0xBF};
 
   /**

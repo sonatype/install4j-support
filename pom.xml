@@ -17,14 +17,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <repositories>
-    <repository>
-      <id>ejt</id>
-      <name>ej-technologies</name>
-      <url>http://maven.ej-technologies.com/repository</url>
-    </repository>
-  </repositories>
-
   <parent>
     <groupId>org.sonatype.buildsupport</groupId>
     <artifactId>public-parent</artifactId>
@@ -64,6 +56,14 @@
       <name>Jason Dillon</name>
     </developer>
   </developers>
+
+  <repositories>
+    <repository>
+      <id>ejt</id>
+      <name>ej-technologies</name>
+      <url>http://maven.ej-technologies.com/repository</url>
+    </repository>
+  </repositories>
 
   <distributionManagement>
     <site>
