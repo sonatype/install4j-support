@@ -12,11 +12,13 @@
  */
 package org.sonatype.install4j.maven;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -164,6 +166,12 @@ public class CompileMojo
   private Properties variables;
 
   /**
+   * File where custom variables are written to pass to install4j.
+   */
+  @Parameter(defaultValue = "${project.build.directory}/install4j-variables.txt")
+  private File variablesTempFile;
+
+  /**
    * Set custom jvm arguments on compiler.
    */
   @Parameter
@@ -179,8 +187,6 @@ public class CompileMojo
 
   @Component
   private MavenProjectHelper projectHelper;
-
-  private File variablesTempFile;
 
   @Override
   protected void execute(final AntHelper ant, final ExecTask task) throws Exception {
@@ -269,17 +275,25 @@ public class CompileMojo
     }
 
     if (variableFile != null || (variables != null && !variables.isEmpty())) {
+      StringBuilder buff = new StringBuilder();
+      if (variableFile != null) {
+        buff.append(variableFile.getPath());
+      }
+
+      // variables are written to file for coping with command-line length limits
+      if (!variables.isEmpty()) {
+        if (buff.length() > 0) {
+          buff.append(";");
+        }
+        writeVariablesToFile(variables, variablesTempFile);
+        buff.append(variablesTempFile.getPath());
+      }
+
       task.createArg().setValue("--var-file");
-      task.createArg().setValue(getVariablesFileArgument());
+      task.createArg().setValue(buff.toString());
     }
 
-    try {
-      task.execute();
-    } finally {
-      if (variablesTempFile != null) {
-        variablesTempFile.delete();
-      }
-    }
+    task.execute();
 
     if (attach) {
       for (AttachedFile attachedFile : parseAttachedFiles()) {
@@ -298,25 +312,24 @@ public class CompileMojo
     }
   }
 
-  private void createVariablesTempFile() throws IOException {
-    variablesTempFile = File.createTempFile("install4jVariables", ".txt");
-    FileOutputStream out = null;
+  private void writeVariablesToFile(final Properties variables, final File file) throws IOException {
+    log.info("Writing variables to: " + file.getPath());
+    OutputStream output = new BufferedOutputStream(new FileOutputStream(file));
     try {
-      out = new FileOutputStream(variablesTempFile);
-      out.write(BOM); //BOM forces UTF-8 detection for reading
-      PrintWriter pw = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
-      Iterator<Entry<Object, Object>> iter = variables.entrySet().iterator();
-      while (iter.hasNext()) {
-        Entry<Object, Object> entry = iter.next();
-        pw.print(entry.getKey());
-        pw.print('=');
-        pw.println(entry.getValue());
+      // Force install4j to read file as UTF-8
+      output.write(BOM);
+
+      PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, "UTF-8"));
+      for (Entry<Object, Object> entry : variables.entrySet()) {
+        writer.print(entry.getKey());
+        writer.print('=');
+        writer.println(entry.getValue());
       }
-      pw.flush();
-    } finally {
-      if (out != null) {
-        out.close();
-      }
+
+      writer.flush();
+    }
+    finally {
+      output.close();
     }
   }
 
@@ -326,21 +339,6 @@ public class CompileMojo
       return;
     }
     projectHelper.attachArtifact(project, type, classifier, file);
-  }
-
-  private String getVariablesFileArgument() throws IOException {
-    StringBuilder buff = new StringBuilder();
-    if (variableFile != null) {
-      buff.append(variableFile.getPath());
-    }
-    if (!variables.isEmpty()) {
-      createVariablesTempFile();
-      if (buff.length() > 0) {
-        buff.append(";");
-      }
-      buff.append(variablesTempFile.getPath());
-    }
-    return buff.toString();
   }
 
   private static class AttachedFile
