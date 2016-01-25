@@ -70,6 +70,13 @@ public class CompileMojo
   private boolean quiet;
 
   /**
+   * Sets the license key. This is only necessary if the license key has not been set during the
+   * installation of install4j for this machine and the current user. Only supported for install4j 6.1 and higher.
+   */
+  @Parameter(property = "install4j.license")
+  private String license;
+
+  /**
    * Enables test mode. In test mode, no media files will be generated in the media file directory.
    */
   @Parameter(property = "install4j.test", defaultValue = "false")
@@ -210,6 +217,11 @@ public class CompileMojo
 
     if (quiet) {
       task.createArg().setValue("--quiet");
+    }
+
+    if (license != null) {
+      task.createArg().setValue("--license");
+      task.createArg().setValue(license);
     }
 
     if (test) {
