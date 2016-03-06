@@ -31,7 +31,7 @@
     <skin>
         <groupId>org.apache.maven.skins</groupId>
         <artifactId>maven-fluido-skin</artifactId>
-        <version>1.2.2</version>
+        <version>1.5</version>
     </skin>
 
     <version position="right"/>
@@ -57,7 +57,7 @@
 
     <body>
         <breadcrumbs>
-            <item name="${project.name}" href="${project.url}/index.html"/>
+            <item name="${project.name}" href="http://sonatype.github.io/install4j-support/index.html"/>
         </breadcrumbs>
 
         <menu name="Overview">
