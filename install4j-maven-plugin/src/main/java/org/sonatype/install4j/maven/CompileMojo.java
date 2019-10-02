@@ -124,6 +124,18 @@ public class CompileMojo
   private String macKeystorePassword;
 
   /**
+   * Set the Apple ID used for notarizing macOS media files. This only has an effect when run on a macOS machine.
+   */
+  @Parameter(property = "install4j.appleId")
+  private String appleId;
+
+  /**
+   * Set the app-specific password for notarizing macOS media files. This only has an effect when run on a macOS machine.
+   */
+  @Parameter(property = "install4j.appleIdPassword")
+  private String appleIdPassword;
+
+  /**
    * Override the application version.
    */
   @Parameter(property = "install4j.release", defaultValue = "${project.version}")
@@ -248,6 +260,16 @@ public class CompileMojo
     if (macKeystorePassword != null) {
       task.createArg().setValue("--mac-keystore-password");
       task.createArg().setValue(macKeystorePassword);
+    }
+
+    if (appleId != null) {
+      task.createArg().setValue("--apple-id");
+      task.createArg().setValue(appleId);
+    }
+
+    if (appleIdPassword != null) {
+      task.createArg().setValue("--apple-id-password");
+      task.createArg().setValue(appleIdPassword);
     }
 
     if (release != null) {
