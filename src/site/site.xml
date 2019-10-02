@@ -24,7 +24,7 @@
 
     <bannerRight>
         <name>install4j</name>
-        <src>http://sonatype.github.com/install4j-support/images/install4j.gif</src>
+        <src>http://sonatype.github.com/install4j-support/images/install4j.png</src>
         <href>http://www.ej-technologies.com/products/install4j/overview.html</href>
     </bannerRight>
 

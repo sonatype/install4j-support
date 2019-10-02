@@ -78,8 +78,8 @@
   </prerequisites>
 
   <properties>
-    <maven.compiler.source>1.5</maven.compiler.source>
-    <maven.compiler.target>1.5</maven.compiler.target>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
 
     <build.number/>
 
@@ -188,7 +188,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.10.3</version>
           <configuration>
-            <source>1.5</source>
+            <source>1.6</source>
           </configuration>
         </plugin>
 
@@ -249,7 +249,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.5</version>
+        <version>3.8.2</version>
         <dependencies>
           <dependency>
             <groupId>org.apache.maven.doxia</groupId>
@@ -292,7 +292,7 @@
             <version>1.0.6</version>
           </docletArtifact>
           <doclet>com.google.doclava.Doclava</doclet>
-          <source>1.5</source>
+          <source>1.6</source>
           <bootclasspath>${sun.boot.class.path}</bootclasspath>
           <additionalparam>
             -quiet
