@@ -58,6 +58,14 @@
     </developer>
   </developers>
 
+  <contributors>
+    <contributor>
+      <!--<id>ingokegel</id>-->
+      <name>Ingo Kegel</name>
+      <url>https://www.ej-technologies.com/</url>
+    </contributor>
+  </contributors>
+
   <repositories>
     <repository>
       <id>ejt</id>
