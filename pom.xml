@@ -20,14 +20,14 @@
   <parent>
     <groupId>org.sonatype.buildsupport</groupId>
     <artifactId>public-parent</artifactId>
-    <version>16</version>
+    <version>17</version>
     <relativePath/>
   </parent>
 
   <groupId>org.sonatype.install4j</groupId>
   <artifactId>install4j-support</artifactId>
   <name>${project.groupId}:${project.artifactId}</name>
-  <version>1.1.2-SNAPSHOT</version>
+  <version>1.1.2</version>
   <packaging>pom</packaging>
 
   <url>http://sonatype.github.io/install4j-support</url>
@@ -57,6 +57,14 @@
       <name>Jason Dillon</name>
     </developer>
   </developers>
+
+  <contributors>
+    <contributor>
+      <!--<id>ingokegel</id>-->
+      <name>Ingo Kegel</name>
+      <url>https://www.ej-technologies.com/</url>
+    </contributor>
+  </contributors>
 
   <repositories>
     <repository>
@@ -106,19 +114,19 @@
       <dependency>
         <groupId>org.sonatype.install4j</groupId>
         <artifactId>install4j-slf4j</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.install4j</groupId>
         <artifactId>install4j-common</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.install4j</groupId>
         <artifactId>install4j-ga</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2</version>
       </dependency>
 
       <dependency>
@@ -126,13 +134,13 @@
         <artifactId>install4j-ga</artifactId>
         <classifier>bundle</classifier>
         <type>zip</type>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2</version>
       </dependency>
 
       <dependency>
         <groupId>org.sonatype.install4j</groupId>
         <artifactId>install4j-maven-plugin</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -197,7 +205,7 @@
         <plugin>
           <groupId>org.sonatype.install4j</groupId>
           <artifactId>install4j-maven-plugin</artifactId>
-          <version>1.1.2-SNAPSHOT</version>
+          <version>1.1.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
