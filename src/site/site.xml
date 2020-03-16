@@ -18,14 +18,14 @@
 
     <bannerLeft>
         <name>sonatype</name>
-        <src>http://sonatype.github.com/install4j-support/images/sonatype.jpg</src>
-        <href>http://sonatype.com</href>
+        <src>https://sonatype.github.com/install4j-support/images/sonatype-brand.png</src>
+        <href>https://sonatype.com</href>
     </bannerLeft>
 
     <bannerRight>
         <name>install4j</name>
-        <src>http://sonatype.github.com/install4j-support/images/install4j.png</src>
-        <href>http://www.ej-technologies.com/products/install4j/overview.html</href>
+        <src>https://sonatype.github.com/install4j-support/images/install4j.png</src>
+        <href>https://www.ej-technologies.com/products/install4j/overview.html</href>
     </bannerRight>
 
     <skin>
@@ -47,17 +47,17 @@
                 <!--<ribbonOrientation>left</ribbonOrientation>-->
                 <!--<ribbonColor>darkblue</ribbonColor>-->
             <!--</gitHub>-->
-            <twitter>
-                <user>sonatypecm</user>
-                <showUser>false</showUser>
-                <showFollowers>false</showFollowers>
-            </twitter>
+<!--            <twitter>-->
+<!--                <user>sonatypecm</user>-->
+<!--                <showUser>false</showUser>-->
+<!--                <showFollowers>false</showFollowers>-->
+<!--            </twitter>-->
         </fluidoSkin>
     </custom>
 
     <body>
         <breadcrumbs>
-            <item name="${project.name}" href="http://sonatype.github.io/install4j-support/index.html"/>
+            <item name="${project.name}" href="https://sonatype.github.io/install4j-support/index.html"/>
         </breadcrumbs>
 
         <menu name="Overview">

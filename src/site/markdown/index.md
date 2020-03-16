@@ -14,7 +14,7 @@
 -->
 # install4j Support
 
-Provides support for [install4j](http://www.ej-technologies.com/products/install4j/overview.html).
+Provides support for [install4j](https://www.ej-technologies.com/products/install4j/overview.html).
 
 ## Libraries
 
