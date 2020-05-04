@@ -1,7 +1,7 @@
 @Library(['private-pipeline-library', 'jenkins-shared@mvnw']) _
 
 mavenPipeline(
-  javaVersion: 'Java 7',
+  javaVersion: 'Java 8',
   useMvnw: true,
   usePublicSettingsFile: true,
   useEventSpy: false, 
