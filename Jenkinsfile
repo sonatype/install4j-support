@@ -1,4 +1,4 @@
-@Library(['private-pipeline-library', 'jenkins-shared@mvnw']) _
+@Library(['private-pipeline-library', 'jenkins-shared']) _
 
 mavenPipeline(
   javaVersion: 'Java 8',
