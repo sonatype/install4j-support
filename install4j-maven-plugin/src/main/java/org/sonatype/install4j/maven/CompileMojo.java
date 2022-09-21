@@ -428,7 +428,7 @@ public class CompileMojo
   private File normalize(final File base, final String path) throws Exception {
     String basePath = base.getCanonicalPath();
     String filePath = new File(path).getCanonicalPath();
-    if (filePath.startsWith(basePath)) {
+    if (new File(path).getCanonicalFile().toPath().startsWith(basePath)) {
       String relPath = filePath.substring(basePath.length() + 1, filePath.length());
       return new File(base, relPath);
 
