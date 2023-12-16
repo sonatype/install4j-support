@@ -70,7 +70,7 @@
     <repository>
       <id>ejt</id>
       <name>ej-technologies</name>
-      <url>http://maven.ej-technologies.com/repository</url>
+      <url>https://maven.ej-technologies.com/repository</url>
     </repository>
   </repositories>
 
